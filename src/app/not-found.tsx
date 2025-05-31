@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "404 - Page Not Found",
@@ -22,12 +23,12 @@ export default function NotFound() {
                 The page you are looking for might have been removed, had its
                 name changed, or is temporarily unavailable.
               </p>
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-opacity-90"
               >
                 Back to Home
-              </a>
+              </Link>
             </div>
           </div>
         </div>
