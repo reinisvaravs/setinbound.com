@@ -16,31 +16,27 @@ const Faq = () => {
         <div className="-mx-4 mt-[60px] flex flex-wrap lg:mt-20">
           <div className="w-full px-4 lg:w-1/2">
             <SingleFaq
-              question="How to use TailGrids?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="What industries can benefit from AI voice agents?"
+              answer="AI voice agents are particularly effective in industries with high call volumes such as sales, customer service, healthcare scheduling, real estate, and financial services. They excel in scenarios requiring consistent, round-the-clock phone support and lead qualification."
             />
             <SingleFaq
-              question="How to download icons from LineIcons?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="How long does it take to set up an AI voice agent?"
+              answer="Typically, we can deploy a basic AI voice agent within 1-2 weeks. Full implementation, including custom voice training, specific workflow integration, and advanced conversation flows, usually takes 2-4 weeks. We ensure minimal disruption to your existing operations during setup."
             />
             <SingleFaq
-              question="Is GrayGrids part of UIdeck?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="How natural do the AI voice agents sound?"
+              answer="Our AI voice agents use advanced natural language processing and neural voice technology to create remarkably human-like conversations. They can understand context, respond naturally to interruptions, and adapt their tone appropriately, making interactions smooth and professional."
             />
           </div>
 
           <div className="w-full px-4 lg:w-1/2">
             <SingleFaq
-              question="Can I use this template for commercial project?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="How do you ensure call quality and accuracy?"
+              answer="We maintain high standards through continuous monitoring and optimization. Each AI voice agent undergoes rigorous testing, regular performance reviews, and automatic updates. We also provide detailed analytics and call transcripts for quality assurance."
             />
             <SingleFaq
-              question="Do you have plan to releasing Play Pro?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
-            />
-            <SingleFaq
-              question="Where and how to host this template?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="Can AI voice agents integrate with existing phone sysyem?"
+              answer="Yes, our AI voice agents integrate seamlessly with most modern phone systems, CRM platforms, and business tools. We support VoIP, traditional phone lines, and digital communication platforms, ensuring smooth integration with your existing infrastructure."
             />
           </div>
         </div>
