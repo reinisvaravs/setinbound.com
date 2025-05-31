@@ -12,7 +12,7 @@ const Features = () => {
           paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
         /> */}
 
-        <div className="-mx-4 mt-12 flex flex-wrap lg:mt-20">
+        <div className="-mx-4 mt-12 flex flex-wrap justify-evenly lg:mt-20">
           {featuresData.map((feature, i) => (
             <SingleFeature key={i} feature={feature} />
           ))}
