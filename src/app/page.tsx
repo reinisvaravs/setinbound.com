@@ -3,7 +3,6 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import Faq from "@/components/Faq";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
-import Team from "@/components/Team";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,7 +19,6 @@ export default function Home() {
       <Features />
       <CallToAction />
       <Faq />
-      <Team />
     </main>
   );
 }
