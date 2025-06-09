@@ -21,7 +21,7 @@ const Footer = () => {
             <div className="mb-10 w-full">
               <Link href="/" className="mb-6 inline-block max-w-[160px]">
                 <Image
-                  src="/images/logo/logo-white.svg"
+                  src="/images/logo/lintra-logo-white.svg"
                   alt="logo"
                   width={140}
                   height={30}
@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="-mx-3 flex items-center ">
-            <MdEmail className="-mx-2" />
+            <MdEmail className="-mx-2 fill-white" />
             <Link
               aria-label="social link"
               href="mailto:hello@lintraai.com"
@@ -53,8 +53,8 @@ const Footer = () => {
               }}
               className="-mx-1"
             >
-              {!isCopied && <MdContentCopy className="clipboard" />}
-              {isCopied && <FaCheck className="check" />}
+              {!isCopied && <MdContentCopy className="clipboard fill-white" />}
+              {isCopied && <FaCheck className="check fill-white" />}
             </button>
           </div>
         </div>
