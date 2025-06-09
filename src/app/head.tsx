@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     canonical: "https://lintraai.com",
     languages: {
       "en-US": "https://lintraai.com",
-      "es-ES": "https://lintraai.com/es",
     },
   },
   openGraph: {
@@ -117,5 +116,9 @@ export const metadata: Metadata = {
       url: "https://lintraai.com",
       should_fallback: true,
     },
+  },
+  other: {
+    google: "notranslate",
+    "Content-Language": "en-US",
   },
 };
