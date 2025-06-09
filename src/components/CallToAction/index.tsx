@@ -7,7 +7,10 @@ const CallToAction = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
-    <section className="relative z-10 overflow-hidden bg-primary py-20 lg:py-[115px]">
+    <section
+      id="call-section"
+      className="relative z-10 overflow-hidden bg-primary py-20 lg:py-[115px]"
+    >
       <div className="container mx-auto">
         <div className="relative overflow-hidden">
           <div className="-mx-4 flex flex-wrap items-stretch">
