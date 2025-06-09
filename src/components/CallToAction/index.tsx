@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 const CallToAction = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   return (
     <section className="relative z-10 overflow-hidden bg-primary py-20 lg:py-[115px]">
       <div className="container mx-auto">
@@ -17,21 +20,19 @@ const CallToAction = () => {
                   Enter your phone number to receive a call from our AI agent,
                   or click below to call us directly.
                 </p>
-                <Link
-                  href="tel:+12698955424"
-                  className="inline-block rounded-md border border-transparent bg-secondary px-7 py-3 text-base font-medium text-white transition hover:bg-[#0BB489]"
-                >
-                  +1 269 895 5424
-                </Link>
-                <div>
-                  <input type="tel" id="clientNumber" />
+                <div className="mt-4">
+                  <input
+                    type="tel"
+                    id="clientNumber"
+                    placeholder="Enter your phone number"
+                    className="w-64 rounded-md px-4 py-2 text-black"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
                   <button
                     className="ml-2 rounded-md bg-secondary px-4 py-2 text-white"
                     onClick={async () => {
-                      const phoneNumber = document.querySelector(
-                        "#clientNumber",
-                      ) as HTMLInputElement;
-                      if (phoneNumber && phoneNumber.value) {
+                      if (phoneNumber) {
                         try {
                           const response = await fetch(
                             "https://api.retellai.com/v2/create-phone-call",
@@ -57,7 +58,7 @@ const CallToAction = () => {
                                 opt_out_sensitive_data_storage: false,
                                 opt_in_signed_url: false,
                                 from_number: "+12698955424",
-                                to_number: phoneNumber.value,
+                                to_number: phoneNumber,
                                 direction: "outbound",
                               }),
                             },
@@ -74,11 +75,11 @@ const CallToAction = () => {
                           alert("Failed to initiate call. Please try again.");
                         }
                       } else {
-                        alert("Please enter a valid phone number.");
+                        window.location.href = "tel:+12698955424";
                       }
                     }}
                   >
-                    Call
+                    {phoneNumber ? "Call Me" : "Call Agent"}
                   </button>
                 </div>
               </div>
