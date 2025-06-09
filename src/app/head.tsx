@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   authors: [
     { name: "Lintra AI", url: "https://lintraai.com" },
     { name: "Reinis Varavs", url: "https://lintraai.com" },
+    { name: "Henry Varavs", url: "https://lintraai.com" },
   ],
   creator: "Lintra AI",
   publisher: "Lintra AI",
@@ -107,11 +108,18 @@ export const metadata: Metadata = {
         name: "Lintra AI",
         url: "https://lintraai.com",
       },
-      creator: {
-        "@type": "Person",
-        name: "Reinis Varavs",
-        url: "https://lintraai.com",
-      },
+      creator: [
+        {
+          "@type": "Person",
+          name: "Reinis Varavs",
+          url: "https://lintraai.com",
+        },
+        {
+          "@type": "Person",
+          name: "Henry Varavs",
+          url: "https://lintraai.com",
+        },
+      ],
     }),
   },
 };
