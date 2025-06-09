@@ -32,22 +32,13 @@ export const metadata: Metadata = {
     description:
       "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
     siteName: "Lintra AI",
-    images: [
-      {
-        url: "/images/hero/hero-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Lintra AI - AI Voice Agents for Solar Sales",
-      },
-    ],
     locale: "en_US",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Lintra AI - AI Voice Agents for Solar Sales",
     description:
       "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
-    images: ["/images/hero/hero-image.png"],
     creator: "@lintraai",
     site: "@lintraai",
   },
