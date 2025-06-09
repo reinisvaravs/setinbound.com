@@ -19,7 +19,11 @@ export const metadata: Metadata = {
     "solar industry",
     "sales automation",
   ],
-  authors: [{ name: "LintraAI", url: "https://lintraai.com" }],
+  authors: [
+    { name: "LintraAI", url: "https://lintraai.com" },
+    { name: "Reinis Vāravs", url: "https://lintraai.com" },
+    { name: "Reinis Varavs", url: "https://lintraai.com" },
+  ],
   creator: "LintraAI",
   publisher: "LintraAI",
   formatDetection: {
@@ -60,15 +64,15 @@ export const metadata: Metadata = {
     site: "@lintraai",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-    other: {
-      rel: "apple-touch-icon-precomposed",
-      url: "/apple-touch-icon-precomposed.png",
-    },
+    icon: [
+      { url: "/favicon.png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
-  manifest: "/site.webmanifest",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -84,37 +88,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-site-verification",
-    yandex: "your-yandex-verification",
-    yahoo: "your-yahoo-verification",
-  },
-  category: "technology",
-  classification: "AI Software",
-  referrer: "origin-when-cross-origin",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "LintraAI",
-  },
-  appLinks: {
-    ios: {
-      url: "https://lintraai.com",
-      app_store_id: "your-app-store-id",
-    },
-    android: {
-      package: "com.lintraai.app",
-      app_name: "LintraAI",
-    },
-    web: {
-      url: "https://lintraai.com",
-      should_fallback: true,
     },
   },
   other: {
