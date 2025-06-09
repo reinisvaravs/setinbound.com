@@ -38,7 +38,7 @@ const Hero = () => {
                           ?.scrollIntoView({ behavior: "smooth" });
                       }}
                     >
-                      Call Agent
+                      Test Agent
                     </Link>
                   </li>
                   <li>
