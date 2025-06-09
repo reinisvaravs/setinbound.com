@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 const CallToAction = () => {
@@ -10,21 +12,75 @@ const CallToAction = () => {
               <div className="mx-auto max-w-[570px] text-center">
                 <h2 className="mb-2.5 text-3xl font-bold text-white md:text-[38px] md:leading-[1.44]">
                   <span>Experience Our AI Voice Agent</span>
-                  {/* <span className="text-3xl font-normal md:text-[40px]">
-                    {" "}
-                    Get Started Now{" "}
-                  </span> */}
                 </h2>
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-white">
-                  Call now and interact with our AI to experience the future of
-                  customer service
+                  Enter your phone number to receive a call from our AI agent,
+                  or click below to call us directly.
                 </p>
                 <Link
-                  href="/"
+                  href="tel:+12698955424"
                   className="inline-block rounded-md border border-transparent bg-secondary px-7 py-3 text-base font-medium text-white transition hover:bg-[#0BB489]"
                 >
                   +1 269 895 5424
                 </Link>
+                <div>
+                  <input type="tel" id="clientNumber" />
+                  <button
+                    className="ml-2 rounded-md bg-secondary px-4 py-2 text-white"
+                    onClick={async () => {
+                      const phoneNumber = document.querySelector(
+                        "#clientNumber",
+                      ) as HTMLInputElement;
+                      if (phoneNumber && phoneNumber.value) {
+                        try {
+                          const response = await fetch(
+                            "https://api.retellai.com/v2/create-phone-call",
+                            {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${process.env.NEXT_PUBLIC_RETELL_API_KEY}`,
+                              },
+                              body: JSON.stringify({
+                                call_id: `call_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                                call_type: "phone_call",
+                                agent_id: "agent_68441dc2d48c6fdb910a0d713f",
+                                retell_llm_dynamic_variables: {},
+                                call_status: "registered",
+                                latency: {},
+                                call_cost: {
+                                  product_costs: [],
+                                  total_duration_seconds: 0,
+                                  total_duration_unit_price: 0,
+                                  combined_cost: 0,
+                                },
+                                opt_out_sensitive_data_storage: false,
+                                opt_in_signed_url: false,
+                                from_number: "+12698955424",
+                                to_number: phoneNumber.value,
+                                direction: "outbound",
+                              }),
+                            },
+                          );
+
+                          if (!response.ok) {
+                            throw new Error("Failed to initiate call");
+                          }
+
+                          const data = await response.json();
+                          alert("Call initiated successfully!");
+                        } catch (error) {
+                          console.error("Error making call:", error);
+                          alert("Failed to initiate call. Please try again.");
+                        }
+                      } else {
+                        alert("Please enter a valid phone number.");
+                      }
+                    }}
+                  >
+                    Call
+                  </button>
+                </div>
               </div>
             </div>
           </div>
