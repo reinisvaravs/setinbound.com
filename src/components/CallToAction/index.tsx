@@ -28,12 +28,12 @@ const CallToAction = () => {
                     type="tel"
                     id="clientNumber"
                     placeholder="Enter your phone number"
-                    className="w-64 rounded-md px-4 py-2 text-black"
+                    className="w-64 rounded-md px-4 py-2 text-gray-300 bg-transparent border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                   <button
-                    className="ml-2 rounded-md bg-secondary px-4 py-2 text-white"
+                    className="ml-2 rounded-md bg-accent-light px-4 py-2 text-white"
                     onClick={async () => {
                       if (phoneNumber) {
                         try {
@@ -71,7 +71,7 @@ const CallToAction = () => {
                             throw new Error("Failed to initiate call");
                           }
 
-                          const data = await response.json();
+                          await response.json();
                           alert("Call initiated successfully!");
                         } catch (error) {
                           console.error("Error making call:", error);

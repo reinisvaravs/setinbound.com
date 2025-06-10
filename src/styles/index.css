@@ -8,6 +8,11 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .sticky-menu .navbar-logo {
   @apply py-2;
 }
@@ -30,7 +35,7 @@ body {
 }
 
 .sticky-menu .signUpBtn {
-  @apply bg-primary hover:bg-dark text-white hover:text-white;
+  @apply bg-primary text-white hover:bg-dark hover:text-white;
 }
 
 .navbarTogglerActive > span:nth-child(1) {

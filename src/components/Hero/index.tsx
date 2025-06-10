@@ -30,7 +30,7 @@ const Hero = () => {
                   <li>
                     <Link
                       href="#call-section"
-                      className="inline-flex items-center justify-center rounded-md bg-white px-7 py-[14px] text-center text-base font-medium text-dark shadow-1 transition duration-300 ease-in-out hover:bg-gray-2"
+                      className="inline-flex items-center justify-center rounded-md bg-gray-3 px-7 py-[14px] text-center text-base font-medium text-dark shadow-1 transition duration-300 ease-in-out hover:bg-white"
                       onClick={(e) => {
                         e.preventDefault();
                         document
@@ -45,7 +45,7 @@ const Hero = () => {
                     <Link
                       href="https://cal.com/lintraai/30min"
                       target="_blank"
-                      className="flex items-center gap-4 rounded-md bg-white/[0.12] px-6 py-[14px] text-base font-medium text-white transition duration-300 ease-in-out hover:bg-white hover:text-dark"
+                      className="flex items-center gap-4 rounded-md bg-white/[0.12] px-6 py-[14px] text-base font-medium text-white transition duration-300 ease-in-out hover:bg-accent-light"
                     >
                       Schedule a Call
                     </Link>
