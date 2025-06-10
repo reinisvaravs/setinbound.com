@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     site: "@lintraai",
   },
   icons: {
-    icon: [{ url: "/images/logo/favicon.png" }],
+    icon: "/favicon.png",
   },
   viewport: {
     width: "device-width",
