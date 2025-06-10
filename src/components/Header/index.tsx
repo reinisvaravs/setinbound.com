@@ -27,7 +27,7 @@ const Header = () => {
 
   useEffect(() => {
     setTheme("dark");
-  });
+  }, []);
 
   const colors = ["#461A56", "#511D43", "#511D4E"];
 
@@ -103,7 +103,7 @@ const Header = () => {
               <div className="flex w-full items-center justify-between pr-16 lg:pr-0">
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary/5 text-dark dark:bg-white/5 dark:text-white"
+                  className="bg-primary/5 flex h-[40px] w-[40px] items-center justify-center rounded-full text-dark dark:bg-white/5 dark:text-white"
                 >
                   {theme === "dark" ? (
                     <svg
