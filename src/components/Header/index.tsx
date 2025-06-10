@@ -29,7 +29,7 @@ const Header = () => {
     setTheme("dark");
   });
 
-  const colors = ["#461A56", "#511D43", "#511D4E"];
+  const colors = ["#511D4E", "#511D43", "#461A56"];
 
   const toggleColor = () => {
     const nextIndex = (colorIndex + 1) % colors.length;
