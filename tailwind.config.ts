@@ -11,7 +11,9 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#511D43",
+          DEFAULT: "#511D43", // wine
+          // DEFAULT: "#511D4E", // Wine Berry
+          // DEFAULT: "#461A56", // blue
           dark: "#901E3E",
         },
         secondary: {
