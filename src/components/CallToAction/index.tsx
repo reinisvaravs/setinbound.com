@@ -47,7 +47,9 @@ const CallToAction = () => {
                               body: JSON.stringify({
                                 call_id: `call_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
                                 call_type: "phone_call",
-                                agent_id: "agent_19823a553af7a5a0136510340b",
+                                agent_id:
+                                  process.env.NEXT_PUBLIC_RETELL_AGENT_ID ||
+                                  "agent_00000000",
                                 retell_llm_dynamic_variables: {},
                                 call_status: "registered",
                                 latency: {},
@@ -59,7 +61,8 @@ const CallToAction = () => {
                                 },
                                 opt_out_sensitive_data_storage: false,
                                 opt_in_signed_url: false,
-                                from_number: "+12698955424",
+                                from_number:
+                                  process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER,
                                 to_number: phoneNumber,
                                 direction: "outbound",
                               }),
@@ -77,7 +80,7 @@ const CallToAction = () => {
                           alert("Failed to initiate call. Please try again.");
                         }
                       } else {
-                        window.location.href = "tel:+12698955424";
+                        window.location.href = `tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633"}`;
                       }
                     }}
                   >

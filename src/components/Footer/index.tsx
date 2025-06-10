@@ -37,10 +37,10 @@ const Footer = () => {
             <MdEmail className="-mx-2 fill-white" />
             <Link
               aria-label="social link"
-              href="mailto:hello@lintraai.com"
+              href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`}
               className="px-3 text-gray-7 hover:text-white"
             >
-              hello@lintraai.com
+              {process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}
             </Link>
             <button
               onClick={() => {
