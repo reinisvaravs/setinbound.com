@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
-import { MdContentCopy } from "react-icons/md";
+import { MdEmail, MdContentCopy } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { useState } from "react";
 
