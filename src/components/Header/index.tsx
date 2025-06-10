@@ -103,7 +103,8 @@ const Header = () => {
               <div className="flex w-full items-center justify-between pr-16 lg:pr-0">
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="bg-primary/5 flex h-[40px] w-[40px] items-center justify-center rounded-full text-dark dark:bg-white/5 dark:text-white"
+                  className="bg-primary/5 flex h-[40px] w-[40px] items-center justify-center rounded-full text-dark opacity-0 dark:bg-white/5 dark:text-white"
+                  disabled={true}
                 >
                   {theme === "dark" ? (
                     <svg
