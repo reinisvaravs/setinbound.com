@@ -27,12 +27,12 @@ const CallToAction = () => {
                     type="tel"
                     id="clientNumber"
                     placeholder="Enter your phone number"
-                    className="w-64 rounded-md px-4 py-2 text-gray-300 bg-transparent border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-64 rounded-md border border-gray-300 bg-transparent px-4 py-2 text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                   <button
-                    className="ml-2 rounded-md bg-accent-light px-4 py-2 text-white"
+                    className="ml-2 mt-2 rounded-md bg-accent-light px-4 py-2 text-white shadow-1 transition duration-300 ease-in-out hover:bg-accent"
                     onClick={async () => {
                       if (phoneNumber) {
                         try {
@@ -89,7 +89,7 @@ const CallToAction = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="pointer-events-none">
         <span className="absolute left-0 top-0">
           <svg
             width="495"
