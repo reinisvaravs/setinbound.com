@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { IoColorPaletteOutline } from "react-icons/io5";
 
 const Header = () => {
   const pathUrl = usePathname();
+  const [colorIndex, setColorIndex] = useState(0);
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -26,6 +28,17 @@ const Header = () => {
   useEffect(() => {
     setTheme("dark");
   });
+
+  const colors = ["#461A56", "#511D43", "#511D4E"];
+
+  const toggleColor = () => {
+    const nextIndex = (colorIndex + 1) % colors.length;
+    setColorIndex(nextIndex);
+    const newColor = colors[nextIndex];
+    // Update the primary color in Tailwind config
+    const style = document.documentElement.style;
+    style.setProperty("--tw-primary", newColor);
+  };
 
   return (
     <>
@@ -87,7 +100,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+              <div className="flex w-full items-center justify-between pr-16 lg:pr-0">
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                   className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-primary/5 text-dark dark:bg-white/5 dark:text-white"
@@ -175,6 +188,10 @@ const Header = () => {
                     </svg>
                   )}
                 </button>
+                <IoColorPaletteOutline
+                  onClick={toggleColor}
+                  className="flex h-8 w-8 cursor-pointer text-gray-2"
+                />
               </div>
             </div>
           </div>
