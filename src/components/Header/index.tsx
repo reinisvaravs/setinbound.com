@@ -80,7 +80,24 @@ const Header = () => {
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
-              <div className="flex w-full items-center justify-between pr-16 lg:pr-0"></div>
+              <div className="flex w-full items-center justify-end pr-16 lg:pr-0">
+                {pathUrl === "/" && (
+                  <a
+                    href="/referal"
+                    className=" inline-flex items-center justify-center rounded-md bg-secondary px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary bg-opacity-60 hover:bg-opacity-100"
+                  >
+                    Have a referral?
+                  </a>
+                )}
+                {pathUrl !== "/" && (
+                  <a
+                    href="/"
+                    className=" inline-flex items-center justify-center rounded-md bg-secondary px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary bg-opacity-60 hover:bg-opacity-100"
+                  >
+                    Home
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
