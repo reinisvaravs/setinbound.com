@@ -20,21 +20,62 @@ export default function ReferalPage() {
     otherInfo: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for your referral! We&apos;ll be in touch soon.");
-    setFormData({
-      referrerName: "",
-      referrerPhone: "",
-      referrerEmail: "",
-      hasNotifiedReferral: false,
-      contactName: "",
-      contactPhone: "",
-      contactEmail: "",
-      companyName: "",
-      runsAds: false,
-      otherInfo: "",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://sheetdb.io/api/v1/bhxoxdwcztjdo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: [
+            {
+              referrerName: formData.referrerName,
+              referrerPhone: formData.referrerPhone,
+              referrerEmail: formData.referrerEmail,
+              hasNotifiedReferral: formData.hasNotifiedReferral ? "Yes" : "No",
+              contactName: formData.contactName,
+              contactPhone: formData.contactPhone,
+              contactEmail: formData.contactEmail,
+              companyName: formData.companyName,
+              runsAds: formData.runsAds ? "Yes" : "No",
+              otherInfo: formData.otherInfo,
+              timestamp: new Date().toISOString(),
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
+      toast.success(
+        "Thank you for your referral! We&apos;ll be in touch soon.",
+      );
+      setFormData({
+        referrerName: "",
+        referrerPhone: "",
+        referrerEmail: "",
+        hasNotifiedReferral: false,
+        contactName: "",
+        contactPhone: "",
+        contactEmail: "",
+        companyName: "",
+        runsAds: false,
+        otherInfo: "",
+      });
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -273,9 +314,10 @@ export default function ReferalPage() {
             <div className="mb-6">
               <button
                 type="submit"
-                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-60"
+                disabled={isSubmitting}
+                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-60 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Submit Referral
+                {isSubmitting ? "Submitting..." : "Submit Referral"}
               </button>
             </div>
           </form>
