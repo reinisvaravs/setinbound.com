@@ -89,11 +89,11 @@ export default function ReferalPage() {
         },
         body: JSON.stringify({
           "Referrer Name": formData.referrerName.trim(),
-          "Referrer Phone": formData.referrerPhone.trim(),
+          "Referrer Phone": `'${formData.referrerPhone.trim()}`,
           "Referrer Email": formData.referrerEmail.trim(),
           "Has Notified Referral": formData.hasNotifiedReferral ? "Yes" : "No",
           "Contact Name": formData.contactName.trim(),
-          "Contact Phone": formData.contactPhone.trim(),
+          "Contact Phone": `'${formData.contactPhone.trim()}`,
           "Contact Email": formData.contactEmail.trim(),
           "Company Name/Domain": formData.companyName.trim(),
           "Runs Ads": formData.runsAds ? "Yes" : "No",

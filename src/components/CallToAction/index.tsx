@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const CallToAction = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -74,10 +75,12 @@ const CallToAction = () => {
                           }
 
                           await response.json();
-                          alert("Call initiated successfully!");
+                          toast.success("Call initiated successfully!");
                         } catch (error) {
                           console.error("Error making call:", error);
-                          alert("Failed to initiate call. Please try again.");
+                          toast.error(
+                            "Failed to initiate call. Please try again.",
+                          );
                         }
                       } else {
                         window.location.href = `tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633"}`;
