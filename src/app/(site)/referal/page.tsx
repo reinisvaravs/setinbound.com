@@ -1,4 +1,36 @@
-"use client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Referral Program - LINTRAAI.COM",
+  description:
+    "Refer businesses to LINTRAAI.COM and earn rewards. Help us grow our network while earning for successful referrals.",
+  openGraph: {
+    title: "Referral Program - LINTRAAI.COM",
+    description:
+      "Refer businesses to LINTRAAI.COM and earn rewards. Help us grow our network while earning for successful referrals.",
+    url: "https://lintraai.com/referal",
+    type: "website",
+    images: [
+      {
+        url: "/images/referral-og-image.jpg", // Replace with your actual image URL
+        width: 1200,
+        height: 630,
+        alt: "LINTRAAI.COM Referral Program",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Referral Program - LINTRAAI.COM",
+    description:
+      "Refer businesses to LINTRAAI.COM and earn rewards. Help us grow our network while earning for successful referrals.",
+    images: [
+      "/images/referral-twitter-image.jpg", // Replace with your actual image URL
+    ],
+  },
+};
+
+("use client");
 
 import { useState } from "react";
 import toast from "react-hot-toast";
