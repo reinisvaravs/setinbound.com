@@ -29,10 +29,10 @@ export default function ReferalPage() {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto max-w-[570px] text-center">
-              <h2 className="mb-2.5 text-3xl font-bold text-dark dark:text-white md:text-[40px] md:leading-[1.44]">
-                Refer a Business and Earn 500-1500 Euro per Reference
+              <h2 className="mb-2.5 text-3xl font-bold text-dark dark:text-white md:text-[30px] md:leading-[1.44]">
+                Refer a Business and Earn 500-1500€
               </h2>
-              <p className="mb-10 text-base text-body-color dark:text-dark-6">
+              <p className="mb-10 text-base text-white dark:text-dark-6">
                 Help us grow our network while earning rewards for successful
                 referrals.
               </p>
@@ -61,6 +61,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, yourName: e.target.value })
                 }
                 required
+                placeholder="Enter your full name"
                 className="shadow-one dark:shadow-signUp w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51]"
               />
             </div>
@@ -80,6 +81,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, companyName: e.target.value })
                 }
                 required
+                placeholder="Enter the company's full name"
                 className="shadow-one dark:shadow-signUp w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51]"
               />
             </div>
@@ -99,7 +101,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, yourContact: e.target.value })
                 }
                 required
-                placeholder="Email or phone number"
+                placeholder="Enter your email or phone number"
                 className="shadow-one dark:shadow-signUp w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51]"
               />
             </div>
@@ -119,21 +121,21 @@ export default function ReferalPage() {
                   setFormData({ ...formData, companyContact: e.target.value })
                 }
                 required
-                placeholder="Email or phone number"
+                placeholder="Enter company's email or phone number"
                 className="shadow-one dark:shadow-signUp w-full rounded-md border border-transparent px-6 py-3 text-base text-body-color placeholder-body-color outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51]"
               />
             </div>
 
             <div className="mb-8">
-              <p className="text-sm text-body-color dark:text-dark-6">
-                By submitting you're agreeing to our terms and service
+              <p className="text-sm text-white dark:text-dark-6">
+                By submitting you're agreeing to a thing and another thing.
               </p>
             </div>
 
             <div className="mb-6">
               <button
                 type="submit"
-                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-primary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-80"
+                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-60"
               >
                 Submit Referral
               </button>
