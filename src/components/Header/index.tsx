@@ -26,7 +26,7 @@ const Header = () => {
         className={`ud-header left-0 top-0 z-40 flex w-full items-center ${
           sticky
             ? "shadow-nav fixed z-[999] border-b border-stroke bg-white/80 backdrop-blur-[5px] dark:border-dark-3/20 dark:bg-dark/10"
-            : "absolute bg-primary"
+            : "absolute bg-transparent"
         }`}
       >
         <div className="container">
@@ -82,20 +82,20 @@ const Header = () => {
             <div className="flex w-full items-center justify-between px-4">
               <div className="flex w-full items-center justify-end pr-16 lg:pr-0">
                 {pathUrl === "/" && (
-                  <a
+                  <Link
                     href="/referal"
-                    className=" inline-flex items-center justify-center rounded-md bg-secondary px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary bg-opacity-60 hover:bg-opacity-100"
+                    className="inline-flex items-center justify-center rounded-md bg-secondary bg-opacity-60 px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary hover:bg-opacity-100"
                   >
                     Have a referral?
-                  </a>
+                  </Link>
                 )}
                 {pathUrl !== "/" && (
-                  <a
+                  <Link
                     href="/"
-                    className=" inline-flex items-center justify-center rounded-md bg-secondary px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary bg-opacity-60 hover:bg-opacity-100"
+                    className="inline-flex items-center justify-center rounded-md bg-secondary bg-opacity-60 px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary hover:bg-opacity-100"
                   >
                     Home
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
