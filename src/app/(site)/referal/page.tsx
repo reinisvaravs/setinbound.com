@@ -28,7 +28,7 @@ export default function ReferalPage() {
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="mx-auto max-w-[570px] text-center">
+            <div className="mx-auto max-w-[570px] text-center mt-8">
               <h2 className="mb-2.5 text-3xl font-bold text-dark dark:text-white md:text-[30px] md:leading-[1.44]">
                 Refer a Business and Earn 500-1500€
               </h2>
