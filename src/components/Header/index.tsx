@@ -1,14 +1,11 @@
 "use client";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { IoColorPaletteOutline } from "react-icons/io5";
 
 const Header = () => {
   const pathUrl = usePathname();
-  const [colorIndex, setColorIndex] = useState(0);
 
   // Sticky Navbar
   const [sticky, setSticky] = useState(false);
@@ -22,23 +19,6 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
   });
-
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setTheme("dark");
-  }, []);
-
-  const colors = ["#461A56", "#511D43", "#511D4E"];
-
-  const toggleColor = () => {
-    const nextIndex = (colorIndex + 1) % colors.length;
-    setColorIndex(nextIndex);
-    const newColor = colors[nextIndex];
-    // Update the primary color in Tailwind config
-    const style = document.documentElement.style;
-    style.setProperty("--tw-primary", newColor);
-  };
 
   return (
     <>
