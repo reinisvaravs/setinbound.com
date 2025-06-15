@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 import "../styles/index.css";
 import "../styles/prism-vsc-dark-plus.css";
 import { useEffect, useState } from "react";
@@ -40,6 +41,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <Toaster position="top-center" />
           </ThemeProvider>
         )}
       </body>
