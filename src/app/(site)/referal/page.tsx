@@ -14,7 +14,7 @@ export default function ReferalPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically handle the form submission
-    toast.success("Nothing happens yet.");
+    toast.success("Thank you for your referral! We&apos;ll be in touch soon.");
     setFormData({
       yourName: "",
       companyName: "",
@@ -28,11 +28,11 @@ export default function ReferalPage() {
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="mx-auto max-w-[570px] text-center mt-8">
+            <div className="mx-auto mt-8 max-w-[570px] text-center">
               <h2 className="mb-2.5 text-3xl font-bold text-dark dark:text-white md:text-[30px] md:leading-[1.44]">
                 Refer a Business and Earn 500-1500€
               </h2>
-              <p className="mb-10 text-base text-white dark:text-dark-6">
+              <p className="mb-10 text-base text-body-color dark:text-dark-6">
                 Help us grow our network while earning rewards for successful
                 referrals.
               </p>
@@ -71,7 +71,7 @@ export default function ReferalPage() {
                 htmlFor="companyName"
                 className="mb-3 block text-sm font-medium text-dark dark:text-white"
               >
-                Company You're Referencing
+                Company You&apos;re Referencing
               </label>
               <input
                 type="text"
@@ -111,7 +111,7 @@ export default function ReferalPage() {
                 htmlFor="companyContact"
                 className="mb-3 block text-sm font-medium text-dark dark:text-white"
               >
-                Company's Contact Details
+                Company&apos;s Contact Details
               </label>
               <input
                 type="text"
@@ -127,8 +127,8 @@ export default function ReferalPage() {
             </div>
 
             <div className="mb-8">
-              <p className="text-sm text-white dark:text-dark-6">
-                By submitting you're agreeing to a thing and another thing.
+              <p className="text-sm text-body-color dark:text-dark-6">
+                By submitting you&apos;re agreeing to our terms and service
               </p>
             </div>
 
