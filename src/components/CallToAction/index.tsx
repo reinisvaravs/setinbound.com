@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const CallToAction = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -9,31 +9,34 @@ const CallToAction = () => {
   return (
     <section
       id="call-section"
-      className="relative z-10 overflow-hidden bg-primary py-20 lg:py-[115px]"
+      className="bg-primary-WHITE_DARK relative z-10 overflow-hidden py-20 lg:py-[115px]"
     >
       <div className="container mx-auto">
         <div className="relative overflow-hidden">
           <div className="-mx-4 flex flex-wrap items-stretch">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[570px] text-center">
-                <h2 className="mb-2.5 text-3xl font-bold text-white md:text-[38px] md:leading-[1.44]">
+                <h2 className="text-secondary-GRAY mb-2.5 text-3xl font-bold md:text-[38px] md:leading-[1.44]">
                   <span>Experience Our AI Voice Agent</span>
                 </h2>
-                <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-white">
+                {/* <p className="text-secondary-LIGHT_GRAY mx-auto mb-6 max-w-[515px] text-base leading-[1.5]">
                   Enter your phone number to receive a call from our AI agent,
                   or click below to call us directly.
+                </p> */}{" "}
+                <p className="text-secondary-LIGHT_GRAY mx-auto mb-6 max-w-[515px] text-base leading-[1.5]">
+                  Click below to call our AI voice agent directly.
                 </p>
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <input
                     type="tel"
                     id="clientNumber"
                     placeholder="Enter your phone number"
-                    className="w-64 rounded-md border border-gray-300 bg-transparent px-4 py-2 text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-64 rounded-md border border-secondary-LIGHT_GRAY bg-transparent px-4 py-2 mb-2 text-secondary-LIGHT_GRAY focus:outline-none focus:ring-2 focus:ring-offset-secondary-LIGHT_GRAY"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
                   <button
-                    className="ml-2 mt-2 rounded-md bg-accent-light px-4 py-2 text-white shadow-1 transition duration-300 ease-in-out hover:bg-accent"
+                    className="bg-accent-BLUE text-primary-WHITE  hover:bg-secondary-LIGHT_GRAY ml-2 mt-2 rounded-md px-4 py-2 shadow-1 transition duration-300 ease-in-out "
                     onClick={async () => {
                       if (phoneNumber) {
                         try {
@@ -89,6 +92,14 @@ const CallToAction = () => {
                   >
                     {phoneNumber ? "Call Me" : "Call Agent"}
                   </button>
+                </div> */}
+                <div className="my-4">
+                  <a
+                    className="bg-accent-BLUE text-primary-WHITE  hover:bg-secondary-LIGHT_GRAY ml-2 mt-2 rounded-md px-4 py-2 shadow-1 transition duration-300 ease-in-out "
+                    href={`tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633"}`}
+                  >
+                    Call Agent
+                  </a>
                 </div>
               </div>
             </div>

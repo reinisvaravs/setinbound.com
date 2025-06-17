@@ -11,16 +11,16 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1a1b56",
-          dark: "#901e2f",
+          WHITE: "#fefeff",
+          WHITE_DARK: "#eeefef",
         },
         secondary: {
-          DEFAULT: "#200142",
-          light: "#5b01ac",
+          GRAY: "#141729",
+          LIGHT_GRAY: "#242842",
         },
         accent: {
-          DEFAULT: "#9BC09C",
-          light: "#9446e6",
+          BLUE: "#6e01ff",
+          RED: "#f54337",
         },
       },
     },

@@ -140,15 +140,15 @@ export default function ReferalPage() {
   };
 
   return (
-    <section className="relative z-10 bg-primary py-[120px]">
+    <section className="bg-primary-WHITE relative z-10 py-[120px]">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mt-8 max-w-[570px] text-center">
-              <h2 className="mb-2.5 text-3xl font-bold text-dark dark:text-white md:text-[30px] md:leading-[1.44]">
+              <h2 className="mb-2.5 text-3xl font-bold text-secondary-GRAY md:text-[30px] md:leading-[1.44]">
                 Refer a Business and Earn 500-1500€
               </h2>
-              <p className="mb-10 text-base text-body-color dark:text-dark-6">
+              <p className="mb-10 text-base text-secondary-LIGHT_GRAY">
                 Help us grow our network while earning rewards for successful
                 referrals.
               </p>
