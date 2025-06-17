@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react";
 // import toast from "react-hot-toast";
 
 const CallToAction = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
     <section
