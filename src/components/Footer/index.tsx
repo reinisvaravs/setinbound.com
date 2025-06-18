@@ -33,7 +33,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="-mx-3 flex items-center xs:pl-9">
+          <div className="-mx-3 flex items-center pl-9">
             <MdEmail className="-mx-2 fill-white" />
             <Link
               aria-label="social link"

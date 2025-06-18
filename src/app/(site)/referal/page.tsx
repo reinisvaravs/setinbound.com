@@ -245,7 +245,7 @@ export default function ReferalPage() {
                       hasNotifiedReferral: e.target.checked,
                     })
                   }
-                  className="mr-2 h-4 w-4"
+                  className="mr-2 h-4 w-4 cursor-pointer"
                 />
                 I have notified the referral about this submission
               </label>
@@ -355,7 +355,7 @@ export default function ReferalPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, runsAds: e.target.checked })
                   }
-                  className="mr-2 h-4 w-4"
+                  className="mr-2 h-4 w-4 cursor-pointer"
                 />
                 The company currently runs ads
               </label>
