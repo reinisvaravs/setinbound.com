@@ -140,7 +140,7 @@ export default function ReferalPage() {
   };
 
   return (
-    <section className="bg-primary-WHITE relative z-10 py-[120px]">
+    <section className="relative z-10 bg-primary-WHITE py-[120px]">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -165,7 +165,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="referrerName"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Your Name *
               </label>
@@ -177,7 +177,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, referrerName: e.target.value })
                 }
                 placeholder="Enter your name"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="mr-2 w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.referrerName && (
                 <p className="mt-1 text-sm text-red-500">
@@ -201,7 +201,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, referrerPhone: e.target.value })
                 }
                 placeholder="+123-456-7890"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.referrerPhone && (
                 <p className="mt-1 text-sm text-red-500">
@@ -225,7 +225,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, referrerEmail: e.target.value })
                 }
                 placeholder="Enter your email"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.referrerEmail && (
                 <p className="mt-1 text-sm text-red-500">
@@ -245,7 +245,7 @@ export default function ReferalPage() {
                       hasNotifiedReferral: e.target.checked,
                     })
                   }
-                  className="mr-2"
+                  className="mr-2 h-4 w-4"
                 />
                 I have notified the referral about this submission
               </label>
@@ -266,7 +266,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, contactName: e.target.value })
                 }
                 placeholder="Enter contact person's name"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactName && (
                 <p className="mt-1 text-sm text-red-500">
@@ -290,7 +290,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, contactPhone: e.target.value })
                 }
                 placeholder="+123-456-7890"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactPhone && (
                 <p className="mt-1 text-sm text-red-500">
@@ -314,7 +314,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, contactEmail: e.target.value })
                 }
                 placeholder="Enter contact person's email"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactEmail && (
                 <p className="mt-1 text-sm text-red-500">
@@ -338,7 +338,7 @@ export default function ReferalPage() {
                   setFormData({ ...formData, companyName: e.target.value })
                 }
                 placeholder="Enter company name or domain"
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.companyName && (
                 <p className="mt-1 text-sm text-red-500">
@@ -355,7 +355,7 @@ export default function ReferalPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, runsAds: e.target.checked })
                   }
-                  className="mr-2"
+                  className="mr-2 h-4 w-4"
                 />
                 The company currently runs ads
               </label>
@@ -376,7 +376,7 @@ export default function ReferalPage() {
                 }
                 placeholder="Any additional information about the referral"
                 rows={4}
-                className="w-full rounded-md border border-transparent bg-[#242B51] px-5 py-3 text-white focus:border-primary focus-visible:shadow-none dark:bg-dark dark:text-white"
+                className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
             </div>
 
@@ -384,7 +384,7 @@ export default function ReferalPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-opacity-60 disabled:cursor-not-allowed disabled:opacity-50"
+                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary-GRAY hover:bg-success-500 px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out  disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? "Submitting..." : "Submit Referral"}
               </button>

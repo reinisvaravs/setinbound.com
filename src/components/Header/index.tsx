@@ -47,7 +47,7 @@ const Header = () => {
                 {pathUrl === "/" && (
                   <Link
                     href="/referal"
-                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition  duration-300 ease-in-out"
+                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out xs:h-8 xs:text-xs xs:px-2 xl:h-12 xl:text-[14px] xl:px-2"
                   >
                     Have a referral?
                   </Link>
@@ -55,7 +55,7 @@ const Header = () => {
                 {pathUrl !== "/" && (
                   <Link
                     href="/"
-                    className="inline-flex items-center justify-center rounded-md bg-secondary bg-opacity-60 px-6 py-2 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-secondary hover:bg-opacity-100"
+                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out xs:h-8 xs:text-xs xs:px-6 xl:h-12 xl:text-[14px] xl:px-6"
                   >
                     Home
                   </Link>

@@ -9,21 +9,21 @@ const CallToAction = () => {
   return (
     <section
       id="call-section"
-      className="bg-primary-WHITE_DARK relative z-10 overflow-hidden py-20 lg:py-[115px]"
+      className="relative z-10 overflow-hidden bg-primary-WHITE_DARK py-20 lg:py-[115px]"
     >
       <div className="container mx-auto">
         <div className="relative overflow-hidden">
           <div className="-mx-4 flex flex-wrap items-stretch">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[570px] text-center">
-                <h2 className="text-secondary-GRAY mb-2.5 text-3xl font-bold md:text-[38px] md:leading-[1.44]">
+                <h2 className="mb-2.5 text-3xl font-bold text-secondary-GRAY md:text-[38px] md:leading-[1.44]">
                   <span>Experience Our AI Voice Agent</span>
                 </h2>
                 {/* <p className="text-secondary-LIGHT_GRAY mx-auto mb-6 max-w-[515px] text-base leading-[1.5]">
                   Enter your phone number to receive a call from our AI agent,
                   or click below to call us directly.
                 </p> */}{" "}
-                <p className="text-secondary-LIGHT_GRAY mx-auto mb-6 max-w-[515px] text-base leading-[1.5]">
+                <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-secondary-LIGHT_GRAY">
                   Click below to call our AI voice agent directly.
                 </p>
                 {/* <div className="mt-4">
@@ -93,9 +93,9 @@ const CallToAction = () => {
                     {phoneNumber ? "Call Me" : "Call Agent"}
                   </button>
                 </div> */}
-                <div className="my-4">
+                <div className="my-6">
                   <a
-                    className="bg-accent-BLUE text-primary-WHITE  hover:bg-secondary-LIGHT_GRAY ml-2 mt-2 rounded-md px-4 py-2 shadow-1 transition duration-300 ease-in-out "
+                    className="rounded-md bg-accent-BLUE px-8 py-4 text-primary-WHITE shadow-1 transition duration-300 ease-in-out hover:bg-secondary-LIGHT_GRAY xs:h-8 xs:px-2 xs:text-xs xl:h-12 xl:px-6 xl:text-[20px]"
                     href={`tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633"}`}
                   >
                     Call Agent
