@@ -384,7 +384,7 @@ export default function ReferalPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary-GRAY hover:bg-success-500 px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out  disabled:cursor-not-allowed disabled:opacity-50"
+                className="hover:shadow-signUp flex w-full items-center justify-center rounded-md bg-secondary-GRAY px-9 py-4 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-success-500  disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isSubmitting ? "Submitting..." : "Submit Referral"}
               </button>

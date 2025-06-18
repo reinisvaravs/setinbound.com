@@ -35,7 +35,7 @@ const Faq = () => {
               answer="We maintain high standards through continuous monitoring and optimization. Each AI voice agent undergoes rigorous testing, regular performance reviews, and automatic updates. We also provide detailed analytics and call transcripts for quality assurance."
             />
             <SingleFaq
-              question="Can AI voice agents integrate with existing phone sysyem?"
+              question="Can AI voice agents integrate with existing phone system?"
               answer="Yes, our AI voice agents integrate seamlessly with most modern phone systems, CRM platforms, and business tools. We support VoIP, traditional phone lines, and digital communication platforms, ensuring smooth integration with your existing infrastructure."
             />
           </div>
