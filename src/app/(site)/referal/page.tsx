@@ -189,7 +189,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="referrerPhone"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Your Phone Number *
               </label>
@@ -213,7 +213,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="referrerEmail"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Your Email *
               </label>
@@ -235,7 +235,7 @@ export default function ReferalPage() {
             </div>
 
             <div className="mb-6">
-              <label className="flex items-center text-white dark:text-dark-6">
+              <label className="flex items-center text-secondary-GRAY">
                 <input
                   type="checkbox"
                   checked={formData.hasNotifiedReferral}
@@ -254,7 +254,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="contactName"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Contact Person Name *
               </label>
@@ -278,7 +278,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="contactPhone"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Contact Person Phone *
               </label>
@@ -302,7 +302,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="contactEmail"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Contact Person Email *
               </label>
@@ -326,7 +326,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="companyName"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Company Name/Domain *
               </label>
@@ -348,7 +348,7 @@ export default function ReferalPage() {
             </div>
 
             <div className="mb-6">
-              <label className="flex items-center text-white dark:text-dark-6">
+              <label className="flex items-center text-secondary-GRAY">
                 <input
                   type="checkbox"
                   checked={formData.runsAds}
@@ -364,7 +364,7 @@ export default function ReferalPage() {
             <div className="mb-6">
               <label
                 htmlFor="otherInfo"
-                className="mb-2.5 block text-white dark:text-dark-6"
+                className="mb-2.5 block text-secondary-GRAY"
               >
                 Other Information
               </label>
