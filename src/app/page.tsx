@@ -1,6 +1,6 @@
 import CallToAction from "@/components/CallToAction";
 import ScrollUp from "@/components/Common/ScrollUp";
-import Faq from "@/components/Faq";
+{/*import Faq from "@/components/Faq";*/}
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import { Metadata } from "next";
