@@ -12,8 +12,7 @@ const Features = () => {
           GET A FREE AI RECEPTIONIST in 3 STEPS
         </h1>
         <p className="text-secondary-LIGHT_GRAY mx-auto mb-9 max-w-[600px] text-base font-light sm:text-lg sm:leading-[1.44] -mt-3">
-          Transform your solar sales with AI-powered voice agents that qualify
-          leads, schedule appointments, and educate customers 24/7.
+          In just 2 days, we’ll set up your personalized AI receptionist—so you can try it until it starts making you money. No results = no cost.
         </p>
       </div>
       <div className="container">
