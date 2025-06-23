@@ -256,7 +256,7 @@ export default function ReferalPage() {
                 htmlFor="contactName"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Contact Person Name *
+                Referral Name *
               </label>
               <input
                 type="text"
@@ -280,7 +280,7 @@ export default function ReferalPage() {
                 htmlFor="contactPhone"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Contact Person Phone *
+                Referral Phone *
               </label>
               <input
                 type="tel"
@@ -304,7 +304,7 @@ export default function ReferalPage() {
                 htmlFor="contactEmail"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Contact Person Email *
+                Referral Email *
               </label>
               <input
                 type="email"
@@ -357,7 +357,7 @@ export default function ReferalPage() {
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                The company currently runs ads
+                This business currently runs ads
               </label>
             </div>
 
