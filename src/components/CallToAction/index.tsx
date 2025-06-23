@@ -17,14 +17,14 @@ const CallToAction = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[570px] text-center">
                 <h2 className="mb-2.5 text-3xl font-bold text-secondary-GRAY md:text-[38px] md:leading-[1.44]">
-                  <span>Experience Our AI Voice Agent</span>
+                  <span>Experience Our Demo AI Receptionist</span>
                 </h2>
                 {/* <p className="text-secondary-LIGHT_GRAY mx-auto mb-6 max-w-[515px] text-base leading-[1.5]">
                   Enter your phone number to receive a call from our AI agent,
                   or click below to call us directly.
                 </p> */}{" "}
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-secondary-LIGHT_GRAY">
-                  Click below to call our AI voice agent directly.
+                  Click below to call our AI Receptionist directly
                 </p>
                 {/* <div className="mt-4">
                   <input
