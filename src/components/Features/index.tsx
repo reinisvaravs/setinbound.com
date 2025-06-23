@@ -9,7 +9,7 @@ const Features = () => {
         data-wow-delay=".2s"
       >
         <h1 className="text-secondary-GRAY mb-6 mt-20 text-2xl font-extrabold uppercase leading-snug sm:text-3xl sm:leading-snug lg:text-4xl lg:leading-[1.2]">
-          <span className="text-accent-BLUE">FREE</span> ADVANCED TRAINING
+          GET A FREE AI RECEPTIONIST in 3 STEPS
         </h1>
         <p className="text-secondary-LIGHT_GRAY mx-auto mb-9 max-w-[600px] text-base font-light sm:text-lg sm:leading-[1.44] -mt-3">
           Transform your solar sales with AI-powered voice agents that qualify
