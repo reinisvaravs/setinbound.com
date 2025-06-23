@@ -47,7 +47,7 @@ const Header = () => {
                 {pathUrl === "/" && (
                   <Link
                     href="/referal"
-                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out xs:h-8 xs:text-[10px] xs:px-2 xl:h-12 xl:text-[14px] xl:px-2"
+                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out sm:h-8 sm:text-xs sm:px-2 xs:h-8 xs:text-xs xs:px-2 xl:h-12 xl:text-[14px] xl:px-2"
                   >
                     Have a referral?
                   </Link>
