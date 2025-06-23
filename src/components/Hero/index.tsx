@@ -18,13 +18,10 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="text-secondary-GRAY mb-6 mt-20 text-3xl font-extrabold uppercase leading-snug sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-[1.2]">
-                  AI Voice Agents
+                  AI RECEPTIONISTS
                 </h1>
                 <p className="text-secondary-LIGHT_GRAY mx-auto mb-9 max-w-[600px] text-base font-normal sm:text-lg sm:leading-[1.44]">
-                  Transform your solar sales with AI-powered voice agents that
-                  qualify leads, schedule appointments, and educate customers
-                  24/7. Our intelligent assistants help you scale your solar
-                  business while reducing operational costs.
+                  Transform your Appointment booking with an AI-powered receptionist that never sleeps and is up to 15x cheaper and 32x faster than the best human receptionists. Cut costs and capture every opportunity, our intelligent receptionists help you scale your business while reducing operational costs.
                 </p>
                 <ul className="mb-10 flex flex-wrap items-center justify-center gap-5">
                   <li>
