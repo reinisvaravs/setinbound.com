@@ -17,9 +17,9 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "Natural Conversations",
+    title: "Step 1 - Schedule Your Intro Call",
     paragraph:
-      "Our AI Voice Agents engage in human-like dialogue using advanced natural language processing, creating authentic and meaningful interactions with customers.",
+      "Give our AI receptionist a quick spin - let it find the best times for us to chat. Or skip the call and book directly on our calendar. [add interactive buttons inside the text to scroll to this",
     btn: "Learn More",
     btnLink: "/#",
   },
@@ -39,9 +39,9 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "24/7 Availability",
+    title: "Step 2 – Onboard & Customize",
     paragraph:
-      "Provide round-the-clock customer support without human limitations. Our AI Voice Agents are always ready to assist, ensuring no customer query goes unanswered.",
+      "Fill out a brief onboarding form and walk us through your business. We’ll tailor your AI receptionist to match your style, operations, and goals.",
     btn: "Learn More",
     btnLink: "/#",
   },
@@ -93,9 +93,9 @@ const featuresData: Feature[] = [
         />
       </svg>
     ),
-    title: "Cost Efficiency",
+    title: "Step 3 – Launch & Profit",
     paragraph:
-      "Reduce operational costs while scaling your customer service capabilities. Our AI Voice Agents handle multiple conversations simultaneously with consistent quality.",
+      "Going live - start receiving calls, qualifying leads, and booking appointments. If it doesn’t make you money, it costs you nothing.",
     btn: "Learn More",
     btnLink: "/#",
   },
