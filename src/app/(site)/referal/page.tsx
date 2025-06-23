@@ -265,7 +265,7 @@ export default function ReferalPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactName: e.target.value })
                 }
-                placeholder="Enter contact person's name"
+                placeholder="Enter referral's name"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactName && (
@@ -313,7 +313,7 @@ export default function ReferalPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactEmail: e.target.value })
                 }
-                placeholder="Enter contact person's email"
+                placeholder="Enter referral's email"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactEmail && (
