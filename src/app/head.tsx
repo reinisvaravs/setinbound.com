@@ -3,20 +3,18 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "Setinbound.com - AI Voice Agents for Solar Sales",
+    default: "Setinbound.com - AI Voice Agents for Sales",
     template: "%s | Setinbound.com",
   },
   description:
-    "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
+    "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
   keywords: [
     "AI voice agents",
-    "solar sales",
     "lead qualification",
     "appointment scheduling",
     "customer education",
-    "solar business automation",
+    "business automation",
     "AI automation",
-    "solar industry",
     "sales automation",
   ],
   authors: [
@@ -29,17 +27,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://setinbound.com",
-    title: "Setinbound.com - AI Voice Agents for Solar Sales",
+    title: "Setinbound.com - AI Voice Agents for Sales",
     description:
-      "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
+      "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
     siteName: "Setinbound.com",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "Setinbound.com - AI Voice Agents for Solar Sales",
+    title: "Setinbound.com - AI Voice Agents for Sales",
     description:
-      "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
+      "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
     creator: "@setinbound.com",
     site: "@setinbound.com",
   },
@@ -78,7 +76,7 @@ export const metadata: Metadata = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7.",
+        "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7.",
       offers: {
         "@type": "Offer",
         availability: "https://schema.org/InStock",

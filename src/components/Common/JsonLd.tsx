@@ -13,7 +13,7 @@ export default function JsonLd() {
       url: "https://setinbound.com",
     },
     description:
-      "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
+      "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -35,7 +35,7 @@ export default function JsonLd() {
         },
         datePublished: "2024-01-15",
         reviewBody:
-          "SetInbound has transformed our solar sales process. The AI agent handles initial customer interactions perfectly.",
+          "SetInbound has transformed our sales process. The AI agent handles initial customer interactions perfectly.",
       },
     ],
     featureList: [
