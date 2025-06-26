@@ -25,8 +25,8 @@ const Header = () => {
       <header
         className={`ud-header left-0 top-0 z-40 flex w-full items-center ${
           sticky
-            ? "shadow-nav bg-secondary-GRAY fixed z-[999] border-b border-stroke bg-opacity-95 backdrop-blur-[1px]"
-            : "bg-secondary-GRAY absolute"
+            ? "shadow-nav fixed z-[999] border-b border-stroke bg-secondary-GRAY bg-opacity-95 backdrop-blur-[1px]"
+            : "absolute bg-secondary-GRAY"
         }`}
       >
         <div className="container">
@@ -34,20 +34,20 @@ const Header = () => {
             <div className="w-60 max-w-full px-4">
               <Link href="/" className="navbar-logo block w-full p-2">
                 <Image
-                  src={`/images/logo/lintra-logo-white.png`}
+                  src={`/images/logo/logo-white-row.png`}
                   alt="logo"
                   width={240}
                   height={30}
-                  className="header-logo hidden w-full dark:block"
+                  className="header-logo w-full scale-150 py-4"
                 />
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
-              <div className="flex w-full items-center justify-end pr-16 lg:pr-0">
+              <div className="flex w-full items-center justify-end pr-4 md:pr-8 lg:pr-0">
                 {pathUrl === "/" && (
                   <Link
                     href="/referal"
-                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out sm:h-8 sm:text-xs sm:px-2 xs:h-8 xs:text-xs xs:px-2 xl:h-12 xl:text-[14px] xl:px-2"
+                    className="inline-flex items-center justify-center rounded-md bg-secondary-LIGHT_GRAY px-4 py-2 text-xs font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-primary-WHITE hover:text-secondary-GRAY xs:h-8 xs:px-4 xs:text-xs sm:h-10 sm:px-5 sm:text-sm md:h-11 md:px-6 md:text-base lg:h-12 lg:px-7 lg:text-base xl:h-12 xl:px-8 xl:text-[15px]"
                   >
                     Have a referral?
                   </Link>
@@ -55,7 +55,7 @@ const Header = () => {
                 {pathUrl !== "/" && (
                   <Link
                     href="/"
-                    className="hover:bg-primary-WHITE hover:text-secondary-GRAY bg-secondary-LIGHT_GRAY text-primary-WHITE inline-flex items-center justify-center rounded-md px-6 py-2 text-base font-medium transition duration-300 ease-in-out xs:h-8 xs:text-xs xs:px-6 xl:h-12 xl:text-[14px] xl:px-6"
+                    className="inline-flex items-center justify-center rounded-md bg-secondary-LIGHT_GRAY px-4 py-2 text-xs font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-primary-WHITE hover:text-secondary-GRAY xs:h-8 xs:px-4 xs:text-xs sm:h-10 sm:px-5 sm:text-sm md:h-11 md:px-6 md:text-base lg:h-12 lg:px-7 lg:text-base xl:h-12 xl:px-8 xl:text-[15px]"
                   >
                     Home
                   </Link>

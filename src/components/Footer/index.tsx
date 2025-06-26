@@ -20,11 +20,11 @@ const Footer = () => {
             <div className="mb-10 w-full">
               <Link href="/" className="mb-6 inline-block max-w-[160px]">
                 <Image
-                  src="/images/logo/lintra-logo-white.png"
+                  src="/images/logo/logo-white-row.png"
                   alt="logo"
                   width={140}
                   height={30}
-                  className="max-w-full"
+                  className="max-w-full scale-150 ml-6"
                 />
               </Link>
               <p className="mb-8 max-w-[270px] text-base text-primary-WHITE">
