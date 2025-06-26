@@ -247,7 +247,7 @@ export default function ReferalPage() {
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                I've told the referral I'm submitting their info
+                I&rsquo;ve told the referral I&rsquo;m submitting their info
               </label>
             </div>
 
@@ -256,7 +256,7 @@ export default function ReferalPage() {
                 htmlFor="contactName"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral's Name *
+                Referral&rsquo;s Name *
               </label>
               <input
                 type="text"
@@ -265,7 +265,7 @@ export default function ReferalPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactName: e.target.value })
                 }
-                placeholder="Enter referral's name"
+                placeholder="Enter referral&rsquo;s name"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactName && (
@@ -280,7 +280,7 @@ export default function ReferalPage() {
                 htmlFor="contactPhone"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral's Phone *
+                Referral&rsquo;s Phone *
               </label>
               <input
                 type="tel"
@@ -304,7 +304,7 @@ export default function ReferalPage() {
                 htmlFor="contactEmail"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral's Email *
+                Referral&rsquo;s Email *
               </label>
               <input
                 type="email"
@@ -313,7 +313,7 @@ export default function ReferalPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactEmail: e.target.value })
                 }
-                placeholder="Enter referral's email"
+                placeholder="Enter referral&rsquo;s email"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactEmail && (
