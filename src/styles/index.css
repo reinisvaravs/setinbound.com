@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 html {
-  background-color: #461a56;
+  background-color: #000000;
 }
 
 body {
@@ -21,8 +21,6 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #141729 !important;
   transition: background-color 5000s ease-in-out 0s;
 }
-
-
 
 img {
   user-select: none;

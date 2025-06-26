@@ -34,7 +34,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="-mx-3 flex flex-col items-start justify-center gap-1 pl-9">
-            <div className="flex flex-row flex-nowrap items-center justify-center mb-10">
+            <div className="mb-10 flex flex-row flex-nowrap items-center justify-center">
               <MdEmail className="-mx-2 fill-white" />
               <Link
                 aria-label="social link"
@@ -79,16 +79,6 @@ const Footer = () => {
                 className="px-3 text-primary-WHITE"
               >
                 Terms & Conditions
-              </Link>
-            </div>
-            <div className="flex flex-row flex-nowrap items-center justify-center">
-              <Link
-                aria-label="privacy policy"
-                href="/refund-policy"
-                target="_blank"
-                className="px-3 text-primary-WHITE"
-              >
-                Refund Policy
               </Link>
             </div>
           </div>

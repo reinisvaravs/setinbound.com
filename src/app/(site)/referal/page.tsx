@@ -381,6 +381,29 @@ export default function ReferalPage() {
             </div>
 
             <div className="mb-6">
+              <p className="mx-auto max-w-md rounded-full bg-primary-WHITE_DARK/70 px-6 py-2 text-center text-xs font-medium text-secondary-GRAY/70 shadow-sm backdrop-blur-sm">
+                By submitting you agree to our
+                <a
+                  href="/privacy-policy"
+                  className="mx-1 inline-block text-accent-BLUE underline-offset-4 transition-all duration-200 hover:text-accent-RED hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Privacy Policy
+                </a>
+                and
+                <a
+                  href="/terms-and-conditions"
+                  className="mx-1 inline-block text-accent-BLUE underline-offset-4 transition-all duration-200 hover:text-accent-RED hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Terms of Service
+                </a>
+              </p>
+            </div>
+
+            <div className="mb-6">
               <button
                 type="submit"
                 disabled={isSubmitting}
