@@ -12,13 +12,9 @@ let globalTimerEnd: number = 0;
 
 interface CallAgentButtonProps {
   children: React.ReactNode;
-  className?: string;
 }
 
-const CallAgentButton: React.FC<CallAgentButtonProps> = ({
-  children,
-  className,
-}) => {
+const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
   const [cooldown, setCooldown] = useState(0);
   const [showConfirm, setShowConfirm] = useState(false);
   const [attempts, setAttempts] = useState(0);
