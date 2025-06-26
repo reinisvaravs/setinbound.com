@@ -247,7 +247,7 @@ export default function ReferalPage() {
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                I have notified the referral about this submission
+                I've told the referral I'm submitting their info
               </label>
             </div>
 
@@ -256,7 +256,7 @@ export default function ReferalPage() {
                 htmlFor="contactName"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral Name *
+                Referral's Name *
               </label>
               <input
                 type="text"
@@ -280,7 +280,7 @@ export default function ReferalPage() {
                 htmlFor="contactPhone"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral Phone *
+                Referral's Phone *
               </label>
               <input
                 type="tel"
@@ -304,7 +304,7 @@ export default function ReferalPage() {
                 htmlFor="contactEmail"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral Email *
+                Referral's Email *
               </label>
               <input
                 type="email"
@@ -357,7 +357,7 @@ export default function ReferalPage() {
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                This business currently runs ads
+                This business is actively running paid ads
               </label>
             </div>
 
