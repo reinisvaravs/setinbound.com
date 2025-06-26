@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://lintraai.com/sitemap.xml",
-    host: "https://lintraai.com",
+    sitemap: "https://setinbound.com/sitemap.xml",
+    host: "https://setinbound.com",
   };
 }
