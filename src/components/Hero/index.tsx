@@ -2,6 +2,7 @@
 
 // import Image from "next/image";
 import Link from "next/link";
+import CallAgentButton from "../Common/CallAgentButton";
 
 const Hero = () => {
   return (
@@ -29,12 +30,7 @@ const Hero = () => {
                 </p>
                 <ul className="mb-10 flex flex-wrap items-center justify-center gap-5">
                   <li>
-                    <Link
-                      href={`tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+371 28816633"}`}
-                      className="inline-flex items-center justify-center rounded-md bg-accent-BLUE px-7 py-[14px] text-center text-base font-medium text-primary-WHITE shadow-1 transition duration-300 ease-in-out  hover:bg-success-500"
-                    >
-                      Test Agent
-                    </Link>
+                    <CallAgentButton>Test Agent</CallAgentButton>
                   </li>
                   <li>
                     <Link
