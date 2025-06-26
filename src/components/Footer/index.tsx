@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="wow fadeInUp bg-accent-BLUE relative z-10 pt-20 pb-10 lg:pt-[100px]"
+      className="wow fadeInUp relative z-10 bg-accent-BLUE pb-10 pt-20 lg:pt-[100px]"
       data-wow-delay=".15s"
     >
       <div className="container">
@@ -27,7 +27,7 @@ const Footer = () => {
                   className="max-w-full"
                 />
               </Link>
-              <p className="text-primary-WHITE mb-8 max-w-[270px] text-base">
+              <p className="mb-8 max-w-[270px] text-base text-primary-WHITE">
                 Transforming businesses through intelligent automation and
                 cutting-edge AI solutions.
               </p>
@@ -38,7 +38,7 @@ const Footer = () => {
             <Link
               aria-label="social link"
               href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`}
-              className="text-primary-WHITE px-3"
+              className="px-3 text-primary-WHITE"
             >
               {process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}
             </Link>
@@ -48,7 +48,9 @@ const Footer = () => {
                 setTimeout(() => {
                   setIsCopied(false);
                 }, 2000);
-                navigator.clipboard.writeText("hello@lintraai.com");
+                navigator.clipboard.writeText(
+                  `${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`,
+                );
               }}
               className="-mx-1"
             >
