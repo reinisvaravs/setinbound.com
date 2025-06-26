@@ -2,7 +2,6 @@
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import "../styles/index.css";
 import "../styles/prism-vsc-dark-plus.css";
@@ -32,17 +31,12 @@ export default function RootLayout({
         {loading ? (
           <PreLoader />
         ) : (
-          <ThemeProvider
-            attribute="class"
-            enableSystem={false}
-            defaultTheme="dark"
-            forcedTheme="dark"
-          >
+          <>
             <Header />
             {children}
             <Footer />
             <Toaster position="top-center" />
-          </ThemeProvider>
+          </>
         )}
       </body>
     </html>

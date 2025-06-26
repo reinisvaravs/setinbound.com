@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lintraai.com"),
+  metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "Lintra AI - AI Voice Agents for Solar Sales",
-    template: "%s | Lintra AI",
+    default: "Setinbound.com - AI Voice Agents for Solar Sales",
+    template: "%s | Setinbound.com",
   },
   description:
     "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
@@ -20,28 +20,28 @@ export const metadata: Metadata = {
     "sales automation",
   ],
   authors: [
-    { name: "Lintra AI", url: "https://lintraai.com" },
-    { name: "Reinis Varavs", url: "https://lintraai.com" },
-    { name: "Henry Varavs", url: "https://lintraai.com" },
+    { name: "Setinbound.com", url: "https://setinbound.com" },
+    { name: "Reinis Varavs", url: "https://setinbound.com" },
+    { name: "Henry Varavs", url: "https://setinbound.com" },
   ],
-  creator: "Lintra AI",
-  publisher: "Lintra AI",
+  creator: "Setinbound.com",
+  publisher: "Setinbound.com",
   openGraph: {
     type: "website",
-    url: "https://lintraai.com",
-    title: "Lintra AI - AI Voice Agents for Solar Sales",
+    url: "https://setinbound.com",
+    title: "Setinbound.com - AI Voice Agents for Solar Sales",
     description:
       "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
-    siteName: "Lintra AI",
+    siteName: "Setinbound.com",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "Lintra AI - AI Voice Agents for Solar Sales",
+    title: "Setinbound.com - AI Voice Agents for Solar Sales",
     description:
       "Transform your solar sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your solar business while reducing operational costs.",
-    creator: "@lintraai",
-    site: "@lintraai",
+    creator: "@setinbound.com",
+    site: "@setinbound.com",
   },
   icons: {
     icon: "/favicon.png",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     "json-ld": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Lintra AI",
+      name: "Setinbound.com",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
           name: "Test Call AI Voice Agent",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: "https://lintraai.com",
+            urlTemplate: "https://setinbound.com",
             actionPlatform: "https://schema.org/DesktopWebPlatform",
           },
         },
@@ -98,26 +98,26 @@ export const metadata: Metadata = {
           name: "Schedule a Meeting",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: "https://lintraai.com",
+            urlTemplate: "https://setinbound.com",
             actionPlatform: "https://schema.org/DesktopWebPlatform",
           },
         },
       ],
       author: {
         "@type": "Organization",
-        name: "Lintra AI",
-        url: "https://lintraai.com",
+        name: "Setinbound.com",
+        url: "https://setinbound.com",
       },
       creator: [
         {
           "@type": "Person",
           name: "Reinis Varavs",
-          url: "https://lintraai.com",
+          url: "https://setinbound.com",
         },
         {
           "@type": "Person",
           name: "Henry Varavs",
-          url: "https://lintraai.com",
+          url: "https://setinbound.com",
         },
       ],
     }),

@@ -1,12 +1,11 @@
 import CallToAction from "@/components/CallToAction";
 import ScrollUp from "@/components/Common/ScrollUp";
-{/*import Faq from "@/components/Faq";*/}
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Lintra AI - AI Voice Agents",
+  title: "Setinbound.com - AI Voice Agents",
 };
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Hero />
       <Features />
       <CallToAction />
-      {/*<Faq />*/}
     </main>
   );
 }
