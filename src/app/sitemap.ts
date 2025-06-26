@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://lintraai.com";
+  const baseUrl = "https://setinbound.com";
 
   return [
     {
