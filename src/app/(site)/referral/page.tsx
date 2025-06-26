@@ -3,7 +3,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function ReferalPage() {
+export default function ReferralPage() {
   const [formData, setFormData] = useState({
     // Referrer's Info
     referrerName: "",
