@@ -19,7 +19,7 @@ const CallToAction = () => {
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-secondary-LIGHT_GRAY">
                   Click below to call our AI Receptionist directly
                 </p>
-                <div className="my-6">
+                <div className="my-6 flex items-center justify-center">
                   <CallAgentButton>Call Agent</CallAgentButton>
                 </div>
               </div>
