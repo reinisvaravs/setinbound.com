@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="flex flex-row flex-nowrap items-center justify-center">
               <Link
                 aria-label="privacy policy"
-                href="/terms-and-conditions"
+                href="/terms"
                 target="_blank"
                 className="px-3 text-primary-WHITE"
               >
