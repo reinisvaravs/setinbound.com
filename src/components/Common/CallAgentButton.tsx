@@ -6,6 +6,10 @@ const MAX_ATTEMPTS = 2;
 const LS_ATTEMPTS_KEY = "callAttempts";
 const LS_COOLDOWN_END_KEY = "callCooldownEnd";
 
+// Global timer management
+let globalTimer: NodeJS.Timeout | null = null;
+let globalTimerEnd: number = 0;
+
 interface CallAgentButtonProps {
   children: React.ReactNode;
   className?: string;
@@ -17,50 +21,107 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({
 }) => {
   const [cooldown, setCooldown] = useState(0);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [attempts, setAttempts] = useState(0);
 
   // On mount, restore attempts and cooldown from localStorage
   useEffect(() => {
-    const storedAttempts = parseInt(
-      localStorage.getItem(LS_ATTEMPTS_KEY) || "0",
-      10,
-    );
-    const cooldownEnd = parseInt(
-      localStorage.getItem(LS_COOLDOWN_END_KEY) || "0",
-      10,
-    );
-    const now = Date.now();
-    if (cooldownEnd && cooldownEnd > now) {
-      setCooldown(Math.ceil((cooldownEnd - now) / 1000));
-      setAttempts(0);
-      startCooldownInterval(cooldownEnd - now);
-    } else {
-      setAttempts(storedAttempts);
-      if (cooldownEnd) {
-        localStorage.removeItem(LS_COOLDOWN_END_KEY);
+    const updateFromStorage = () => {
+      const storedAttempts = parseInt(
+        localStorage.getItem(LS_ATTEMPTS_KEY) || "0",
+        10,
+      );
+      const cooldownEnd = parseInt(
+        localStorage.getItem(LS_COOLDOWN_END_KEY) || "0",
+        10,
+      );
+      const now = Date.now();
+      if (cooldownEnd && cooldownEnd > now) {
+        setCooldown(Math.ceil((cooldownEnd - now) / 1000));
+        setAttempts(0);
+        startGlobalCooldown(cooldownEnd - now);
+      } else {
+        setAttempts(storedAttempts);
+        if (cooldownEnd) {
+          localStorage.removeItem(LS_COOLDOWN_END_KEY);
+        }
+        setCooldown(0);
       }
-    }
+    };
+    updateFromStorage();
+
+    // Listen for custom events to sync across all instances in the same tab
+    const onCallAgentUpdate = () => {
+      updateFromStorage();
+    };
+    window.addEventListener("callAgentUpdate", onCallAgentUpdate);
+
+    // Also listen for storage changes (for cross-tab sync)
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === LS_ATTEMPTS_KEY || e.key === LS_COOLDOWN_END_KEY) {
+        updateFromStorage();
+      }
+    };
+    window.addEventListener("storage", onStorage);
+
+    return () => {
+      window.removeEventListener("callAgentUpdate", onCallAgentUpdate);
+      window.removeEventListener("storage", onStorage);
+    };
     // eslint-disable-next-line
   }, []);
 
-  // Helper to start the cooldown interval
-  const startCooldownInterval = (msLeft: number) => {
+  // Global cooldown timer management
+  const startGlobalCooldown = (msLeft: number) => {
+    // Clear existing timer if any
+    if (globalTimer) {
+      clearInterval(globalTimer);
+    }
+
+    globalTimerEnd = Date.now() + msLeft;
     setCooldown(Math.ceil(msLeft / 1000));
-    const interval = setInterval(() => {
-      setCooldown((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          localStorage.removeItem(LS_COOLDOWN_END_KEY);
-          setAttempts(0);
-          localStorage.setItem(LS_ATTEMPTS_KEY, "0");
-          return 0;
+
+    globalTimer = setInterval(() => {
+      const now = Date.now();
+      const remaining = Math.ceil((globalTimerEnd - now) / 1000);
+
+      if (remaining <= 0) {
+        if (globalTimer) {
+          clearInterval(globalTimer);
+          globalTimer = null;
         }
-        return prev - 1;
-      });
+        localStorage.removeItem(LS_COOLDOWN_END_KEY);
+        localStorage.setItem(LS_ATTEMPTS_KEY, "0");
+        setCooldown(0);
+        setAttempts(0);
+        // Broadcast the update to other instances
+        window.dispatchEvent(new Event("callAgentUpdate"));
+      } else {
+        setCooldown(remaining);
+        // Broadcast the timer update to all instances
+        window.dispatchEvent(
+          new CustomEvent("callAgentTimerUpdate", { detail: remaining }),
+        );
+      }
     }, 1000);
-    setTimer(interval);
   };
+
+  // Listen for timer updates from other instances
+  useEffect(() => {
+    const onTimerUpdate = (e: CustomEvent) => {
+      setCooldown(e.detail);
+    };
+    window.addEventListener(
+      "callAgentTimerUpdate",
+      onTimerUpdate as EventListener,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "callAgentTimerUpdate",
+        onTimerUpdate as EventListener,
+      );
+    };
+  }, []);
 
   // Start cooldown and persist to localStorage
   const startCooldown = () => {
@@ -69,15 +130,10 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({
     setCooldown(COOLDOWN_SECONDS);
     setAttempts(0);
     localStorage.setItem(LS_ATTEMPTS_KEY, "0");
-    startCooldownInterval(COOLDOWN_SECONDS * 1000);
+    startGlobalCooldown(COOLDOWN_SECONDS * 1000);
+    // Broadcast the update to other instances
+    window.dispatchEvent(new Event("callAgentUpdate"));
   };
-
-  // Clean up timer on unmount
-  useEffect(() => {
-    return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [timer]);
 
   const handleCallClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,6 +150,9 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({
     window.location.href = `tel:${process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633"}`;
     if (newAttempts >= MAX_ATTEMPTS) {
       startCooldown();
+    } else {
+      // Broadcast the update to other instances
+      window.dispatchEvent(new Event("callAgentUpdate"));
     }
   };
 
