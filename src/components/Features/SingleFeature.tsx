@@ -5,14 +5,12 @@ const SingleFeature = ({ feature }: { feature: Feature }) => {
   return (
     <div className="w-full px-4 md:w-1/2 lg:w-1/4">
       <div className="wow fadeInUp group mb-12" data-wow-delay=".15s">
-        <div className="bg-accent-BLUE relative z-10 mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
-          <span className="bg-accent-BLUE absolute left-0 top-0 z-[-1] mb-8 flex h-[70px] w-[70px] rotate-[25deg] items-center justify-center rounded-2xl bg-opacity-20 duration-300 group-hover:rotate-45"></span>
+        <div className="relative z-10 mb-4 flex h-[70px] w-[70px] scale-90 items-center justify-center rounded-2xl bg-accent-BLUE sm:mb-8 sm:scale-100">
+          <span className="absolute left-0 top-0 z-[-1] mb-8 flex h-[70px] w-[70px] rotate-[25deg] items-center justify-center rounded-2xl bg-accent-BLUE bg-opacity-20 duration-300 group-hover:rotate-45"></span>
           {icon}
         </div>
-        <h3 className="text-secondary-GRAY mb-3 text-xl font-bold">{title}</h3>
-        <p className="mb-8 text-secondary-LIGHT_GRAY lg:mb-11">
-          {paragraph}
-        </p>
+        <h3 className="mb-3 text-xl font-bold text-secondary-GRAY">{title}</h3>
+        <p className="mb-8 text-secondary-LIGHT_GRAY lg:mb-11">{paragraph}</p>
       </div>
     </div>
   );
