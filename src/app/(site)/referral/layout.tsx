@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title:
       "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound",
     description:
-      "Know a business missing calls? Earn 10% for helping them with SetInbound’s 24/7 AI receptionist.",
+      "Know a business missing calls? Earn 10% for helping them with SetInbound's 24/7 AI receptionist.",
     url: "https://setinbound.com/referral",
     type: "website",
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title:
       "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound",
     description:
-      "Know a business missing calls? Earn 10% for helping them with SetInbound’s 24/7 AI receptionist.",
+      "Know a business missing calls? Earn 10% for helping them with SetInbound's 24/7 AI receptionist.",
   },
   other: {
     "json-ld": JSON.stringify({

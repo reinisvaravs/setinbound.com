@@ -9,7 +9,7 @@ export const metadata: Metadata = {
       "%s | AI Receptionists for Appointment-Based Businesses | SetInbound",
   },
   description:
-    "Never miss a lead again with 24/7 AI receptionists for appointment-based businesses in California and the USA. 15x cheaper and 32x faster than a human — book more customers today.",
+    "Never miss a lead again with 24/7 AI receptionists for appointment-based businesses in California and the USA. 15x cheaper and 32x faster than a human - book more customers today.",
   keywords: [
     "AI receptionist",
     "virtual receptionist",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     url: "https://setinbound.com",
     title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
     description:
-      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist — cheaper and faster than a human.",
+      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
     siteName: "SetInbound",
     locale: "en_US",
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
     description:
-      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist — cheaper and faster than a human.",
+      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
     creator: "@setinbound.com",
     site: "@setinbound.com",
   },
