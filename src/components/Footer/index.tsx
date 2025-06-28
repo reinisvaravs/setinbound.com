@@ -34,7 +34,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="-mx-3 flex flex-col items-start justify-center gap-1 pl-9">
-            <div className="mb-10 flex flex-row flex-nowrap items-center justify-center">
+            <div className="mb-5 flex flex-row flex-nowrap items-center justify-center">
               <MdEmail className="-mx-2 fill-white" />
               <Link
                 aria-label="social link"
