@@ -9,7 +9,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative overflow-hidden bg-primary-WHITE_DARK sm:pb-20 pb-16 pt-[110px] sm:pt-[120px] md:pt-[130px] lg:pt-[160px]"
+        className="relative overflow-hidden bg-primary-WHITE_DARK pb-16 pt-[110px] md:pb-20 md:pt-[120px] lg:pt-[160px]"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center">
