@@ -18,6 +18,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
   const [cooldown, setCooldown] = useState(0);
   const [showConfirm, setShowConfirm] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   // On mount, restore attempts and cooldown from localStorage
   useEffect(() => {
@@ -135,6 +136,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
     e.preventDefault();
     if (cooldown === 0) {
       setShowConfirm(true);
+      setAgreedToTerms(false); // Reset checkbox when opening dialog
     }
   };
 
@@ -154,32 +156,53 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
 
   const handleCancel = () => {
     setShowConfirm(false);
+    setAgreedToTerms(false);
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAgreedToTerms(e.target.checked);
   };
 
   const confirmDialog = showConfirm ? (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
       <div className="animate-fade-in w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl">
         <div className="flex flex-col items-center">
-          <svg
-            className="mb-4 h-12 w-12 text-accent-BLUE"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 7.165 6 9.388 6 12v2.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-          </svg>
-          <h3 className="mb-2 text-xl font-bold text-secondary-GRAY">
-            Confirm Call
-          </h3>
-          <p className="mb-6 text-center text-base text-secondary-LIGHT_GRAY">
-            Are you sure you want to call our AI Receptionist? This will use
-            your phone&apos;s calling feature.
-          </p>
+          {/* Terms Checkbox */}
+          <div className="mb-6 flex w-full items-start gap-4">
+            <div className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center">
+              <input
+                type="checkbox"
+                id="terms-checkbox"
+                checked={agreedToTerms}
+                onChange={handleCheckboxChange}
+                className="h-5 w-5 rounded-md border-2 border-gray-300 bg-white text-accent-BLUE transition-colors duration-200 focus:ring-2 focus:ring-accent-BLUE focus:ring-offset-2 focus:ring-offset-white"
+              />
+            </div>
+            <label
+              htmlFor="terms-checkbox"
+              className="cursor-pointer select-none text-sm leading-6 text-gray-700"
+            >
+              I agree to the{" "}
+              <a
+                href="/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-BLUE underline decoration-2 underline-offset-2 transition-colors duration-200 hover:text-success-500"
+              >
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-BLUE underline decoration-2 underline-offset-2 transition-colors duration-200 hover:text-success-500"
+              >
+                Privacy Policy
+              </a>
+            </label>
+          </div>
+
           <div className="flex w-full justify-end gap-2">
             <button
               className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-200"
@@ -188,8 +211,13 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
               Cancel
             </button>
             <button
-              className="rounded-lg bg-accent-BLUE px-4 py-2 text-sm font-medium text-primary-WHITE shadow-sm transition hover:bg-success-500"
+              className={`rounded-lg px-4 py-2 text-sm font-medium shadow-sm transition ${
+                agreedToTerms
+                  ? "bg-accent-BLUE text-primary-WHITE hover:bg-success-500"
+                  : "cursor-not-allowed bg-gray-300 text-gray-500"
+              }`}
               onClick={handleConfirm}
+              disabled={!agreedToTerms}
             >
               Call
             </button>
