@@ -29,7 +29,7 @@ const Hero = () => {
                     <Link
                       href={`${process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "tel:+371 28816633"}`}
                       target="_blank"
-                      className="flex items-center gap-4 rounded-md bg-secondary-GRAY px-6 py-[14px] text-base font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-success-500"
+                      className="flex items-center gap-2 rounded-md bg-secondary-GRAY px-3 py-3 text-sm font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-success-500 sm:gap-4 sm:px-6 sm:py-[14px] sm:text-base"
                     >
                       Schedule a Call
                     </Link>
