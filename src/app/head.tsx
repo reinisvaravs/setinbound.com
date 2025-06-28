@@ -4,12 +4,13 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
+    default:
+      "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
     template:
       "%s | AI Receptionists for Appointment-Based Businesses | SetInbound.com",
   },
   description:
-    "GET A FREE AI RECEPTIONIST in 3 STEPS - In just 2 days, we&#39;ll set up your personalized AI receptionist - so you can try it until it starts making you money. If no results = no cost.",
+    "GET A FREE AI RECEPTIONIST - In 3 STEPS and just 2 days, you&#39;ll have your own AI receptionist - that you can use for Free until it starts making you money. If no results = no cost.",
   keywords: [
     "AI receptionist",
     "virtual receptionist",
