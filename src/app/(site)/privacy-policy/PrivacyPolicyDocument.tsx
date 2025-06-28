@@ -35,11 +35,11 @@ export default function PrivacyPolicyDocument() {
         </li>
       </ul>
       <p>
-        If you&rsquo;re a customer of a business using SetInbound, your data is
+        If you&#39;re a customer of a business using SetInbound, your data is
         handled on behalf of that business. In legal terms, we act as a
         &ldquo;data processor&rdquo; and they are the &ldquo;data
         controller.&rdquo; Contact that business directly or email us if
-        you&rsquo;d like help managing or deleting your data.
+        you&#39;d like help managing or deleting your data.
       </p>
 
       <h2 className="text-lg font-semibold">2. What Data We Collect</h2>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyDocument() {
         <li>
           Call Data: Audio recordings, transcriptions, appointment details
         </li>
-        <li>Referral Info: Your and the referred business&rsquo;s details</li>
+        <li>Referral Info: Your and the referred business&#39;s details</li>
         <li>Device Info: IP address, browser, and device type</li>
         <li>Usage Data: Interactions with our website or AI agents</li>
       </ul>
@@ -126,7 +126,7 @@ export default function PrivacyPolicyDocument() {
       </h2>
       <p>
         When you submit a referral, you confirm you have the referred
-        person&rsquo;s permission to share their data. We use this information
+        person&#39;s permission to share their data. We use this information
         only to evaluate leads and may reach out.
       </p>
 
@@ -156,7 +156,7 @@ export default function PrivacyPolicyDocument() {
         with your request.
       </p>
 
-      <h2 className="text-lg font-semibold">11. Children&rsquo;s Privacy</h2>
+      <h2 className="text-lg font-semibold">11. Children&#39;s Privacy</h2>
       <p>
         Our Services are not directed to or intended for children under 16. If
         we learn a child has provided us with personal information, we will

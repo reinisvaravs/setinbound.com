@@ -12,9 +12,9 @@ const Features = () => {
           GET A FREE AI RECEPTIONIST in 3 STEPS
         </h1>
         <p className="mx-auto -mt-2 mb-6 max-w-[450px] px-4 text-sm font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px] lg:text-base lg:leading-[1.44]">
-          GET A FREE AI RECEPTIONIST in 3 STEPS - In just 2 days, we&#39;ll set up
-          your personalized AI receptionist - so you can try it until it starts
-          making you money. If no results = no cost.
+          GET A FREE AI RECEPTIONIST in 3 STEPS - In just 2 days, we&#39;ll set
+          up your personalized AI receptionist - so you can try it until it
+          starts making you money. If no results = no cost.
         </p>
       </div>
       <div className="container">

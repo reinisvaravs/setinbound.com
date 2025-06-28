@@ -115,9 +115,7 @@ export default function ReferralPage() {
         throw new Error("Failed to submit form");
       }
 
-      toast.success(
-        "Thank you for your referral! We&apos;ll be in touch soon.",
-      );
+      toast.success("Thank you for your referral! We&#39;ll be in touch soon.");
       setFormData({
         referrerName: "",
         referrerPhone: "",
@@ -247,7 +245,7 @@ export default function ReferralPage() {
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
                 />
-                I&rsquo;ve told the referral I&rsquo;m submitting their info
+                I&#39;ve told the referral I&#39;m submitting their info
               </label>
             </div>
 
@@ -256,7 +254,7 @@ export default function ReferralPage() {
                 htmlFor="contactName"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral&rsquo;s Name *
+                Referral&#39;s Name *
               </label>
               <input
                 type="text"
@@ -265,7 +263,7 @@ export default function ReferralPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactName: e.target.value })
                 }
-                placeholder="Enter referral&rsquo;s name"
+                placeholder="Enter referral&#39;s name"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactName && (
@@ -280,7 +278,7 @@ export default function ReferralPage() {
                 htmlFor="contactPhone"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral&rsquo;s Phone *
+                Referral&#39;s Phone *
               </label>
               <input
                 type="tel"
@@ -304,7 +302,7 @@ export default function ReferralPage() {
                 htmlFor="contactEmail"
                 className="mb-2.5 block text-secondary-GRAY"
               >
-                Referral&rsquo;s Email *
+                Referral&#39;s Email *
               </label>
               <input
                 type="email"
@@ -313,7 +311,7 @@ export default function ReferralPage() {
                 onChange={(e) =>
                   setFormData({ ...formData, contactEmail: e.target.value })
                 }
-                placeholder="Enter referral&rsquo;s email"
+                placeholder="Enter referral&#39;s email"
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
               {errors.contactEmail && (
