@@ -1,43 +1,48 @@
+// head.tsx
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "Setinbound.com - AI Voice Agents for Sales",
-    template: "%s | Setinbound.com",
+    default: "SetInbound | AI Receptionists for Appointment-Based Businesses",
+    template:
+      "%s | AI Receptionists for Appointment-Based Businesses | SetInbound",
   },
   description:
-    "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
+    "Never miss a lead again with 24/7 AI receptionists for appointment-based businesses in California and the USA. 15x cheaper and 32x faster than a human — book more customers today.",
   keywords: [
-    "AI voice agents",
-    "lead qualification",
+    "AI receptionist",
+    "virtual receptionist",
     "appointment scheduling",
-    "customer education",
+    "24/7 answering service",
+    "inbound lead conversion",
     "business automation",
-    "AI automation",
-    "sales automation",
+    "sales qualification",
+    "missed call recovery",
+    "California AI receptionist",
+    "US virtual receptionist",
   ],
   authors: [
-    { name: "Setinbound.com", url: "https://setinbound.com" },
+    { name: "SetInbound", url: "https://setinbound.com" },
     { name: "Reinis Varavs", url: "https://setinbound.com" },
     { name: "Henry Varavs", url: "https://setinbound.com" },
   ],
-  creator: "Setinbound.com",
-  publisher: "Setinbound.com",
+  creator: "SetInbound",
+  publisher: "SetInbound",
   openGraph: {
     type: "website",
     url: "https://setinbound.com",
-    title: "Setinbound.com - AI Voice Agents for Sales",
+    title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
     description:
-      "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
-    siteName: "Setinbound.com",
+      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist — cheaper and faster than a human.",
+    siteName: "SetInbound",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "Setinbound.com - AI Voice Agents for Sales",
+    title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
     description:
-      "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7. Scale your business while reducing operational costs.",
+      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist — cheaper and faster than a human.",
     creator: "@setinbound.com",
     site: "@setinbound.com",
   },
@@ -53,13 +58,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    "max-image-preview": "none",
+    "max-image-preview": "large",
     "max-snippet": -1,
     "max-video-preview": -1,
     googleBot: {
       index: true,
       follow: true,
-      "max-image-preview": "none",
+      "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
       notranslate: true,
@@ -69,14 +74,24 @@ export const metadata: Metadata = {
     google: "notranslate",
     "Content-Language": "en-US",
     translate: "no",
+    "theme-color": "#7F3DF4",
     "json-ld": JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      name: "Setinbound.com",
+      "@type": ["WebApplication", "LocalBusiness"],
+      name: "SetInbound",
+      url: "https://setinbound.com",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "Transform your sales with AI-powered voice agents that qualify leads, schedule appointments, and educate customers 24/7.",
+        "SetInbound provides AI receptionists for appointment-based businesses, including dentists, medspas, salons, clinics, legal, real estate, financial services, restaurants, gyms, property managers, and more. Never miss a lead again with 24/7 booking, qualification, and call handling.",
+      serviceArea: {
+        "@type": "Place",
+        name: "California, USA",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "US",
+      },
       offers: {
         "@type": "Offer",
         availability: "https://schema.org/InStock",
@@ -84,7 +99,7 @@ export const metadata: Metadata = {
       potentialAction: [
         {
           "@type": "CommunicateAction",
-          name: "Test Call AI Voice Agent",
+          name: "Test Call AI Receptionist",
           target: {
             "@type": "EntryPoint",
             urlTemplate: "https://setinbound.com",
@@ -100,10 +115,19 @@ export const metadata: Metadata = {
             actionPlatform: "https://schema.org/DesktopWebPlatform",
           },
         },
+        {
+          "@type": "ReserveAction",
+          name: "Book Appointment",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://setinbound.com",
+            actionPlatform: "https://schema.org/DesktopWebPlatform",
+          },
+        },
       ],
       author: {
         "@type": "Organization",
-        name: "Setinbound.com",
+        name: "SetInbound",
         url: "https://setinbound.com",
       },
       creator: [
