@@ -2,12 +2,12 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound",
+    "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound.com",
   description:
     "Refer appointment-based businesses to SetInbound and earn 10% of their upfront payment if they become a client. Help them capture more leads 24/7 while earning passive income.",
   openGraph: {
     title:
-      "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound",
+      "Earn 10% Referring Businesses to Our 24/7 AI Receptionist | SetInbound.com",
     description:
       "Know a business missing calls? Earn 10% for helping them with SetInbound's 24/7 AI receptionist.",
     url: "https://setinbound.com/referral",

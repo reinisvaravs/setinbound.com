@@ -4,12 +4,12 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "SetInbound | AI Receptionists for Appointment-Based Businesses",
+    default: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
     template:
-      "%s | AI Receptionists for Appointment-Based Businesses | SetInbound",
+      "%s | AI Receptionists for Appointment-Based Businesses | SetInbound.com",
   },
   description:
-    "Never miss a lead again with 24/7 AI receptionists for appointment-based businesses in California and the USA. 15x cheaper and 32x faster than a human - book more customers today.",
+    "GET A FREE AI RECEPTIONIST in 3 STEPS - In just 2 days, we&#39;ll set up your personalized AI receptionist - so you can try it until it starts making you money. If no results = no cost.",
   keywords: [
     "AI receptionist",
     "virtual receptionist",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://setinbound.com",
-    title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
+    title: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
     description:
       "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
     siteName: "SetInbound",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "SetInbound | AI Receptionists for Appointment-Based Businesses",
+    title: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
     description:
       "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
     creator: "@setinbound.com",
