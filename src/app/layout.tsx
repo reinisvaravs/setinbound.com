@@ -1,24 +1,15 @@
-"use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Toaster } from "react-hot-toast";
 import "../styles/index.css";
 import "../styles/prism-vsc-dark-plus.css";
-import { useEffect, useState } from "react";
-import PreLoader from "@/components/Common/PreLoader";
+import ClientPreLoader from "@/components/Common/ClientPreLoader";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
-
   return (
     <html suppressHydrationWarning={true} className="!scroll-smooth" lang="en">
       <head>
@@ -28,16 +19,12 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.png" />
       </head>
       <body>
-        {loading ? (
-          <PreLoader />
-        ) : (
-          <>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster position="top-center" />
-          </>
-        )}
+        <ClientPreLoader>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster position="top-center" />
+        </ClientPreLoader>
       </body>
     </html>
   );

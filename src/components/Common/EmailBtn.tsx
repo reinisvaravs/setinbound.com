@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa";
 import { MdContentCopy, MdEmail } from "react-icons/md";
