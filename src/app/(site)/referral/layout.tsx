@@ -34,6 +34,7 @@ export const metadata: Metadata = {
         currency: "USD",
         value: "10",
       },
+      termsOfService: "https://setinbound.com/terms", // add this page if you wish
       membershipNumber: "automatic-on-acceptance",
       areaServed: {
         "@type": "Place",
