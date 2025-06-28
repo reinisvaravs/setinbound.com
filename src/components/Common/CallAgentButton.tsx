@@ -165,7 +165,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
 
   const confirmDialog = showConfirm ? (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
-      <div className="animate-fade-in w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl">
+      <div className="animate-fade-in w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
         <div className="flex flex-col items-center">
           {/* Terms Checkbox */}
           <div className="mb-6 flex w-full items-start gap-4">
@@ -175,7 +175,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
                 id="terms-checkbox"
                 checked={agreedToTerms}
                 onChange={handleCheckboxChange}
-                className="h-5 w-5 rounded-md border-2 border-gray-300 bg-white text-accent-BLUE transition-colors duration-200 focus:ring-2 focus:ring-accent-BLUE focus:ring-offset-2 focus:ring-offset-white"
+                className="h-5 w-5 rounded-md border-2 border-gray-300 bg-white text-accent-BLUE transition-colors duration-200 focus:outline-none focus:[box-shadow:0_0_0_2px_#2563eb]"
               />
             </div>
             <label
