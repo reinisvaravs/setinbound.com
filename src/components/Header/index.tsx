@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import StickyHeader from "./StickyHeader";
 import NavigationButtons from "./NavigationButtons";
+import StickyHeader from "./StickyHeader";
 
 const Header = () => {
   return (
@@ -15,7 +15,8 @@ const Header = () => {
                 alt="logo"
                 width={240}
                 height={30}
-                className="header-logo w-full scale-150 py-4"
+                className="header-logo h-auto w-full scale-150 py-4"
+                priority
               />
             </Link>
           </div>

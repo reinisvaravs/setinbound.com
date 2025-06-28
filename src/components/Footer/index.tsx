@@ -18,7 +18,8 @@ const Footer = () => {
                   alt="logo"
                   width={140}
                   height={30}
-                  className="ml-6 max-w-full scale-150"
+                  className="ml-6 h-auto max-w-full scale-150"
+                  priority
                 />
               </Link>
               <p className="mb-8 max-w-[270px] text-base text-primary-WHITE">
