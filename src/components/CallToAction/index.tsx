@@ -14,7 +14,10 @@ const CallToAction = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[570px] text-center">
                 <h2 className="mb-2.5 text-3xl font-bold text-secondary-GRAY md:text-[38px] md:leading-[1.44]">
-                  <span>Experience Our Demo AI Receptionist</span>
+                  <span>
+                    Experience Our Demo AI
+                    <span className="text-[11px] opacity-0">_</span>Receptionist
+                  </span>
                 </h2>
                 <p className="mx-auto mb-6 max-w-[515px] text-base leading-[1.5] text-secondary-LIGHT_GRAY">
                   Click below to call our AI Receptionist directly
