@@ -11,7 +11,7 @@ const Header = () => {
           <div className="w-60 max-w-full px-5">
             <Link href="/" className="navbar-logo block w-full p-2">
               <Image
-                src={`/images/logo/logo-white-row.png`}
+                src={`/images/logo/logo-white-row.webp`}
                 alt="logo"
                 width={240}
                 height={30}
