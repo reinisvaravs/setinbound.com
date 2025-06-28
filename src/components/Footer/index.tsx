@@ -1,14 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { MdEmail, MdContentCopy } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
-import { useState } from "react";
+import EmailBtn from "../Common/EmailBtn";
 
 const Footer = () => {
-  const [isCopied, setIsCopied] = useState(false);
-
   return (
     <footer
       className="wow fadeInUp relative z-10 bg-accent-BLUE pb-10 pt-20 lg:pt-[100px]"
@@ -35,31 +29,7 @@ const Footer = () => {
           </div>
           <div className="-mx-3 flex flex-col items-start justify-center gap-1 pl-9">
             <div className="mb-5 flex flex-row flex-nowrap items-center justify-center">
-              <MdEmail className="-mx-2 fill-white" />
-              <Link
-                aria-label="social link"
-                href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`}
-                className="px-3 text-primary-WHITE"
-              >
-                {process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}
-              </Link>
-              <button
-                onClick={() => {
-                  setIsCopied(true);
-                  setTimeout(() => {
-                    setIsCopied(false);
-                  }, 2000);
-                  navigator.clipboard.writeText(
-                    `${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`,
-                  );
-                }}
-                className="-mx-1"
-              >
-                {!isCopied && (
-                  <MdContentCopy className="clipboard fill-primary-WHITE" />
-                )}
-                {isCopied && <FaCheck className="check fill-primary-WHITE" />}
-              </button>
+              <EmailBtn />
             </div>
             <div className="flex flex-row flex-nowrap items-center justify-center">
               <Link

@@ -1,5 +1,3 @@
-"use client";
-
 import CallAgentButton from "../Common/CallAgentButton";
 
 const CallToAction = () => {
