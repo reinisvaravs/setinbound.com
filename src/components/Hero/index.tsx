@@ -21,13 +21,6 @@ const Hero = () => {
                 <h1 className="mb-6 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-[1.2]">
                   AI RECEPTIONISTS
                 </h1>
-                <p className="mx-auto mb-9 max-w-[600px] text-base font-normal text-secondary-LIGHT_GRAY sm:text-lg sm:leading-[1.44]">
-                  Transform your Appointment booking with an AI-powered
-                  receptionist that never sleeps and is up to 15x cheaper and
-                  32x faster than the best human receptionists. Cut costs and
-                  capture every opportunity, our intelligent receptionists help
-                  you scale your business while reducing operational costs.
-                </p>
                 <ul className="mb-10 flex flex-wrap items-center justify-center gap-5">
                   <li>
                     <CallAgentButton>Test Agent</CallAgentButton>

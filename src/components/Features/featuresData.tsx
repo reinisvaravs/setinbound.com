@@ -7,9 +7,9 @@ const featuresData: Feature[] = [
   {
     id: 1,
     icon: <IoCalendarNumberOutline className="h-[60%] w-[60%] text-white" />,
-    title: "Step 1 - Schedule Your Intro Call",
+    title: "Step 1 - Schedule a Call",
     paragraph:
-      "Give our AI receptionist a quick spin - let it find the best times for us to chat. Or skip the call and book directly on our calendar. [add interactive buttons inside the text to scroll to this",
+      "Give our AI receptionist a quick spin - let it find the best times for us to chat. Or skip the call and book directly on our calendar.",
     btn: "Learn More",
     btnLink: "/#",
   },
