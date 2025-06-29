@@ -36,7 +36,6 @@ const Footer = () => {
               <Link
                 aria-label="privacy policy"
                 href="/privacy-policy"
-                target="_blank"
                 className="px-3 text-primary-WHITE"
               >
                 Privacy Policy
@@ -46,7 +45,6 @@ const Footer = () => {
               <Link
                 aria-label="privacy policy"
                 href="/terms"
-                target="_blank"
                 className="px-3 text-primary-WHITE"
               >
                 Terms & Conditions
