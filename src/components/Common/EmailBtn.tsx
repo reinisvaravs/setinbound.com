@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa";
-import { MdContentCopy, MdEmail } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
 import { useState } from "react";
 
 function EmailBtn() {
@@ -10,7 +10,6 @@ function EmailBtn() {
 
   return (
     <>
-      <MdEmail className="-mx-2 fill-white" />
       <Link
         aria-label="social link"
         href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`}

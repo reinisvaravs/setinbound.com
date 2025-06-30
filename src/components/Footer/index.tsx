@@ -18,7 +18,7 @@ const Footer = () => {
                   alt="logo"
                   width={224}
                   height={38}
-                  className="h-auto w-full max-w-full -translate-x-3"
+                  className="h-auto w-full max-w-full -ml-3"
                   priority
                 />
               </Link>
@@ -28,7 +28,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="-mx-3 flex flex-col items-start justify-center gap-1 pl-9">
+          <div className="flex flex-col items-start justify-center gap-1 pl-9">
             <div className="mb-5 flex flex-row flex-nowrap items-center justify-center">
               <EmailBtn />
             </div>
