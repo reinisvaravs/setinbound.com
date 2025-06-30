@@ -13,7 +13,7 @@ function EmailBtn() {
       <Link
         aria-label="social link"
         href={`mailto:${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`}
-        className="px-3 text-primary-WHITE"
+        className="ease rounded-md px-3 text-primary-WHITE transition-all duration-300 hover:bg-secondary-GRAY"
       >
         {process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}
       </Link>
@@ -27,12 +27,10 @@ function EmailBtn() {
             `${process.env.NEXT_PUBLIC_EMAIL || "rr.varavs@gmail.com"}`,
           );
         }}
-        className="-mx-1"
+        className="ease rounded-full p-2 transition duration-300 hover:bg-secondary-GRAY"
       >
-        {!isCopied && (
-          <MdContentCopy className="clipboard fill-primary-WHITE" />
-        )}
-        {isCopied && <FaCheck className="check fill-primary-WHITE" />}
+        {!isCopied && <MdContentCopy className="fill-primary-WHITE" />}
+        {isCopied && <FaCheck className="fill-primary-WHITE" />}
       </button>
     </>
   );
