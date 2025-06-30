@@ -7,7 +7,7 @@ const SingleFaq = (props: { question: string; answer: string }) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="w-full px-4 lg:w-1/2">
+    <div className="w-full px-4 lg:w-[45%] mx-8">
       <div className="mb-4 lg:mb-6">
         <button
           className="flex w-full items-center justify-between rounded-lg py-4 text-left transition-colors hover:bg-secondary-GRAY/10 focus:outline-none"

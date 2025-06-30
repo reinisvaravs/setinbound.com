@@ -12,7 +12,7 @@ const Faq = () => {
           width="640px"
           center
         />
-        <div className="-mx-4 mt-[60px] flex flex-row flex-wrap lg:mt-20">
+        <div className="-mx-4 mt-[60px] flex flex-row flex-wrap lg:mt-20 justify-center">
           <SingleFaq
             question="What is SetInbound?"
             answer="SetInbound provides AI-powered voice receptionists for appointment-based businesses, helping you answer calls, qualify leads, and book appointments automatically 24/7."
