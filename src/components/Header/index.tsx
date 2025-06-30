@@ -13,9 +13,9 @@ const Header = () => {
               <Image
                 src={`/images/logo/logo-white-row.webp`}
                 alt="logo"
-                width={240}
-                height={30}
-                className="header-logo h-auto w-full scale-150 py-4"
+                width={224}
+                height={38}
+                className="h-auto w-full py-4"
                 priority
               />
             </Link>

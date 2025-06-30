@@ -16,9 +16,9 @@ const Footer = () => {
                 <Image
                   src="/images/logo/logo-white-row.webp"
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="ml-6 h-auto max-w-full scale-150"
+                  width={224}
+                  height={38}
+                  className="h-auto w-[140px] max-w-full"
                   priority
                 />
               </Link>
