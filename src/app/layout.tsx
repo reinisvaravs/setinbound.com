@@ -1,4 +1,4 @@
-import Footer from "@/components/FooterB";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Toaster } from "react-hot-toast";
 import "../styles/index.css";
