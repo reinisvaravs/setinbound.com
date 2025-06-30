@@ -2,9 +2,9 @@ const SingleFaq = (props: { question: string; answer: string }) => {
   const { question, answer } = props;
 
   return (
-    <>
+    <div className="w-full px-4 lg:w-1/2">
       <div className="mb-12 flex lg:mb-[70px]">
-        <div className="text-secondary-GRAY mr-4 flex h-[50px] w-full max-w-[50px] items-center justify-center rounded-xl bg-transparent sm:mr-6 sm:h-[60px] sm:max-w-[60px]">
+        <div className="mr-4 flex h-[50px] w-full max-w-[50px] items-center justify-center rounded-xl bg-transparent text-secondary-GRAY sm:mr-6 sm:h-[60px] sm:max-w-[60px]">
           <svg
             width="32"
             height="32"
@@ -23,7 +23,7 @@ const SingleFaq = (props: { question: string; answer: string }) => {
           <p className="text-base text-secondary-LIGHT_GRAY">{answer}</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
