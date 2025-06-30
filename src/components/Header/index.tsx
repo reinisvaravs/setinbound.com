@@ -8,14 +8,14 @@ const Header = () => {
     <StickyHeader>
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-5">
+          <div className="w-96 px-5">
             <Link href="/" className="navbar-logo block w-full p-2">
               <Image
                 src={`/images/logo/logo-white-row.webp`}
                 alt="logo"
                 width={224}
                 height={38}
-                className="h-auto w-full py-4"
+                className="h-auto w-full py-2"
                 priority
               />
             </Link>

@@ -12,13 +12,13 @@ const Footer = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-3/12">
             <div className="mb-10 w-full">
-              <Link href="/" className="mb-6 inline-block max-w-[160px]">
+              <Link href="/" className="mb-6 inline-block max-w-[210px]">
                 <Image
                   src="/images/logo/logo-white-row.webp"
                   alt="logo"
                   width={224}
                   height={38}
-                  className="h-auto w-[140px] max-w-full"
+                  className="h-auto w-full max-w-full -translate-x-3"
                   priority
                 />
               </Link>
