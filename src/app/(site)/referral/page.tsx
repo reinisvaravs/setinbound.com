@@ -20,67 +20,18 @@ export default function ReferralPage() {
     otherInfo: "",
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  const validatePhone = (phone: string) => {
-    // Allows formats: +XXX-XXX-XXXX, XXX-XXX-XXXX, XXXXXXXXXX
-    return /^(\+\d{1,3}[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/.test(phone);
-  };
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    // Required fields
-    if (!formData.referrerName.trim()) {
-      newErrors.referrerName = "Referrer name is required";
-    }
-    if (!formData.referrerPhone.trim()) {
-      newErrors.referrerPhone = "Referrer phone is required";
-    } else if (!validatePhone(formData.referrerPhone)) {
-      newErrors.referrerPhone = "Invalid phone format (e.g., +123-456-7890)";
-    }
-    if (!formData.referrerEmail.trim()) {
-      newErrors.referrerEmail = "Referrer email is required";
-    } else if (!validateEmail(formData.referrerEmail)) {
-      newErrors.referrerEmail = "Invalid email format";
-    }
-
-    if (!formData.contactName.trim()) {
-      newErrors.contactName = "Contact name is required";
-    }
-    if (!formData.contactPhone.trim()) {
-      newErrors.contactPhone = "Contact phone is required";
-    } else if (!validatePhone(formData.contactPhone)) {
-      newErrors.contactPhone = "Invalid phone format (e.g., +123-456-7890)";
-    }
-    if (!formData.contactEmail.trim()) {
-      newErrors.contactEmail = "Contact email is required";
-    } else if (!validateEmail(formData.contactEmail)) {
-      newErrors.contactEmail = "Invalid email format";
-    }
-    if (!formData.companyName.trim()) {
-      newErrors.companyName = "Company name is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      toast.error("Please fix the errors in the form");
+    const form = e.currentTarget;
+    if (!form.checkValidity()) {
+      toast.error("Please fill in all required fields.");
+      // Let the browser show its validation UI as well
+      form.reportValidity();
       return;
     }
-
     setIsSubmitting(true);
-
     try {
       const response = await fetch("https://sheetdb.io/api/v1/bhxoxdwcztjdo", {
         method: "POST",
@@ -110,12 +61,10 @@ export default function ReferralPage() {
           })(),
         }),
       });
-
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
-
-      toast.success("Thank you for your referral! We&#39;ll be in touch soon.");
+      toast.success("Thank you! We'll be in touch soon.");
       setFormData({
         referrerName: "",
         referrerPhone: "",
@@ -128,7 +77,6 @@ export default function ReferralPage() {
         runsAds: false,
         otherInfo: "",
       });
-      setErrors({});
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       console.error("Error submitting form:", error);
@@ -159,6 +107,7 @@ export default function ReferralPage() {
             onSubmit={handleSubmit}
             className="wow fadeInUp"
             data-wow-delay=".15s"
+            noValidate
           >
             <div className="mb-6">
               <label
@@ -175,13 +124,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, referrerName: e.target.value })
                 }
                 placeholder="Enter your name"
+                required
                 className="mr-2 w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.referrerName && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.referrerName}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -199,13 +144,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, referrerPhone: e.target.value })
                 }
                 placeholder="+123-456-7890"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.referrerPhone && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.referrerPhone}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -223,13 +164,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, referrerEmail: e.target.value })
                 }
                 placeholder="Enter your email"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.referrerEmail && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.referrerEmail}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -244,8 +181,10 @@ export default function ReferralPage() {
                     })
                   }
                   className="mr-2 h-4 w-4 cursor-pointer"
+                  required
                 />
-                I&#39;ve told the referral I&#39;m submitting their info
+                I confirm I have the referral&#39;s permission to share their
+                details.
               </label>
             </div>
 
@@ -264,13 +203,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, contactName: e.target.value })
                 }
                 placeholder="Enter referral&#39;s name"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.contactName && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.contactName}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -288,13 +223,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, contactPhone: e.target.value })
                 }
                 placeholder="+123-456-7890"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.contactPhone && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.contactPhone}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -312,13 +243,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, contactEmail: e.target.value })
                 }
                 placeholder="Enter referral&#39;s email"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.contactEmail && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.contactEmail}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
@@ -336,13 +263,9 @@ export default function ReferralPage() {
                   setFormData({ ...formData, companyName: e.target.value })
                 }
                 placeholder="Enter company name or domain"
+                required
                 className="w-full rounded-md border-2 border-gray-300 bg-primary-WHITE_DARK px-5 py-3 text-secondary-GRAY focus:outline-none focus:ring-0"
               />
-              {errors.companyName && (
-                <p className="mt-1 text-sm text-red-500">
-                  {errors.companyName}
-                </p>
-              )}
             </div>
 
             <div className="mb-6">
