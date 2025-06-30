@@ -71,7 +71,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-start justify-center gap-1 pl-9">
+          <div className="flex flex-col items-start justify-center gap-1 pl-2">
             <div className="mb-5 flex flex-row flex-nowrap items-center justify-center">
               <EmailBtn />
             </div>
