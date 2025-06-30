@@ -33,7 +33,6 @@ export default function RootLayout({
       className={`!scroll-smooth ${inter.className}`}
       lang="en"
     >
-      <head></head>
       <body>
         <ClientPreLoader>
           <Header />
