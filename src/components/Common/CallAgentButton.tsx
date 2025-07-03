@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
 import { MdContentCopy } from "react-icons/md";
+import { QRCodeCanvas } from "qrcode.react";
 
 const COOLDOWN_SECONDS = 60;
 const MAX_ATTEMPTS = 2;
@@ -25,9 +26,13 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
   const [attempts, setAttempts] = useState(0);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [announce, setAnnounce] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   const phoneNumber =
     process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633";
+  const numberRef = useRef<HTMLSpanElement>(null);
 
   // On mount, restore attempts and cooldown from localStorage
   useEffect(() => {
@@ -74,6 +79,10 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
       window.removeEventListener("storage", onStorage);
     };
     // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    setIsMobile(/Mobi|Android/i.test(navigator.userAgent));
   }, []);
 
   // Global cooldown timer management
@@ -173,9 +182,44 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(phoneNumber);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber);
+      setCopied(true);
+      setShowTooltip(true);
+      setAnnounce("Phone number copied to clipboard");
+      setTimeout(() => setCopied(false), 1500);
+      setTimeout(() => setShowTooltip(false), 1500);
+    } else if (numberRef.current) {
+      // Fallback: select the number for manual copy
+      const range = document.createRange();
+      range.selectNode(numberRef.current);
+      const sel = window.getSelection();
+      sel?.removeAllRanges();
+      sel?.addRange(range);
+      setAnnounce("Phone number selected. Press Ctrl+C to copy.");
+    }
+    if ((window as any).gtag)
+      (window as any).gtag("event", "copy_phone_number");
+  };
+
+  const handleReveal = () => {
+    toast(
+      "You need to agree to the Terms of Service and Privacy Policy to reveal the number.",
+    );
+    setAnnounce(
+      "You need to agree to the Terms of Service and Privacy Policy to reveal the number.",
+    );
+    if ((window as any).gtag)
+      (window as any).gtag("event", "reveal_attempt_without_agreement");
+  };
+
+  const handleCall = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!agreedToTerms) {
+      e.preventDefault();
+      return;
+    }
+    if ((window as any).gtag) (window as any).gtag("event", "call_agent");
+    handleConfirm();
   };
 
   const confirmDialog = showConfirm ? (
@@ -221,27 +265,59 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
           {/* Number and action buttons in a row when revealed */}
           <div className="mb-4 flex w-full items-center justify-between gap-4">
             {agreedToTerms ? (
-              <div className="flex items-center gap-2">
-                <span className="select-all text-sm text-gray-700">
+              <div
+                className="animate-fade-in flex items-center gap-2"
+                style={{ transition: "all 0.3s" }}
+              >
+                <span
+                  ref={numberRef}
+                  className="select-all text-sm text-gray-700"
+                  aria-label="Agent phone number"
+                  tabIndex={0}
+                >
                   {phoneNumber}
                 </span>
                 <button
-                  className="ease rounded-full"
+                  className="ease relative rounded-full"
                   onClick={handleCopy}
                   type="button"
+                  aria-label={copied ? "Copied!" : "Copy phone number"}
+                  onMouseEnter={() => setShowTooltip(true)}
+                  onMouseLeave={() => setShowTooltip(false)}
+                  onFocus={() => setShowTooltip(true)}
+                  onBlur={() => setShowTooltip(false)}
                 >
                   {!copied && <MdContentCopy className="fill-secondary-GRAY" />}
                   {copied && <FaCheck className="fill-secondary-GRAY" />}
+                  {showTooltip && (
+                    <span className="absolute left-1/2 top-full mt-1 -translate-x-1/2 rounded bg-gray-700 px-2 py-1 text-xs text-white shadow-lg">
+                      {copied ? "Copied!" : "Copy to clipboard"}
+                    </span>
+                  )}
                 </button>
+                {/* QR code for desktop users */}
+                {!isMobile && (
+                  <div
+                    className="ml-2"
+                    aria-label="Scan QR code to call on your phone"
+                  >
+                    <QRCodeCanvas value={`tel:${phoneNumber}`} size={40} />
+                  </div>
+                )}
+                {/* Screen reader live region for announcements */}
+                <span aria-live="polite" className="sr-only">
+                  {announce}
+                </span>
               </div>
             ) : (
               <span
                 className="cursor-pointer text-sm text-gray-700"
-                onClick={() =>
-                  toast(
-                    "You need to agree to the Terms of Service and Privacy Policy to reveal the number.",
-                  )
-                }
+                onClick={handleReveal}
+                aria-label="Reveal Number (requires agreement)"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") handleReveal();
+                }}
               >
                 Reveal Number
               </span>
@@ -250,6 +326,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
               <button
                 className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-200"
                 onClick={handleCancel}
+                aria-label="Cancel"
               >
                 Cancel
               </button>
@@ -260,10 +337,9 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
                     ? "bg-accent-BLUE text-primary-WHITE hover:bg-success-500"
                     : "pointer-events-none cursor-not-allowed bg-gray-300 text-gray-500"
                 }`}
-                onClick={
-                  agreedToTerms ? handleConfirm : (e) => e.preventDefault()
-                }
+                onClick={handleCall}
                 tabIndex={agreedToTerms ? 0 : -1}
+                aria-label="Call agent"
               >
                 Call
               </a>
