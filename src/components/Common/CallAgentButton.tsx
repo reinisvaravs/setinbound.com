@@ -263,7 +263,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
           </div>
 
           {/* Number and action buttons in a row when revealed */}
-          <div className="mb-4 flex w-full items-center justify-between gap-4">
+          <div className="mb-4 flex min-h-12 w-full items-center justify-between gap-4">
             {agreedToTerms ? (
               <div
                 className="animate-fade-in flex items-center gap-2"
@@ -317,6 +317,11 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") handleReveal();
+                }}
+                style={{
+                  minHeight: "40px",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 Reveal Number
