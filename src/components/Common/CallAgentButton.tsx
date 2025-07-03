@@ -1,7 +1,10 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import toast from "react-hot-toast";
+import { FaCheck } from "react-icons/fa";
+import { MdContentCopy } from "react-icons/md";
 
 const COOLDOWN_SECONDS = 60;
 const MAX_ATTEMPTS = 2;
@@ -21,6 +24,10 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const phoneNumber =
+    process.env.NEXT_PUBLIC_RETELL_PHONE_NUMBER || "+37128816633";
 
   // On mount, restore attempts and cooldown from localStorage
   useEffect(() => {
@@ -165,6 +172,12 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
     setAgreedToTerms(e.target.checked);
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(phoneNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
   const confirmDialog = showConfirm ? (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50">
       <div className="animate-fade-in w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
@@ -205,24 +218,56 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
             </label>
           </div>
 
-          <div className="flex w-full justify-end gap-2">
-            <button
-              className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-200"
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-            <button
-              className={`rounded-lg px-4 py-2 text-sm font-medium shadow-sm transition ${
-                agreedToTerms
-                  ? "bg-accent-BLUE text-primary-WHITE hover:bg-success-500"
-                  : "cursor-not-allowed bg-gray-300 text-gray-500"
-              }`}
-              onClick={handleConfirm}
-              disabled={!agreedToTerms}
-            >
-              Call
-            </button>
+          {/* Number and action buttons in a row when revealed */}
+          <div className="mb-4 flex w-full items-center justify-between gap-4">
+            {agreedToTerms ? (
+              <div className="flex items-center gap-2">
+                <span className="select-all text-sm text-gray-700">
+                  {phoneNumber}
+                </span>
+                <button
+                  className="ease rounded-full"
+                  onClick={handleCopy}
+                  type="button"
+                >
+                  {!copied && <MdContentCopy className="fill-secondary-GRAY" />}
+                  {copied && <FaCheck className="fill-secondary-GRAY" />}
+                </button>
+              </div>
+            ) : (
+              <span
+                className="cursor-pointer text-sm text-gray-700"
+                onClick={() =>
+                  toast(
+                    "You need to agree to the Terms of Service and Privacy Policy to reveal the number.",
+                  )
+                }
+              >
+                Reveal Number
+              </span>
+            )}
+            <div className="flex gap-2">
+              <button
+                className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-200"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <a
+                href={agreedToTerms ? `tel:${phoneNumber}` : undefined}
+                className={`rounded-lg px-4 py-2 text-sm font-medium shadow-sm transition ${
+                  agreedToTerms
+                    ? "bg-accent-BLUE text-primary-WHITE hover:bg-success-500"
+                    : "pointer-events-none cursor-not-allowed bg-gray-300 text-gray-500"
+                }`}
+                onClick={
+                  agreedToTerms ? handleConfirm : (e) => e.preventDefault()
+                }
+                tabIndex={agreedToTerms ? 0 : -1}
+              >
+                Call
+              </a>
+            </div>
           </div>
         </div>
       </div>
