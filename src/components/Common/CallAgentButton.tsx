@@ -198,8 +198,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
       sel?.addRange(range);
       setAnnounce("Phone number selected. Press Ctrl+C to copy.");
     }
-    if ((window as any).gtag)
-      (window as any).gtag("event", "copy_phone_number");
+    if (window.gtag) window.gtag("event", "copy_phone_number");
   };
 
   const handleReveal = () => {
@@ -209,8 +208,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
     setAnnounce(
       "You need to agree to the Terms of Service and Privacy Policy to reveal the number.",
     );
-    if ((window as any).gtag)
-      (window as any).gtag("event", "reveal_attempt_without_agreement");
+    if (window.gtag) window.gtag("event", "reveal_attempt_without_agreement");
   };
 
   const handleCall = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -218,7 +216,7 @@ const CallAgentButton: React.FC<CallAgentButtonProps> = ({ children }) => {
       e.preventDefault();
       return;
     }
-    if ((window as any).gtag) (window as any).gtag("event", "call_agent");
+    if (window.gtag) window.gtag("event", "call_agent");
     handleConfirm();
   };
 
