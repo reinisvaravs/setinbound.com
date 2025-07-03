@@ -10,7 +10,7 @@ export default function TermsDocument() {
         These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and
         use of the AI receptionist services provided by{" "}
         <strong>SIA Vāravi</strong>, a Latvian limited company (registration no.
-        123456789) trading as SetInbound (&ldquo;SetInbound&rdquo;,
+        40203660669) trading as SetInbound (&ldquo;SetInbound&rdquo;,
         &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;). By using our
         services, you agree to these Terms.
       </p>
