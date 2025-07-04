@@ -30,7 +30,7 @@ const Footer = () => {
                 {/* https://icons8.com/icons/set/social-media--style-fluency */}
                 <Link
                   aria-label="social link"
-                  href="https://www.instagram.com/varavshenrijs"
+                  href="https://instagram.com/varavshenrijs"
                   className="px-1"
                   target="_blank"
                 >
@@ -43,7 +43,7 @@ const Footer = () => {
                     priority
                   />
                 </Link>
-                <Link aria-label="social link" href="#" className="px-1">
+                <Link aria-label="social link" href="https://youtube.com/@varavshenrijs" className="px-1">
                   <Image
                     src="/images/social_media/youtube.svg"
                     alt="logo"
