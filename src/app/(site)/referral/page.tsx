@@ -33,34 +33,29 @@ export default function ReferralPage() {
     }
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://sheetdb.io/api/v1/bhxoxdwcztjdo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://hook.eu2.make.com/08z33bxzbe54y276r1xkm5z1pgetas16",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "Referrer Name": formData.referrerName.trim(),
+            "Referrer Phone": `'${formData.referrerPhone.trim()}`,
+            "Referrer Email": formData.referrerEmail.trim(),
+            "Has Notified Referral": formData.hasNotifiedReferral
+              ? "Yes"
+              : "No",
+            "Contact Name": formData.contactName.trim(),
+            "Contact Phone": `'${formData.contactPhone.trim()}`,
+            "Contact Email": formData.contactEmail.trim(),
+            "Company Name/Domain": formData.companyName.trim(),
+            "Runs Ads": formData.runsAds ? "Yes" : "No",
+            "Other Info": formData.otherInfo.trim(),
+          }),
         },
-        body: JSON.stringify({
-          "Referrer Name": formData.referrerName.trim(),
-          "Referrer Phone": `'${formData.referrerPhone.trim()}`,
-          "Referrer Email": formData.referrerEmail.trim(),
-          "Has Notified Referral": formData.hasNotifiedReferral ? "Yes" : "No",
-          "Contact Name": formData.contactName.trim(),
-          "Contact Phone": `'${formData.contactPhone.trim()}`,
-          "Contact Email": formData.contactEmail.trim(),
-          "Company Name/Domain": formData.companyName.trim(),
-          "Runs Ads": formData.runsAds ? "Yes" : "No",
-          "Other Info": formData.otherInfo.trim(),
-          Timestamp: (() => {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = (now.getMonth() + 1).toString().padStart(2, "0");
-            const day = now.getDate().toString().padStart(2, "0");
-            const hours = now.getHours().toString().padStart(2, "0");
-            const minutes = now.getMinutes().toString().padStart(2, "0");
-            const seconds = now.getSeconds().toString().padStart(2, "0");
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-          })(),
-        }),
-      });
+      );
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
