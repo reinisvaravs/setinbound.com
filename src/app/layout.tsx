@@ -6,7 +6,6 @@ import "../styles/prism-vsc-dark-plus.css";
 import ClientPreLoader from "@/components/Common/ClientPreLoader";
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -206,13 +205,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
         <link rel="manifest" href="/site.webmanifest?v=2" />
-        <Script
-          id="vtag-ai-js"
-          src="https://r2.leadsy.ai/tag.js"
-          data-pid="1hygP49YULavwNdvw"
-          data-version="062024"
-          strategy="afterInteractive"
-        />
       </head>
       <body>
         <ClientPreLoader>
