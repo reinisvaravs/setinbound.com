@@ -78,25 +78,25 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
-      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
-      { url: "/favicon-96x96.png?v=2", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: "/favicon.svg?v=3", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png?v=3", sizes: "96x96", type: "image/png" },
       {
-        url: "/web-app-manifest-192x192.png?v=2",
+        url: "/web-app-manifest-192x192.png?v=3",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        url: "/web-app-manifest-512x512.png?v=2",
+        url: "/web-app-manifest-512x512.png?v=3",
         sizes: "512x512",
         type: "image/png",
       },
     ],
-    shortcut: "/favicon.ico?v=2",
+    shortcut: "/favicon.ico?v=3",
     apple: [
-      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png?v=3", sizes: "180x180", type: "image/png" },
     ],
-    other: [{ rel: "manifest", url: "/site.webmanifest?v=2" }],
+    other: [{ rel: "manifest", url: "/site.webmanifest?v=3" }],
   },
   robots: {
     index: true,
@@ -201,10 +201,10 @@ export default function RootLayout({
       lang="en"
     >
       <head>
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
-        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
-        <link rel="manifest" href="/site.webmanifest?v=2" />
+        <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
+        <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+        <link rel="manifest" href="/site.webmanifest?v=3" />
       </head>
       <body>
         <ClientPreLoader>
