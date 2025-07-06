@@ -17,9 +17,12 @@ const Hero = () => {
                 data-wow-delay=".2s"
               >
                 <h1 className="mb-6 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-[1.2]">
-                  AI RECEPTIONISTS
+                  AI receptionists
                 </h1>
-                <ul className="mb-10 flex flex-wrap items-center justify-center gap-5">
+                <h1 className="mb-16 -mt-6 text-xl uppercase leading-snug text-secondary-GRAY opacity-70 sm:text-3xl sm:leading-snug lg:text-4xl lg:leading-[1.2]">
+                  for dental clinics
+                </h1>
+                <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
                   <li>
                     <CallAgentButton>Test Agent</CallAgentButton>
                   </li>
