@@ -16,10 +16,10 @@ const Hero = () => {
                 className="hero-content wow fadeInUp mx-auto max-w-[780px] text-center"
                 data-wow-delay=".2s"
               >
-                <h1 className="mb-6 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-5xl lg:text-6xl lg:leading-[1.2]">
+                <h1 className="mb-6 mt-20 text-2xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-4xl md:text-5xl lg:leading-[1.2]">
                   AI receptionists
                 </h1>
-                <h2 className="text-md text-seborder-secondary-LIGHT_GRAY mx-auto -mt-2 mb-16 w-[50%] border-t-2 border-secondary-LIGHT_GRAY pt-2 font-serif font-light italic leading-snug tracking-wide sm:text-xl md:w-[30%] lg:text-2xl lg:leading-[1.2]">
+                <h2 className="sm:text-md mx-auto -mt-2 mb-16 w-[45%] border-t-2 border-secondary-LIGHT_GRAY pt-2 text-sm font-normal leading-snug tracking-wide text-secondary-LIGHT_GRAY sm:w-[30%] md:w-[30%] md:text-lg lg:text-xl lg:leading-[1.2]">
                   For dental clinics
                 </h2>
                 <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">

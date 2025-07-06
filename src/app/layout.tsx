@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import "../styles/index.css";
 import "../styles/prism-vsc-dark-plus.css";
 import ClientPreLoader from "@/components/Common/ClientPreLoader";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import { Metadata } from "next";
 
 const inter = Inter({
@@ -19,6 +19,22 @@ const inter = Inter({
     "700", // bold
     "800", // extrabold
     // "900", // black (not used)
+  ],
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: [
+    "100", // thin (not used)
+    "200", // extralight (not used)
+    "300", // light
+    "400", // normal (not used)
+    "500", // medium
+    "600", // semibold
+    "700", // bold
+    "800", // extrabold
+    "900", // black (not used)
   ],
   display: "swap",
 });
@@ -197,7 +213,7 @@ export default function RootLayout({
   return (
     <html
       suppressHydrationWarning={true}
-      className={`!scroll-smooth ${inter.className}`}
+      className={`!scroll-smooth ${inter.className} ${poppins.className}`}
       lang="en"
     >
       <head>

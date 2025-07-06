@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 html {
-  background-color: #000000;
+  background-color: #141729;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 input:-webkit-autofill,
