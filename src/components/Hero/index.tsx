@@ -19,9 +19,9 @@ const Hero = () => {
                 <h1 className="mb-6 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-5xl sm:leading-snug lg:text-6xl lg:leading-[1.2]">
                   AI receptionists
                 </h1>
-                <h1 className="-mt-2 pt-2 mx-auto mb-16 w-[40%] border-t-2 border-secondary-LIGHT_GRAY text-md font-thin uppercase leading-snug text-seborder-secondary-LIGHT_GRAY sm:text-xl sm:leading-snug lg:text-2xl lg:leading-[1.2]">
+                <h2 className="text-md text-seborder-secondary-LIGHT_GRAY mx-auto -mt-2 mb-16 w-[40%] border-t-2 border-secondary-LIGHT_GRAY pt-2 font-thin uppercase leading-snug sm:text-xl sm:leading-snug lg:text-2xl lg:leading-[1.2]">
                   for dental clinics
-                </h1>
+                </h2>
                 <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
                   <li>
                     <CallAgentButton>Test Agent</CallAgentButton>
