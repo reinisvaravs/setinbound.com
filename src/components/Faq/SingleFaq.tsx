@@ -1,10 +1,16 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const SingleFaq = (props: { question: string; answer: string }) => {
   const { question, answer } = props;
-  const [open, setOpen] = useState(false);
+  // Start open (true) so SSR/HTML shows answers, but collapse on client hydration
+  const [open, setOpen] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Collapse after hydration (client only)
+  useEffect(() => {
+    setOpen(false);
+  }, []);
 
   return (
     <div className="w-full border-b border-dashed border-secondary-GRAY px-4 last:border-b-0">

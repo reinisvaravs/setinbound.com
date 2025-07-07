@@ -43,7 +43,12 @@ const Footer = () => {
                     priority
                   />
                 </Link>
-                <Link aria-label="social link" href="https://youtube.com/@varavshenrijs" className="px-1">
+                <Link
+                  aria-label="social link"
+                  href="https://youtube.com/@varavshenrijs"
+                  className="px-1"
+                  target="_blank"
+                >
                   <Image
                     src="/images/social_media/youtube.svg"
                     alt="logo"
