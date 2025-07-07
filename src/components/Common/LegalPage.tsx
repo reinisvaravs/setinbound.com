@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ReactNode } from "react";
+import BackHomeBtn from "./BackHomeBtn";
 
 interface LegalPageProps {
   title: string;
@@ -17,12 +17,7 @@ export default function LegalPage({ title, children }: LegalPageProps) {
                 {title}
               </h2>
               {children}
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-md bg-accent-BLUE px-3 py-3 text-sm font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-success-500 sm:gap-4 sm:px-6 sm:py-[14px] sm:text-base"
-              >
-                Back to Home
-              </Link>
+              <BackHomeBtn />
             </div>
           </div>
         </div>
