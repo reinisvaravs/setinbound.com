@@ -1,1 +1,11 @@
- 
+User-agent: *
+Allow: /
+
+# Explicitly allow favicon access
+Allow: /favicon.ico
+Allow: /favicon.svg
+Allow: /favicon-96x96.png
+Allow: /apple-touch-icon.png
+Allow: /web-app-manifest-192x192.png
+Allow: /web-app-manifest-512x512.png
+Allow: /site.webmanifest 
