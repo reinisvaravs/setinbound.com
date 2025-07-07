@@ -49,16 +49,15 @@ export const viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default:
-      "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
-    template:
-      "%s | AI Receptionists for Appointment-Based Businesses | SetInbound.com",
+    default: "SetInbound.com | AI Receptionists for Dental Clinics",
+    template: "%s | AI Receptionists for Dental Clinics | SetInbound.com",
   },
   description:
-    "GET A FREE AI RECEPTIONIST - In 3 STEPS and just 2 days, you&#39;ll have your own AI receptionist - that you can use for Free until it starts making you money. If no results = no cost.",
+    "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
   keywords: [
     "AI receptionist",
     "virtual receptionist",
+    "dental clinic receptionist",
     "appointment scheduling",
     "24/7 answering service",
     "inbound lead conversion",
@@ -67,28 +66,33 @@ export const metadata: Metadata = {
     "missed call recovery",
     "California AI receptionist",
     "US virtual receptionist",
+    "Vāravi",
+    "SIA Vāravi",
+    "reinisvaravs.com",
+    "dental practice automation",
+    "dental office receptionist",
   ],
   authors: [
     { name: "SetInbound", url: "https://setinbound.com" },
-    { name: "Reinis Varavs", url: "https://setinbound.com" },
-    { name: "Henry Varavs", url: "https://setinbound.com" },
+    { name: "Reinis Varavs", url: "https://reinisvaravs.com" },
+    { name: "Henry Varavs", url: "https://instagram.com/varavshenrijs" },
   ],
-  creator: "SetInbound",
+
   publisher: "SetInbound",
   openGraph: {
     type: "website",
     url: "https://setinbound.com",
-    title: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
+    title: "SetInbound.com | AI Receptionists for Dental Clinics",
     description:
-      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
+      "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
     siteName: "SetInbound",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "SetInbound.com | AI Receptionists for Appointment-Based Businesses",
+    title: "SetInbound.com | AI Receptionists for Dental Clinics",
     description:
-      "Never lose a lead again. Book more appointments with our 24/7 AI receptionist - cheaper and faster than a human.",
+      "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
     creator: "@setinbound.com",
     site: "@setinbound.com",
   },
@@ -142,7 +146,7 @@ export const metadata: Metadata = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "SetInbound provides AI receptionists for appointment-based businesses, including dentists, medspas, salons, clinics, legal, real estate, financial services, restaurants, gyms, property managers, and more. Never miss a lead again with 24/7 booking, qualification, and call handling.",
+        "SetInbound provides AI receptionists for dental clinics. Get a free trial in 3 steps and just 2 days. Your AI Receptionist is free until we reach or exceed our promise.",
       serviceArea: {
         "@type": "Place",
         name: "California, USA",
@@ -193,12 +197,12 @@ export const metadata: Metadata = {
         {
           "@type": "Person",
           name: "Reinis Varavs",
-          url: "https://setinbound.com",
+          url: "https://reinisvaravs.com",
         },
         {
           "@type": "Person",
           name: "Henry Varavs",
-          url: "https://setinbound.com",
+          url: "https://instagram.com/varavshenrijs",
         },
       ],
     }),
