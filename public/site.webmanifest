@@ -1,23 +1,21 @@
 {
-  "name": "SetInbound - AI Receptionists for Appointment-Based Businesses",
-  "short_name": "SetInbound.com",
+  "name": "setinbound.com",
+  "short_name": "setinbound.com",
   "icons": [
     {
-      "src": "/web-app-manifest-192x192.png?v=4",
+      "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/web-app-manifest-512x512.png?v=4",
+      "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#141729",
-  "background_color": "#fefeff",
-  "display": "standalone",
-  "start_url": "/",
-  "scope": "/"
+  "theme_color": "#242842",
+  "background_color": "#eeefef",
+  "display": "standalone"
 }
