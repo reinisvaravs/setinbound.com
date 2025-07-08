@@ -17,7 +17,6 @@ interface ChatResponse {
 // Mock response function - replace with actual AI service integration
 async function generateAIResponse(
   content: string,
-  model: string,
 ): Promise<string> {
   // Simulate API delay
   await new Promise((resolve) =>
@@ -91,7 +90,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     // Generate AI response
-    const aiResponse = await generateAIResponse(body.content, body.model);
+    const aiResponse = await generateAIResponse(body.content);
 
     // Prepare response
     const response: ChatResponse = {

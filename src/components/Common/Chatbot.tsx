@@ -72,31 +72,9 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Effects
-  useEffect(() => {
-    setUserId(getOrCreateUserId());
-  }, []);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, loading]);
-
-  useEffect(() => {
-    if (chatbotOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [chatbotOpen]);
-
   // Callbacks
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
-
-  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
   }, []);
 
   const handleSendMessage = useCallback(async () => {
@@ -164,22 +142,24 @@ export default function Chatbot() {
       } else {
         throw new Error("No response received from server");
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       clearTimeout(timeoutId);
 
       let errorMessage = "An error occurred while sending your message.";
 
-      if (err.name === "AbortError") {
-        errorMessage = "Request timed out. Please try again.";
-      } else if (err.message.includes("Failed to fetch")) {
-        errorMessage =
-          "Unable to connect to server. Please check your connection.";
-      } else if (err.message.includes("HTTP error! status: 400")) {
-        errorMessage = "Invalid request. Please check your message.";
-      } else if (err.message.includes("HTTP error! status: 500")) {
-        errorMessage = "Server error. Please try again later.";
-      } else {
-        errorMessage = err.message || errorMessage;
+      if (err instanceof Error) {
+        if (err.name === "AbortError") {
+          errorMessage = "Request timed out. Please try again.";
+        } else if (err.message.includes("Failed to fetch")) {
+          errorMessage =
+            "Unable to connect to server. Please check your connection.";
+        } else if (err.message.includes("HTTP error! status: 400")) {
+          errorMessage = "Invalid request. Please check your message.";
+        } else if (err.message.includes("HTTP error! status: 500")) {
+          errorMessage = "Server error. Please try again later.";
+        } else {
+          errorMessage = err.message || errorMessage;
+        }
       }
 
       setError(errorMessage);
@@ -197,6 +177,16 @@ export default function Chatbot() {
       setLoading(false);
     }
   }, [input, loading, userId, model]);
+
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleSendMessage();
+      }
+    },
+    [handleSendMessage],
+  );
 
   const handleToggleChatbot = useCallback(() => {
     setChatbotOpen((prev) => !prev);
@@ -222,6 +212,21 @@ export default function Chatbot() {
     },
     [error],
   );
+
+  // Effects
+  useEffect(() => {
+    setUserId(getOrCreateUserId());
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading, scrollToBottom]);
+
+  useEffect(() => {
+    if (chatbotOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [chatbotOpen]);
 
   // Render functions
   const renderMessage = (message: Message, index: number) => (
@@ -410,7 +415,7 @@ export default function Chatbot() {
           scrollbar-width: thin;
         }
 
-        .scrollbar-thumb-white\/30 {
+        .scrollbar-thumb-white\\/30 {
           scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
         }
 
@@ -426,17 +431,17 @@ export default function Chatbot() {
           background: transparent;
         }
 
-        .scrollbar-thumb-white\/30::-webkit-scrollbar-thumb {
+        .scrollbar-thumb-white\\/30::-webkit-scrollbar-thumb {
           background: rgba(255, 255, 255, 0.3);
           border-radius: 3px;
         }
 
-        .scrollbar-thumb-white\/30::-webkit-scrollbar-thumb:hover {
+        .scrollbar-thumb-white\\/30::-webkit-scrollbar-thumb:hover {
           background: rgba(255, 255, 255, 0.5);
         }
 
         @media (max-width: 768px) {
-          .fixed.top-1\/2.left-1\/2 {
+          .fixed.top-1\\/2.left-1\\/2 {
             width: 95%;
             max-width: none;
             top: 5%;
@@ -445,7 +450,7 @@ export default function Chatbot() {
             height: 90vh;
           }
 
-          .fixed.top-1\/2.left-1\/2:hover {
+          .fixed.top-1\\/2.left-1\\/2:hover {
             transform: translateX(-50%);
           }
 
@@ -462,7 +467,7 @@ export default function Chatbot() {
         }
 
         @media (max-width: 480px) {
-          .fixed.top-1\/2.left-1\/2 {
+          .fixed.top-1\\/2.left-1\\/2 {
             width: 100%;
             height: 100vh;
             top: 0;
@@ -471,7 +476,7 @@ export default function Chatbot() {
             border-radius: 0;
           }
 
-          .fixed.top-1\/2.left-1\/2:hover {
+          .fixed.top-1\\/2.left-1\\/2:hover {
             transform: none;
           }
 
@@ -479,7 +484,7 @@ export default function Chatbot() {
             height: 250px;
           }
 
-          .inline-block.max-w-\[80\%\] {
+          .inline-block.max-w-\\[80\\%\\] {
             max-width: 90%;
           }
         }
