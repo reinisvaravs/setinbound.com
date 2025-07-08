@@ -2,12 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body,
 html {
-  background-color: #141729;
-}
-
-body {
   font-family: "Poppins", sans-serif;
+  background-color: #141729;
 }
 
 input:-webkit-autofill,
@@ -23,39 +21,4 @@ input:-webkit-autofill:active {
 img {
   user-select: none;
   -webkit-user-drag: none;
-}
-
-.sticky-menu .navbar-logo {
-  @apply py-2;
-}
-
-.sticky-menu #navbarToggler span {
-  @apply bg-dark dark:bg-white;
-}
-
-.sticky-menu #navbarCollapse li > a {
-  @apply text-dark hover:text-primary hover:opacity-100 dark:text-white;
-}
-#navbarCollapse li .ud-menu-scroll.active {
-  @apply opacity-70;
-}
-.sticky-menu #navbarCollapse li .ud-menu-scroll.active {
-  @apply text-primary opacity-100 dark:text-white;
-}
-.sticky-menu .loginBtn {
-  @apply text-dark hover:text-primary hover:opacity-100 dark:text-white;
-}
-
-.sticky-menu .signUpBtn {
-  @apply bg-primary text-white hover:bg-dark hover:text-white;
-}
-
-.navbarTogglerActive > span:nth-child(1) {
-  @apply top-[7px] rotate-45 transform;
-}
-.navbarTogglerActive > span:nth-child(2) {
-  @apply opacity-0;
-}
-.navbarTogglerActive > span:nth-child(3) {
-  @apply top-[-8px] rotate-[135deg];
 }
