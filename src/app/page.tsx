@@ -1,5 +1,5 @@
 import CallToAction from "@/components/CallToAction";
-// import Chatbot from "@/components/Common/Chatbot";
+import Chatbot from "@/components/Common/Chatbot";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Faq from "@/components/Faq";
 import Features from "@/components/Features";
@@ -18,7 +18,7 @@ export default function Home() {
       <Features />
       <CallToAction />
       <Faq />
-      {/* <Chatbot /> */}
+      <Chatbot />
     </main>
   );
 }

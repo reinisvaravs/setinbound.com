@@ -16,7 +16,8 @@ interface ModelOption {
 }
 
 // Constants
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "/api/chat";
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8383";
 const DEFAULT_GPT = "gpt-3.5-turbo";
 
 // Available models
