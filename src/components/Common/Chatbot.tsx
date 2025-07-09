@@ -308,7 +308,7 @@ export default function Chatbot() {
         } md:w-[90%]`}
       >
         {/* Header */}
-        <div className="border-b border-gray-100 bg-gradient-to-r from-accent-BLUE to-purple-600 px-6 py-4 text-white">
+        <div className="bg-gradient-to-r from-secondary-GRAY to-accent-BLUE px-6 py-4 text-primary-WHITE">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-xl">
@@ -445,7 +445,7 @@ export default function Chatbot() {
 
       {/* Toggle Button */}
       <button
-        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-accent-BLUE px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 ${
+        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border-2 bg-secondary-GRAY px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:border-2 hover:border-secondary-GRAY hover:bg-primary-WHITE hover:text-secondary-GRAY active:translate-y-0 ${
           chatbotOpen
             ? "pointer-events-none scale-90 opacity-0"
             : "scale-100 opacity-100"
@@ -453,8 +453,7 @@ export default function Chatbot() {
         onClick={handleToggleChatbot}
         aria-label="Open chatbot"
       >
-        <span className="text-lg">💬</span>
-        <span className="hidden sm:inline">Chat with WALL-E</span>
+        <span className="hidden sm:inline">Web Chatbot</span>
       </button>
 
       <style jsx>{`
