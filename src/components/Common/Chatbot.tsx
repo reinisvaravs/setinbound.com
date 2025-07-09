@@ -312,8 +312,6 @@ export default function Chatbot() {
                 <p className="text-sm text-blue-100">
                   {AVAILABLE_MODELS.find((m) => m.value === model)?.label ||
                     model}
-                  <br />
-                  {BACKEND_URL}
                 </p>
               </div>
             </div>
