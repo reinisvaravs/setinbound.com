@@ -17,8 +17,8 @@ interface ModelOption {
 }
 
 // Constants
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8383";
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+console.log(BACKEND_URL);
 const model = process.env.NEXT_PUBLIC_DEFAULT_GPT || "gpt-3.5-turbo";
 
 // Available models
@@ -177,7 +177,7 @@ export default function Chatbot() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, userId, model]);
+  }, [input, loading, userId]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
