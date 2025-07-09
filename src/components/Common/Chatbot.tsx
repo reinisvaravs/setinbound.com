@@ -71,7 +71,7 @@ export default function Chatbot() {
 
   // Refs
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Callbacks
   const scrollToBottom = useCallback(() => {
@@ -207,12 +207,23 @@ export default function Chatbot() {
   );
 
   const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setInput(e.target.value);
       if (error) setError(null);
     },
     [error],
   );
+
+  const clearChat = useCallback(() => {
+    setMessages([
+      {
+        role: "assistant",
+        content: "Hello! I am WALL-E. How can I help you today?",
+        timestamp: new Date(),
+      },
+    ]);
+    setError(null);
+  }, []);
 
   // Effects
   useEffect(() => {
@@ -225,30 +236,42 @@ export default function Chatbot() {
 
   useEffect(() => {
     if (chatbotOpen && inputRef.current) {
-      inputRef.current.focus();
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [chatbotOpen]);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = "auto";
+      const maxHeight = 80; // Reduced max height
+      const newHeight = Math.min(inputRef.current.scrollHeight, maxHeight);
+      inputRef.current.style.height = `${newHeight}px`;
+    }
+  }, [input]);
 
   // Render functions
   const renderMessage = (message: Message, index: number) => (
     <div
       key={index}
-      className={`animate-fadeInUp mb-4 ${
-        message.role === "user" ? "text-right" : "text-left"
-      }`}
+      className={`message-animate mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
     >
       <div
-        className={`inline-block max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+        className={`inline-block max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
           message.role === "user"
-            ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg"
+            ? "bg-accent-BLUE text-white shadow-lg"
             : message.isError
-              ? "bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg"
-              : "bg-white/90 text-gray-800 shadow-md"
+              ? "bg-accent-RED text-white shadow-lg"
+              : "border border-gray-100 bg-primary-WHITE text-secondary-GRAY shadow-md"
         }`}
       >
         <div className="break-words">{message.content}</div>
         {message.timestamp && (
-          <div className="mt-1 text-xs opacity-60">
+          <div
+            className={`mt-2 text-xs ${
+              message.role === "user" ? "text-blue-100" : "text-gray-500"
+            }`}
+          >
             {formatTimestamp(message.timestamp)}
           </div>
         )}
@@ -257,16 +280,16 @@ export default function Chatbot() {
   );
 
   const renderTypingIndicator = () => (
-    <div className="animate-fadeInUp mb-4 text-left">
-      <div className="inline-block max-w-[80%] rounded-2xl bg-white/90 px-4 py-3 shadow-md">
+    <div className="message-animate mb-4 text-left">
+      <div className="inline-block max-w-[85%] rounded-2xl border border-gray-100 bg-primary-WHITE px-4 py-3 shadow-md">
         <div className="flex items-center space-x-1">
-          <div className="h-2 w-2 animate-bounce rounded-full bg-blue-500"></div>
+          <div className="h-2 w-2 animate-bounce rounded-full bg-accent-BLUE"></div>
           <div
-            className="h-2 w-2 animate-bounce rounded-full bg-blue-500"
+            className="h-2 w-2 animate-bounce rounded-full bg-accent-BLUE"
             style={{ animationDelay: "0.1s" }}
           ></div>
           <div
-            className="h-2 w-2 animate-bounce rounded-full bg-blue-500"
+            className="h-2 w-2 animate-bounce rounded-full bg-accent-BLUE"
             style={{ animationDelay: "0.2s" }}
           ></div>
         </div>
@@ -278,32 +301,50 @@ export default function Chatbot() {
     <>
       {/* Chatbot Container */}
       <div
-        className={`hover:shadow-3xl fixed left-1/2 top-1/2 z-50 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border border-white/10 bg-gradient-to-br from-blue-500 to-purple-600 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] ${
-          chatbotOpen ? "block" : "hidden"
-        }`}
+        className={`fixed z-50 w-[95%] max-w-lg transform rounded-[3rem] border border-gray-200 bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out ${
+          chatbotOpen
+            ? "left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100"
+            : "pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 opacity-0"
+        } md:w-[90%]`}
       >
-        {/* Close Button */}
-        <button
-          className="absolute right-5 top-5 z-50 rounded-full border-2 border-white/30 bg-white/20 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/50 hover:bg-white/30"
-          onClick={handleCloseChatbot}
-          aria-label="Close chatbot"
-        >
-          ✕
-        </button>
-
         {/* Header */}
-        <div className="border-b border-white/10 bg-white/10 p-6 backdrop-blur-sm">
-          <h1 className="mb-2 text-xl font-bold text-white drop-shadow-lg">
-            WALL-E Chat
-          </h1>
-          <p className="mb-3 text-sm text-white/80">
-            Your AI assistant is here to help
-          </p>
+        <div className="border-b border-gray-100 bg-gradient-to-r from-accent-BLUE to-purple-600 px-6 py-4 text-white">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-xl">
+                🤖
+              </div>
+              <div>
+                <h1 className="text-lg font-bold">WALL-E Chat</h1>
+                <p className="text-sm text-blue-100">Your AI assistant</p>
+              </div>
+            </div>
 
-          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={clearChat}
+                className="rounded-lg px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/20"
+                title="Clear chat"
+              >
+                Clear
+              </button>
+              <button
+                onClick={handleCloseChatbot}
+                className="rounded-lg p-2 text-white/80 transition-colors hover:bg-white/20"
+                aria-label="Close chatbot"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Model Selector */}
+        <div className="border-b border-gray-100 bg-gray-50 px-6 py-3">
+          <div className="flex items-center gap-3">
             <label
               htmlFor="model-select"
-              className="text-xs font-semibold text-white/90"
+              className="text-sm font-medium text-secondary-GRAY"
             >
               Model:
             </label>
@@ -312,14 +353,10 @@ export default function Chatbot() {
               value={model}
               onChange={handleModelChange}
               disabled={loading}
-              className="rounded-lg border border-white/30 bg-white/20 px-3 py-1.5 text-xs text-white backdrop-blur-sm transition-all duration-300 focus:border-white/60 focus:bg-white/30 focus:outline-none"
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-secondary-GRAY focus:border-accent-BLUE focus:outline-none focus:ring-2 focus:ring-accent-BLUE/20 disabled:opacity-50"
             >
               {AVAILABLE_MODELS.map((m) => (
-                <option
-                  key={m.value}
-                  value={m.value}
-                  className="bg-gray-800 text-white"
-                >
+                <option key={m.value} value={m.value}>
                   {m.label}
                 </option>
               ))}
@@ -329,20 +366,23 @@ export default function Chatbot() {
 
         {/* Error Display */}
         {error && (
-          <div className="animate-fadeInUp mx-4 my-4 rounded-lg border-l-4 border-red-500 bg-red-500/10 p-3 text-sm text-red-100">
-            <p>{error}</p>
+          <div className="mx-4 my-4 rounded-lg border border-red-200 bg-red-50 p-3">
+            <div className="flex items-center gap-2">
+              <span className="text-red-500">⚠️</span>
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
           </div>
         )}
 
         {/* Messages */}
-        <div className="scrollbar-thin scrollbar-thumb-white/30 scrollbar-track-transparent h-96 overflow-y-auto bg-white/5 p-5">
+        <div className="h-96 overflow-y-auto bg-gray-50 p-5">
           {messages.map((message, index) => renderMessage(message, index))}
           {loading && renderTypingIndicator()}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input Container */}
-        <div className="border-t border-white/10 bg-white/10 p-5 backdrop-blur-sm">
+        <div className="border-t border-gray-100 bg-gray-50 p-5">
           <form
             className="flex items-end gap-3"
             onSubmit={(e) => {
@@ -351,9 +391,8 @@ export default function Chatbot() {
             }}
           >
             <div className="relative flex-1">
-              <input
+              <textarea
                 ref={inputRef}
-                type="text"
                 value={input}
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
@@ -362,7 +401,8 @@ export default function Chatbot() {
                 }
                 disabled={loading}
                 maxLength={4000}
-                className="w-full rounded-full border-2 border-white/20 bg-white/90 px-4 py-3 text-sm text-gray-800 transition-all duration-300 focus:border-blue-500 focus:bg-white focus:shadow-lg focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
+                rows={1}
+                className="w-full resize-none overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-secondary-GRAY placeholder-gray-500 transition-all duration-200 focus:border-accent-BLUE focus:outline-none focus:ring-2 focus:ring-accent-BLUE/20 disabled:cursor-not-allowed disabled:opacity-60"
                 aria-label="Chat message input"
               />
             </div>
@@ -370,34 +410,75 @@ export default function Chatbot() {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="min-w-[80px] cursor-pointer rounded-full border-none bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+              className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
+                !loading && input.trim()
+                  ? "hover:scale-105 active:scale-95"
+                  : ""
+              }`}
               aria-label="Send message"
             >
-              {loading ? "Sending..." : "Send"}
+              {loading ? (
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+              ) : (
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                  />
+                </svg>
+              )}
             </button>
           </form>
 
-          {input.length > 0 && (
-            <div className="mt-2 text-center text-xs font-medium text-white/70">
-              {input.length}/4000 characters
-            </div>
-          )}
+          <div className="mt-2 h-4 text-center text-xs text-gray-500">
+            {input.length > 0 && `${input.length}/4000 characters`}
+          </div>
         </div>
       </div>
 
       {/* Toggle Button */}
       <button
-        className={`fixed bottom-8 right-8 z-40 cursor-pointer rounded-full border border-none border-white/10 bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-4 text-sm font-semibold text-white shadow-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 ${
-          chatbotOpen ? "hidden" : "block"
+        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-accent-BLUE px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 ${
+          chatbotOpen
+            ? "pointer-events-none scale-90 opacity-0"
+            : "scale-100 opacity-100"
         }`}
         onClick={handleToggleChatbot}
         aria-label="Open chatbot"
       >
-        💬 Chat with WALL-E
+        <span className="text-lg">💬</span>
+        <span className="hidden sm:inline">Chat with WALL-E</span>
       </button>
 
       <style jsx>{`
-        @keyframes fadeInUp {
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes messageSlideIn {
           from {
             opacity: 0;
             transform: translateY(10px);
@@ -408,41 +489,12 @@ export default function Chatbot() {
           }
         }
 
-        .animate-fadeInUp {
-          animation: fadeInUp 0.3s ease-out;
-        }
-
-        .scrollbar-thin {
-          scrollbar-width: thin;
-        }
-
-        .scrollbar-thumb-white\\/30 {
-          scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-        }
-
-        .scrollbar-track-transparent {
-          scrollbar-track-color: transparent;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-
-        .scrollbar-thumb-white\\/30::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.3);
-          border-radius: 3px;
-        }
-
-        .scrollbar-thumb-white\\/30::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.5);
+        .message-animate {
+          animation: messageSlideIn 0.3s ease-out;
         }
 
         @media (max-width: 768px) {
-          .fixed.top-1\\/2.left-1\\/2 {
+          .fixed.z-50 {
             width: 95%;
             max-width: none;
             top: 5%;
@@ -451,24 +503,20 @@ export default function Chatbot() {
             height: 90vh;
           }
 
-          .fixed.top-1\\/2.left-1\\/2:hover {
-            transform: translateX(-50%);
-          }
-
           .h-96 {
             height: 300px;
           }
 
-          .fixed.bottom-8.right-8 {
-            bottom: 5;
-            right: 5;
-            padding: 12px 20px;
-            font-size: 13px;
+          .fixed.bottom-6.right-6 {
+            bottom: 1rem;
+            right: 1rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
           }
         }
 
         @media (max-width: 480px) {
-          .fixed.top-1\\/2.left-1\\/2 {
+          .fixed.z-50 {
             width: 100%;
             height: 100vh;
             top: 0;
@@ -477,15 +525,11 @@ export default function Chatbot() {
             border-radius: 0;
           }
 
-          .fixed.top-1\\/2.left-1\\/2:hover {
-            transform: none;
-          }
-
           .h-96 {
             height: 250px;
           }
 
-          .inline-block.max-w-\\[80\\%\\] {
+          .inline-block.max-w-\\[85\\%\\] {
             max-width: 90%;
           }
         }
