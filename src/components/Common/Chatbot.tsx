@@ -72,7 +72,14 @@ const detectLanguage = (): "en" | "lv" => {
   if (typeof window === "undefined") return "en";
 
   const pathname = window.location.pathname;
-  return pathname.includes("/lv") ? "lv" : "en";
+  return pathname.includes("/bot/lv") ? "lv" : "en";
+};
+
+const shouldShowChatbot = (): boolean => {
+  if (typeof window === "undefined") return false;
+
+  const pathname = window.location.pathname;
+  return pathname === "/bot" || pathname === "/bot/lv";
 };
 
 const validateInput = (content: string): string | null => {
@@ -92,6 +99,7 @@ const formatTimestamp = (date: Date): string => {
 export default function Chatbot() {
   // State
   const [language, setLanguage] = useState<"en" | "lv">("en");
+  const [shouldShow, setShouldShow] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -253,7 +261,10 @@ export default function Chatbot() {
   useEffect(() => {
     setUserId(getOrCreateUserId());
     const detectedLanguage = detectLanguage();
+    const showChatbot = shouldShowChatbot();
+
     setLanguage(detectedLanguage);
+    setShouldShow(showChatbot);
 
     // Initialize messages with the correct language
     setMessages([
@@ -269,7 +280,11 @@ export default function Chatbot() {
   useEffect(() => {
     const handleUrlChange = () => {
       const detectedLanguage = detectLanguage();
-      if (detectedLanguage !== language) {
+      const showChatbot = shouldShowChatbot();
+
+      setShouldShow(showChatbot);
+
+      if (detectedLanguage !== language && showChatbot) {
         setLanguage(detectedLanguage);
         // Update the greeting message when language changes
         setMessages([
@@ -364,6 +379,11 @@ export default function Chatbot() {
       </div>
     </div>
   );
+
+  // Don't render anything if chatbot shouldn't be shown
+  if (!shouldShow) {
+    return null;
+  }
 
   return (
     <>
