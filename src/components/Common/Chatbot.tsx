@@ -44,8 +44,8 @@ const validateInput = (content: string): string | null => {
   if (!content || content.trim().length === 0) {
     return "Message cannot be empty";
   }
-  if (content.length > 4000) {
-    return "Message is too long (max 4000 characters)";
+  if (content.length > 500) {
+    return "Message is too long (max 500 characters)";
   }
   return null;
 };
@@ -179,7 +179,7 @@ export default function Chatbot() {
     }
   }, [input, loading, userId, model]);
 
-  const handleKeyPress = useCallback(
+  const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
@@ -298,14 +298,14 @@ export default function Chatbot() {
     <>
       {/* Chatbot Container */}
       <div
-        className={`rounded-t-3xl rounded-b-2xl fixed z-50 w-[95%] max-w-lg transform border-4 border-black bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 md:top-1/2 md:h-[605px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
+        className={`fixed z-50 w-[95%] max-w-lg transform rounded-b-2xl rounded-t-3xl bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 md:top-1/2 md:h-[605px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
           chatbotOpen
             ? "left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100"
             : "pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 opacity-0"
         }`}
       >
         {/* Header */}
-        <div className="rounded-t-2xl bg-secondary-LIGHT_GRAY px-6 py-4 text-primary-WHITE">
+        <div className="rounded-t-2xl border-2 border-secondary-GRAY bg-secondary-LIGHT_GRAY px-6 py-4 text-primary-WHITE">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div>
@@ -339,23 +339,25 @@ export default function Chatbot() {
 
         {/* Error Display */}
         {error && (
-          <div className="mx-4 my-4 rounded-lg border border-red-200 bg-red-50 p-3">
-            <div className="flex items-center gap-2">
-              <span className="text-red-500">⚠️</span>
-              <p className="text-sm text-red-700">{error}</p>
+          <div className="border-l-2 border-r-2 border-secondary-GRAY bg-red-50 p-3">
+            <div className="mx-2 my-2 rounded-lg border border-red p-3">
+              <div className="flex items-center gap-2">
+                <span className="text-red-500">⚠️</span>
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
             </div>
           </div>
         )}
 
         {/* Messages */}
-        <div className="h-96 overflow-y-auto bg-gray-50 p-5 xs:h-[250px] sm:h-[300px] md:h-[400px]">
+        <div className="h-96 overflow-y-auto border-l-2 border-r-2 border-secondary-GRAY bg-gray-50 p-5 xs:h-[250px] sm:h-[300px] md:h-[400px]">
           {messages.map((message, index) => renderMessage(message, index))}
           {loading && renderTypingIndicator()}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input Container */}
-        <div className="rounded-b-2xl bg-gray-50 p-5">
+        <div className="rounded-b-2xl border-b-2 border-l-2 border-r-2 border-secondary-GRAY bg-gray-50 p-5">
           <form
             className="flex items-end gap-3"
             onSubmit={(e) => {
@@ -368,12 +370,12 @@ export default function Chatbot() {
                 ref={inputRef}
                 value={input}
                 onChange={handleInputChange}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 placeholder={
                   loading ? "Waiting for response..." : "Type your message..."
                 }
                 disabled={loading}
-                maxLength={4000}
+                maxLength={500}
                 rows={1}
                 className="w-full resize-none overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-secondary-GRAY placeholder-gray-500 transition-all duration-200 focus:border-accent-BLUE focus:outline-none focus:ring-2 focus:ring-accent-BLUE/20 disabled:cursor-not-allowed disabled:opacity-60"
                 aria-label="Chat message input"
@@ -383,7 +385,7 @@ export default function Chatbot() {
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className={`flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
+              className={`mb-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
                 !loading && input.trim()
                   ? "hover:scale-105 active:scale-95"
                   : ""
@@ -399,7 +401,7 @@ export default function Chatbot() {
           </form>
 
           <div className="mt-2 h-4 text-center text-xs text-gray-500">
-            {input.length > 0 && `${input.length}/4000 characters`}
+            {input.length > 0 && `${input.length}/500 characters`}
           </div>
         </div>
       </div>
