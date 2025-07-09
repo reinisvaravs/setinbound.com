@@ -18,7 +18,6 @@ interface ModelOption {
 
 // Constants
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
-console.log(BACKEND_URL);
 const model = process.env.NEXT_PUBLIC_DEFAULT_GPT || "gpt-3.5-turbo";
 
 // Available models
@@ -247,7 +246,7 @@ export default function Chatbot() {
   const renderMessage = (message: Message, index: number) => (
     <div
       key={index}
-      className={`animate-fade-in mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
+      className={`mb-4 animate-fade-in ${message.role === "user" ? "text-right" : "text-left"}`}
     >
       <div
         className={`inline-block max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed xs:max-w-[90%] ${
@@ -277,7 +276,7 @@ export default function Chatbot() {
   );
 
   const renderTypingIndicator = () => (
-    <div className="animate-fade-in mb-4 text-left">
+    <div className="mb-4 animate-fade-in text-left">
       <div className="inline-block max-w-[85%] rounded-2xl border border-gray-100 bg-primary-WHITE px-4 py-3 shadow-md">
         <div className="flex items-center space-x-1">
           <div className="h-2 w-2 animate-bounce rounded-full bg-accent-BLUE"></div>
@@ -311,9 +310,10 @@ export default function Chatbot() {
               <div>
                 <h1 className="text-lg font-bold">Web Chatbot</h1>
                 <p className="text-sm text-blue-100">
-                  {" "}
                   {AVAILABLE_MODELS.find((m) => m.value === model)?.label ||
                     model}
+                  <br />
+                  {BACKEND_URL}
                 </p>
               </div>
             </div>
