@@ -501,7 +501,7 @@ export default function Chatbot() {
 
       {/* Toggle Button */}
       <button
-        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border-2 bg-secondary-GRAY px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:border-2 hover:border-secondary-GRAY hover:bg-primary-WHITE hover:text-secondary-GRAY active:translate-y-0 sm:bottom-4 sm:right-4 sm:px-4 sm:py-3 sm:text-xs ${
+        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border-2 bg-accent-BLUE px-8 py-5 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:border-2 hover:border-secondary-GRAY hover:bg-primary-WHITE hover:text-secondary-GRAY active:translate-y-0 ${
           chatbotOpen
             ? "pointer-events-none scale-90 opacity-0"
             : "scale-100 opacity-100"
