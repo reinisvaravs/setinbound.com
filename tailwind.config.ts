@@ -32,7 +32,7 @@ const config: Config = {
         },
         accent: {
           BLUE: "#6e01ff",
-          RED: "#f54337",
+          RED: "#942821",
         },
       },
     },

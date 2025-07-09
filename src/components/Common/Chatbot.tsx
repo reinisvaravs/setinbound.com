@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { IoSend } from "react-icons/io5";
 
 // Types
 interface Message {
@@ -18,7 +19,7 @@ interface ModelOption {
 // Constants
 const BACKEND_URL =
   process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8383";
-const DEFAULT_GPT = "gpt-3.5-turbo";
+const model = process.env.NEXT_PUBLIC_DEFAULT_GPT || "gpt-3.5-turbo";
 
 // Available models
 const AVAILABLE_MODELS: ModelOption[] = [
@@ -65,7 +66,6 @@ export default function Chatbot() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [model, setModel] = useState(DEFAULT_GPT);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [userId, setUserId] = useState<string>("");
 
@@ -262,7 +262,11 @@ export default function Chatbot() {
         {message.timestamp && (
           <div
             className={`mt-2 text-xs ${
-              message.role === "user" ? "text-blue-100" : "text-gray-500"
+              message.role === "user"
+                ? "text-blue-100"
+                : error
+                  ? "text-gray-100"
+                  : "text-gray-500"
             }`}
           >
             {formatTimestamp(message.timestamp)}
@@ -294,22 +298,23 @@ export default function Chatbot() {
     <>
       {/* Chatbot Container */}
       <div
-        className={`fixed z-50 w-[95%] max-w-lg transform rounded-[3rem] border border-gray-200 bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none xs:rounded-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 sm:rounded-2xl md:top-1/2 md:h-[600px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
+        className={`rounded-t-3xl rounded-b-2xl fixed z-50 w-[95%] max-w-lg transform border-4 border-black bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 md:top-1/2 md:h-[605px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
           chatbotOpen
             ? "left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100"
             : "pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 opacity-0"
         }`}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-secondary-GRAY to-accent-BLUE px-6 py-4 text-primary-WHITE">
+        <div className="rounded-t-2xl bg-secondary-LIGHT_GRAY px-6 py-4 text-primary-WHITE">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-xl">
-                🤖
-              </div>
               <div>
-                <h1 className="text-lg font-bold">WALL-E Chat</h1>
-                <p className="text-sm text-blue-100">Your AI assistant</p>
+                <h1 className="text-lg font-bold">Web Chatbot</h1>
+                <p className="text-sm text-blue-100">
+                  {" "}
+                  {AVAILABLE_MODELS.find((m) => m.value === model)?.label ||
+                    model}
+                </p>
               </div>
             </div>
 
@@ -332,18 +337,6 @@ export default function Chatbot() {
           </div>
         </div>
 
-        {/* Model Display */}
-        <div className="border-b border-gray-100 bg-gray-50 px-6 py-3">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-secondary-GRAY">
-              Model:
-            </span>
-            <span className="text-sm text-secondary-GRAY">
-              {AVAILABLE_MODELS.find((m) => m.value === model)?.label || model}
-            </span>
-          </div>
-        </div>
-
         {/* Error Display */}
         {error && (
           <div className="mx-4 my-4 rounded-lg border border-red-200 bg-red-50 p-3">
@@ -362,7 +355,7 @@ export default function Chatbot() {
         </div>
 
         {/* Input Container */}
-        <div className="border-t border-gray-100 bg-gray-50 p-5">
+        <div className="rounded-b-2xl bg-gray-50 p-5">
           <form
             className="flex items-end gap-3"
             onSubmit={(e) => {
@@ -400,19 +393,7 @@ export default function Chatbot() {
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
               ) : (
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
+                <IoSend />
               )}
             </button>
           </form>
@@ -433,7 +414,7 @@ export default function Chatbot() {
         onClick={handleToggleChatbot}
         aria-label="Open chatbot"
       >
-        <span className="hidden sm:inline">Web Chatbot</span>
+        <span>Web Chatbot</span>
       </button>
     </>
   );
