@@ -199,13 +199,6 @@ export default function Chatbot() {
     setError(null);
   }, []);
 
-  const handleModelChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setModel(e.target.value);
-    },
-    [],
-  );
-
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       setInput(e.target.value);
@@ -254,10 +247,10 @@ export default function Chatbot() {
   const renderMessage = (message: Message, index: number) => (
     <div
       key={index}
-      className={`message-animate mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
+      className={`animate-fade-in mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
     >
       <div
-        className={`inline-block max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
+        className={`inline-block max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed xs:max-w-[90%] ${
           message.role === "user"
             ? "bg-accent-BLUE text-white shadow-lg"
             : message.isError
@@ -280,7 +273,7 @@ export default function Chatbot() {
   );
 
   const renderTypingIndicator = () => (
-    <div className="message-animate mb-4 text-left">
+    <div className="animate-fade-in mb-4 text-left">
       <div className="inline-block max-w-[85%] rounded-2xl border border-gray-100 bg-primary-WHITE px-4 py-3 shadow-md">
         <div className="flex items-center space-x-1">
           <div className="h-2 w-2 animate-bounce rounded-full bg-accent-BLUE"></div>
@@ -301,11 +294,11 @@ export default function Chatbot() {
     <>
       {/* Chatbot Container */}
       <div
-        className={`fixed z-50 w-[95%] max-w-lg transform rounded-[3rem] border border-gray-200 bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out ${
+        className={`fixed z-50 w-[95%] max-w-lg transform rounded-[3rem] border border-gray-200 bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none xs:rounded-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 sm:rounded-2xl md:top-1/2 md:h-[600px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
           chatbotOpen
             ? "left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100"
             : "pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 opacity-0"
-        } md:w-[90%]`}
+        }`}
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-secondary-GRAY to-accent-BLUE px-6 py-4 text-primary-WHITE">
@@ -339,28 +332,15 @@ export default function Chatbot() {
           </div>
         </div>
 
-        {/* Model Selector */}
+        {/* Model Display */}
         <div className="border-b border-gray-100 bg-gray-50 px-6 py-3">
           <div className="flex items-center gap-3">
-            <label
-              htmlFor="model-select"
-              className="text-sm font-medium text-secondary-GRAY"
-            >
+            <span className="text-sm font-medium text-secondary-GRAY">
               Model:
-            </label>
-            <select
-              id="model-select"
-              value={model}
-              onChange={handleModelChange}
-              disabled={loading}
-              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm text-secondary-GRAY focus:border-accent-BLUE focus:outline-none focus:ring-2 focus:ring-accent-BLUE/20 disabled:opacity-50"
-            >
-              {AVAILABLE_MODELS.map((m) => (
-                <option key={m.value} value={m.value}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
+            </span>
+            <span className="text-sm text-secondary-GRAY">
+              {AVAILABLE_MODELS.find((m) => m.value === model)?.label || model}
+            </span>
           </div>
         </div>
 
@@ -375,7 +355,7 @@ export default function Chatbot() {
         )}
 
         {/* Messages */}
-        <div className="h-96 overflow-y-auto bg-gray-50 p-5">
+        <div className="h-96 overflow-y-auto bg-gray-50 p-5 xs:h-[250px] sm:h-[300px] md:h-[400px]">
           {messages.map((message, index) => renderMessage(message, index))}
           {loading && renderTypingIndicator()}
           <div ref={messagesEndRef} />
@@ -445,7 +425,7 @@ export default function Chatbot() {
 
       {/* Toggle Button */}
       <button
-        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border-2 bg-secondary-GRAY px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:border-2 hover:border-secondary-GRAY hover:bg-primary-WHITE hover:text-secondary-GRAY active:translate-y-0 ${
+        className={`fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border-2 bg-secondary-GRAY px-6 py-4 text-sm font-semibold text-white shadow-xl transition-all duration-300 ease-out hover:border-2 hover:border-secondary-GRAY hover:bg-primary-WHITE hover:text-secondary-GRAY active:translate-y-0 sm:bottom-4 sm:right-4 sm:px-4 sm:py-3 sm:text-xs ${
           chatbotOpen
             ? "pointer-events-none scale-90 opacity-0"
             : "scale-100 opacity-100"
@@ -455,84 +435,6 @@ export default function Chatbot() {
       >
         <span className="hidden sm:inline">Web Chatbot</span>
       </button>
-
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes messageSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .message-animate {
-          animation: messageSlideIn 0.3s ease-out;
-        }
-
-        @media (max-width: 768px) {
-          .fixed.z-50 {
-            width: 95%;
-            max-width: none;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 90vh;
-          }
-
-          .h-96 {
-            height: 300px;
-          }
-
-          .fixed.bottom-6.right-6 {
-            bottom: 1rem;
-            right: 1rem;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .fixed.z-50 {
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            transform: none;
-            border-radius: 0;
-          }
-
-          .h-96 {
-            height: 250px;
-          }
-
-          .inline-block.max-w-\\[85\\%\\] {
-            max-width: 90%;
-          }
-        }
-      `}</style>
     </>
   );
 }
