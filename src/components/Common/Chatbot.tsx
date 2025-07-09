@@ -17,14 +17,16 @@ interface ModelOption {
 }
 
 // Constants
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://web-chatbot-jvn0.onrender.com";
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL ||
+  "https://web-chatbot-jvn0.onrender.com";
 const model = process.env.NEXT_PUBLIC_DEFAULT_GPT || "gpt-3.5-turbo";
 
 // Available models
 const AVAILABLE_MODELS: ModelOption[] = [
-  { value: "gpt-4o", label: "GPT-4o (Recommended)" },
-  { value: "gpt-4o-mini", label: "GPT-4o Mini (Faster)" },
-  { value: "gpt-3.5-turbo", label: "GPT-3.5-turbo (Cheaper)" },
+  { value: "gpt-4o", label: "GPT-4o" }, // recommended
+  { value: "gpt-4o-mini", label: "GPT-4o Mini" }, // faster
+  { value: "gpt-3.5-turbo", label: "GPT-3.5-turbo" }, // cheaper
 ];
 
 // Utility functions
