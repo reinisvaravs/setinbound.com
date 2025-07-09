@@ -389,14 +389,14 @@ export default function Chatbot() {
     <>
       {/* Chatbot Container */}
       <div
-        className={`fixed z-50 w-[95%] max-w-lg transform rounded-b-2xl rounded-t-3xl bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 md:top-1/2 md:h-[605px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
+        className={`fixed z-50 w-[95%] max-w-lg transform overflow-hidden rounded-b-3xl rounded-t-3xl border-4 border-secondary-LIGHT_GRAY bg-primary-WHITE shadow-2xl transition-all duration-500 ease-out xs:left-0 xs:top-0 xs:h-screen xs:w-full xs:transform-none sm:left-1/2 sm:top-[5%] sm:h-[90vh] sm:w-[95%] sm:max-w-none sm:-translate-x-1/2 md:top-1/2 md:h-[605px] md:w-[90%] md:max-w-lg md:-translate-y-1/2 ${
           chatbotOpen
             ? "left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100"
             : "pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 opacity-0"
         }`}
       >
         {/* Header */}
-        <div className="rounded-t-2xl border-2 border-secondary-GRAY bg-secondary-LIGHT_GRAY px-6 py-4 text-primary-WHITE">
+        <div className=" bg-secondary-LIGHT_GRAY px-6 py-4 text-primary-WHITE ">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div>
@@ -429,7 +429,7 @@ export default function Chatbot() {
 
         {/* Error Display */}
         {error && (
-          <div className="border-l-2 border-r-2 border-secondary-GRAY bg-red-50 p-3">
+          <div className="bg-red-50 p-3">
             <div className="mx-2 my-2 rounded-lg border border-red p-3">
               <div className="flex items-center gap-2">
                 <span className="text-red-500">⚠️</span>
@@ -440,14 +440,14 @@ export default function Chatbot() {
         )}
 
         {/* Messages */}
-        <div className="h-96 overflow-y-auto border-l-2 border-r-2 border-secondary-GRAY bg-gray-50 p-5 xs:h-[250px] sm:h-[300px] md:h-[400px]">
+        <div className="h-96 overflow-y-auto bg-gray-50 p-5 xs:h-[250px] sm:h-[300px] md:h-[400px]">
           {messages.map((message, index) => renderMessage(message, index))}
           {loading && renderTypingIndicator()}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input Container */}
-        <div className="rounded-b-2xl border-b-2 border-l-2 border-r-2 border-secondary-GRAY bg-gray-50 p-5">
+        <div className="bg-gray-50 p-5">
           <form
             className="flex items-end gap-3"
             onSubmit={(e) => {
