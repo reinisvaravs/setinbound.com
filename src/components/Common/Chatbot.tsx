@@ -17,7 +17,7 @@ interface ModelOption {
 }
 
 // Constants
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://web-chatbot-jvn0.onrender.com";
 const model = process.env.NEXT_PUBLIC_DEFAULT_GPT || "gpt-3.5-turbo";
 
 // Available models
