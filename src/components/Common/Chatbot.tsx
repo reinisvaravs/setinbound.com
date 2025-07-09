@@ -29,16 +29,50 @@ const AVAILABLE_MODELS: ModelOption[] = [
   { value: "gpt-3.5-turbo", label: "GPT-3.5-turbo" }, // cheaper
 ];
 
+// Language texts
+const TEXTS = {
+  en: {
+    greeting: "Hello! I am your AI assistant. How can I help you today?",
+    placeholder: "Type your message...",
+    waitingPlaceholder: "Waiting for response...",
+    clearButton: "Clear",
+    closeButton: "✕",
+    sendButton: "Send message",
+    openButton: "Web Chatbot",
+    errorMessage: "Sorry, I encountered an error. Please try again.",
+    characters: "characters",
+  },
+  lv: {
+    greeting:
+      "Sveiki! Es esmu jūsu AI asistents. Kā es varu jums palīdzēt šodien?",
+    placeholder: "Ierakstiet savu ziņojumu...",
+    waitingPlaceholder: "Gaidām atbildi...",
+    clearButton: "Notīrīt",
+    closeButton: "✕",
+    sendButton: "Sūtīt ziņojumu",
+    openButton: "Web Chatbot",
+    errorMessage: "Atvainojiet, es saskāros ar kļūdu. Lūdzu, mēģiniet vēlreiz.",
+    characters: "rakstzīmes",
+  },
+};
+
 // Utility functions
 const getOrCreateUserId = (): string => {
   if (typeof window === "undefined") return "";
 
-  let id = localStorage.getItem("walle_user_id");
+  let id = localStorage.getItem("chatbot_user_id");
   if (!id) {
     id = crypto.randomUUID();
-    localStorage.setItem("walle_user_id", id);
+    localStorage.setItem("chatbot_user_id", id);
   }
   return id;
+};
+
+const detectLanguage = (): "en" | "lv" => {
+  if (typeof window === "undefined") return "en";
+
+  const pathname = window.location.pathname;
+  return pathname.includes("/lv") ? "lv" : "en";
 };
 
 const validateInput = (content: string): string | null => {
@@ -57,13 +91,8 @@ const formatTimestamp = (date: Date): string => {
 
 export default function Chatbot() {
   // State
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: "Hello! I am WALL-E. How can I help you today?",
-      timestamp: new Date(),
-    },
-  ]);
+  const [language, setLanguage] = useState<"en" | "lv">("en");
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -113,6 +142,7 @@ export default function Chatbot() {
         username: "You",
         content: currentInput,
         model,
+        language,
       };
 
       const res = await fetch(`${BACKEND_URL}/api/message`, {
@@ -170,7 +200,7 @@ export default function Chatbot() {
       // Add error message to chat
       const errorMsg: Message = {
         role: "assistant",
-        content: "Sorry, I encountered an error. Please try again.",
+        content: TEXTS[language].errorMessage,
         isError: true,
         timestamp: new Date(),
       };
@@ -212,17 +242,57 @@ export default function Chatbot() {
     setMessages([
       {
         role: "assistant",
-        content: "Hello! I am WALL-E. How can I help you today?",
+        content: TEXTS[language].greeting,
         timestamp: new Date(),
       },
     ]);
     setError(null);
-  }, []);
+  }, [language]);
 
   // Effects
   useEffect(() => {
     setUserId(getOrCreateUserId());
+    const detectedLanguage = detectLanguage();
+    setLanguage(detectedLanguage);
+
+    // Initialize messages with the correct language
+    setMessages([
+      {
+        role: "assistant",
+        content: TEXTS[detectedLanguage].greeting,
+        timestamp: new Date(),
+      },
+    ]);
   }, []);
+
+  // Listen for URL changes to update language
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const detectedLanguage = detectLanguage();
+      if (detectedLanguage !== language) {
+        setLanguage(detectedLanguage);
+        // Update the greeting message when language changes
+        setMessages([
+          {
+            role: "assistant",
+            content: TEXTS[detectedLanguage].greeting,
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    };
+
+    // Listen for popstate events (back/forward navigation)
+    window.addEventListener("popstate", handleUrlChange);
+
+    // Also check on focus in case user navigates in another tab
+    window.addEventListener("focus", handleUrlChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleUrlChange);
+      window.removeEventListener("focus", handleUrlChange);
+    };
+  }, [language]);
 
   useEffect(() => {
     scrollToBottom();
@@ -324,14 +394,14 @@ export default function Chatbot() {
                 className="rounded-lg px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/20"
                 title="Clear chat"
               >
-                Clear
+                {TEXTS[language].clearButton}
               </button>
               <button
                 onClick={handleCloseChatbot}
                 className="rounded-lg p-2 text-white/80 transition-colors hover:bg-white/20"
                 aria-label="Close chatbot"
               >
-                ✕
+                {TEXTS[language].closeButton}
               </button>
             </div>
           </div>
@@ -372,7 +442,9 @@ export default function Chatbot() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder={
-                  loading ? "Waiting for response..." : "Type your message..."
+                  loading
+                    ? TEXTS[language].waitingPlaceholder
+                    : TEXTS[language].placeholder
                 }
                 disabled={loading}
                 maxLength={500}
@@ -390,7 +462,7 @@ export default function Chatbot() {
                   ? "hover:scale-105 active:scale-95"
                   : ""
               }`}
-              aria-label="Send message"
+              aria-label={TEXTS[language].sendButton}
             >
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -401,7 +473,8 @@ export default function Chatbot() {
           </form>
 
           <div className="mt-2 h-4 text-center text-xs text-gray-500">
-            {input.length > 0 && `${input.length}/500 characters`}
+            {input.length > 0 &&
+              `${input.length}/500 ${TEXTS[language].characters}`}
           </div>
         </div>
       </div>
@@ -416,7 +489,7 @@ export default function Chatbot() {
         onClick={handleToggleChatbot}
         aria-label="Open chatbot"
       >
-        <span>Web Chatbot</span>
+        <span>{TEXTS[language].openButton}</span>
       </button>
     </>
   );
