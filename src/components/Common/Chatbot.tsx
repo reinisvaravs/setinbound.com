@@ -68,6 +68,30 @@ const getOrCreateUserId = (): string => {
   return id;
 };
 
+// Function to convert URLs to clickable links
+const convertUrlsToLinks = (text: string): React.ReactNode => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (urlRegex.test(part)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+};
+
 const detectLanguage = (): "en" | "lv" => {
   if (typeof window === "undefined") return "en";
 
@@ -344,7 +368,7 @@ export default function Chatbot() {
               : "border border-gray-100 bg-primary-WHITE text-secondary-GRAY shadow-md"
         }`}
       >
-        <div className="break-words">{message.content}</div>
+        <div className="break-words">{convertUrlsToLinks(message.content)}</div>
         {message.timestamp && (
           <div
             className={`mt-2 text-xs ${
