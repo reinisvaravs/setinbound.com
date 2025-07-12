@@ -372,6 +372,14 @@ export default function Chatbot() {
   }, [input]);
 
   // Render functions
+  const filterBookingTag = (content: string) => {
+    // Remove all JSON objects (e.g., {...}) anywhere in the message
+    return content
+      .replace(/\s*\{[^}]*\}\s*/g, " ")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  };
+
   const renderMessage = (message: Message, index: number) => (
     <div
       key={index}
@@ -386,7 +394,13 @@ export default function Chatbot() {
               : "border border-gray-100 bg-primary-WHITE text-secondary-GRAY shadow-md"
         }`}
       >
-        <div className="break-words">{convertUrlsToLinks(message.content)}</div>
+        <div className="break-words">
+          {convertUrlsToLinks(
+            message.role === "assistant"
+              ? filterBookingTag(message.content)
+              : message.content,
+          )}
+        </div>
         {message.timestamp && (
           <div
             className={`mt-2 text-xs ${
