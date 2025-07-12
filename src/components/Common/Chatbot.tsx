@@ -91,14 +91,14 @@ const detectLanguage = (): "en" | "lv" => {
   if (typeof window === "undefined") return "en";
 
   const pathname = window.location.pathname;
-  return pathname.includes("/test/lv") ? "lv" : "en";
+  return pathname.includes("/bot/lv") ? "lv" : "en";
 };
 
 const shouldShowChatbot = (): boolean => {
   if (typeof window === "undefined") return false;
 
   const pathname = window.location.pathname;
-  return pathname === "/test" || pathname === "/test/lv";
+  return pathname === "/bot" || pathname === "/bot/lv";
 };
 
 const validateInput = (content: string): string | null => {
