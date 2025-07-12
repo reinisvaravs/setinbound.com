@@ -238,7 +238,7 @@ export default function Chatbot() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, userId]);
+  }, [input, loading, userId, language]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -259,6 +259,15 @@ export default function Chatbot() {
     setChatbotOpen(false);
     setError(null);
   }, []);
+
+  const handleEscapeKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape" && chatbotOpen) {
+        handleCloseChatbot();
+      }
+    },
+    [chatbotOpen, handleCloseChatbot],
+  );
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -340,6 +349,17 @@ export default function Chatbot() {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [chatbotOpen]);
+
+  // Listen for Escape key to close chatbot
+  useEffect(() => {
+    if (chatbotOpen) {
+      document.addEventListener("keydown", handleEscapeKey);
+      return () => {
+        document.removeEventListener("keydown", handleEscapeKey);
+      };
+    }
+    return undefined; // <-- Add this line
+  }, [chatbotOpen, handleEscapeKey]);
 
   // Auto-resize textarea
   useEffect(() => {
@@ -488,7 +508,6 @@ export default function Chatbot() {
                     ? TEXTS[language].waitingPlaceholder
                     : TEXTS[language].placeholder
                 }
-                disabled={loading}
                 maxLength={500}
                 rows={1}
                 className="w-full resize-none overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-secondary-GRAY placeholder-gray-500 transition-all duration-200 focus:border-accent-BLUE focus:outline-none focus:ring-2 focus:ring-accent-BLUE/20 disabled:cursor-not-allowed disabled:opacity-60"
