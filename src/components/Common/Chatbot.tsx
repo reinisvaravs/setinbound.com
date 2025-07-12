@@ -58,11 +58,8 @@ const TEXTS = {
 const getOrCreateUserId = (): string => {
   if (typeof window === "undefined") return "";
 
-  let id = localStorage.getItem("chatbot_user_id");
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem("chatbot_user_id", id);
-  }
+  const id = crypto.randomUUID();
+  localStorage.setItem("chatbot_user_id", id);
   return id;
 };
 
