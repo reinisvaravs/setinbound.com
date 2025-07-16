@@ -20,7 +20,7 @@ const Hero = () => {
                   AI receptionists
                 </h1>
                 <h2 className="sm:text-md mx-auto -mt-2 mb-16 w-[45%] border-t-2 border-secondary-LIGHT_GRAY pt-2 text-sm font-normal leading-snug tracking-wide text-secondary-LIGHT_GRAY sm:w-[30%] md:w-[30%] md:text-lg lg:text-xl lg:leading-[1.2]">
-                  For dental clinics
+                  For clinics
                 </h2>
                 <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
                   <li>

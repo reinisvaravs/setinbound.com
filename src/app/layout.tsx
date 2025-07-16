@@ -203,6 +203,7 @@ export default function RootLayout({
       suppressHydrationWarning={true}
       className={`!scroll-smooth ${poppins.className}`}
       lang="en"
+      translate="no"
     >
       <head>
         <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
