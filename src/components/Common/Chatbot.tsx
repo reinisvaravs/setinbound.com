@@ -182,11 +182,14 @@ export default function Chatbot() {
         signal: controller.signal,
       });
 
+      console.log("RES:", res);
+
       clearTimeout(timeoutId);
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
+      console.log("ERROR DATA:", errorData);
       }
 
       const data = await res.json();
