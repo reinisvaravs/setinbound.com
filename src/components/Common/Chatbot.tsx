@@ -189,7 +189,6 @@ export default function Chatbot() {
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
         throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
-      console.log("ERROR DATA:", errorData);
       }
 
       const data = await res.json();

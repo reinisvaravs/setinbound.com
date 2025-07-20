@@ -43,7 +43,7 @@ const Footer = () => {
                     priority
                   />
                 </Link>
-                <Link
+                {/* <Link
                   aria-label="social link"
                   href="https://youtube.com/@varavshenrijs"
                   className="px-1"
@@ -57,7 +57,7 @@ const Footer = () => {
                     className="ease h-auto w-[50px] max-w-full rounded-full p-2 transition-all duration-300 hover:bg-secondary-GRAY"
                     priority
                   />
-                </Link>
+                </Link> */}
                 <Link
                   aria-label="social link"
                   href="https://x.com/varavshenrijs"

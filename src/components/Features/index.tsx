@@ -15,7 +15,7 @@ const Features = () => {
           </span>
         </h1>
         <p className="mx-auto mb-6 max-w-[450px] px-1 font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px] lg:text-base lg:leading-[1.44]">
-          For your clinic, in 3 steps and just 2 days, you&#39;ll have
+          For your medical clinic, in 3 steps and just 2 days, you&#39;ll have
           your own AI Receptionist that you can use for Free until we reach or
           exceed our promise.
         </p>
