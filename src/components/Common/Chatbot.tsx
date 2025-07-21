@@ -58,8 +58,11 @@ const TEXTS = {
 const getOrCreateUserId = (): string => {
   if (typeof window === "undefined") return "";
 
-  const id = crypto.randomUUID();
-  localStorage.setItem("chatbot_user_id", id);
+  let id = localStorage.getItem("chatbot_user_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("chatbot_user_id", id);
+  }
   return id;
 };
 
@@ -166,7 +169,7 @@ export default function Chatbot() {
     try {
       const requestBody = {
         userId,
-        username: "You",
+        username: "SetInbound",
         content: currentInput,
         model,
         language,
