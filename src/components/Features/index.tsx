@@ -1,5 +1,5 @@
-import SingleFeature from "./SingleFeature";
-import featuresData from "./featuresData";
+// import SingleFeature from "./SingleFeature";
+// import featuresData from "./featuresData";
 
 const Features = () => {
   return (
@@ -15,18 +15,20 @@ const Features = () => {
           </span>
         </h1>
         <p className="mx-auto mb-6 max-w-[450px] px-1 font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px] lg:text-base lg:leading-[1.44]">
-          For your medical clinic, in 3 steps and just 2 days, you&#39;ll have
-          your own AI Receptionist that you can use for Free until we reach or
-          exceed our promise.
+          We turn every inbound lead — from ads, your website, or messages —
+          into a qualified conversation. From the first hello to the booked
+          appointment (and every follow-up in between), we handle it all. You
+          stay focused on your work — we make sure no lead falls through the
+          cracks.
         </p>
       </div>
-      <div className="container">
+      {/* <div className="container">
         <div className="-mx-4 mt-12 flex flex-wrap justify-evenly lg:mt-20">
           {featuresData.map((feature, i) => (
             <SingleFeature key={i} feature={feature} />
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

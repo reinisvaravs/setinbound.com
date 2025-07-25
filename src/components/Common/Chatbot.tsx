@@ -17,7 +17,6 @@ interface ModelOption {
 }
 
 // Constants
-const BACKEND_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
 const model = `${process.env.NEXT_PUBLIC_DEFAULT_GPT}` || "gpt-4o";
 
 // Available models
@@ -58,36 +57,51 @@ const TEXTS = {
 const getOrCreateUserId = (): string => {
   if (typeof window === "undefined") return "";
 
-  let id = localStorage.getItem("chatbot_user_id");
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem("chatbot_user_id", id);
-  }
+  const id = crypto.randomUUID();
+  localStorage.setItem("chatbot_user_id", id);
   return id;
 };
 
 // Function to convert URLs to clickable links
-const convertUrlsToLinks = (text: string): React.ReactNode => {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
+const convertUrlsToLinks = (text: string | unknown): React.ReactNode[] => {
+  if (typeof text !== "string") {
+    console.warn("⚠️ Expected string in convertUrlsToLinks, got:", typeof text);
+    return [String(text || "")]; // safe fallback
+  }
 
-  return parts.map((part, index) => {
-    if (urlRegex.test(part)) {
-      return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 underline hover:text-blue-800"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {part}
-        </a>
-      );
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const result: React.ReactNode[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(urlRegex)) {
+    const url = match[0];
+    const index = match.index ?? 0;
+
+    if (lastIndex < index) {
+      result.push(text.slice(lastIndex, index));
     }
-    return part;
-  });
+
+    result.push(
+      <a
+        key={index}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline hover:text-blue-800"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {url}
+      </a>,
+    );
+
+    lastIndex = index + url.length;
+  }
+
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return result;
 };
 
 const detectLanguage = (): "en" | "lv" => {
@@ -169,13 +183,13 @@ export default function Chatbot() {
     try {
       const requestBody = {
         userId,
-        username: "SetInbound",
         content: currentInput,
         model,
         language,
+        timestamp: new Date(),
       };
 
-      const res = await fetch(`${BACKEND_URL}/api/message`, {
+      const res = await fetch("/api/chatbot-proxy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -184,8 +198,6 @@ export default function Chatbot() {
         body: JSON.stringify(requestBody),
         signal: controller.signal,
       });
-
-      console.log("RES:", res);
 
       clearTimeout(timeoutId);
 
