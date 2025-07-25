@@ -26,7 +26,6 @@ const AVAILABLE_MODELS: ModelOption[] = [
   { value: "gpt-3.5-turbo", label: "GPT-3.5-turbo" }, // cheaper
 ];
 
-// Language texts
 const TEXTS = {
   en: {
     greeting: "Hello! I am your AI assistant. How can I help you today?",
@@ -38,18 +37,6 @@ const TEXTS = {
     openButton: "Web Chatbot",
     errorMessage: "Sorry, I encountered an error. Please try again.",
     characters: "characters",
-  },
-  lv: {
-    greeting:
-      "Sveiki! Es esmu jūsu AI asistents. Kā es varu jums palīdzēt šodien?",
-    placeholder: "Ierakstiet savu ziņojumu...",
-    waitingPlaceholder: "Gaidām atbildi...",
-    clearButton: "Notīrīt",
-    closeButton: "✕",
-    sendButton: "Sūtīt ziņojumu",
-    openButton: "Web Chatbot",
-    errorMessage: "Atvainojiet, es saskāros ar kļūdu. Lūdzu, mēģiniet vēlreiz.",
-    characters: "rakstzīmes",
   },
 };
 
@@ -151,108 +138,6 @@ export default function Chatbot() {
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
-
-  const handleSendMessage = useCallback(async () => {
-    if (!input.trim() || loading) return;
-
-    // Clear previous errors
-    setError(null);
-
-    // Validate input
-    const validationError = validateInput(input);
-    if (validationError) {
-      setError(validationError);
-      return;
-    }
-
-    const userMsg: Message = {
-      role: "user",
-      content: input.trim(),
-      timestamp: new Date(),
-    };
-
-    setMessages((msgs) => [...msgs, userMsg]);
-    const currentInput = input.trim();
-    setInput("");
-    setLoading(true);
-
-    // Create AbortController for timeout
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-    try {
-      const requestBody = {
-        userId,
-        content: currentInput,
-        model,
-        language,
-        timestamp: new Date(),
-      };
-
-      const res = await fetch("/api/chatbot-proxy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(requestBody),
-        signal: controller.signal,
-      });
-
-      clearTimeout(timeoutId);
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
-      }
-
-      const data = await res.json();
-
-      if (data.response) {
-        const assistantMsg: Message = {
-          role: "assistant",
-          content: data.response,
-          timestamp: new Date(),
-        };
-        setMessages((msgs) => [...msgs, assistantMsg]);
-      } else {
-        throw new Error("No response received from server");
-      }
-    } catch (err: unknown) {
-      clearTimeout(timeoutId);
-
-      let errorMessage = "An error occurred while sending your message.";
-
-      if (err instanceof Error) {
-        if (err.name === "AbortError") {
-          errorMessage = "Request timed out. Please try again.";
-        } else if (err.message.includes("Failed to fetch")) {
-          errorMessage =
-            "Unable to connect to server. Please check your connection.";
-        } else if (err.message.includes("HTTP error! status: 400")) {
-          errorMessage = "Invalid request. Please check your message.";
-        } else if (err.message.includes("HTTP error! status: 500")) {
-          errorMessage = "Server error. Please try again later.";
-        } else {
-          errorMessage = err.message || errorMessage;
-        }
-      }
-
-      setError(errorMessage);
-      console.error("Error sending message:", err);
-
-      // Add error message to chat
-      const errorMsg: Message = {
-        role: "assistant",
-        content: TEXTS[language].errorMessage,
-        isError: true,
-        timestamp: new Date(),
-      };
-      setMessages((msgs) => [...msgs, errorMsg]);
-    } finally {
-      setLoading(false);
-    }
-  }, [input, loading, userId, language]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {

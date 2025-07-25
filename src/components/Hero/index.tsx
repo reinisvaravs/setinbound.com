@@ -1,5 +1,5 @@
 // import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 // import CallAgentButton from "../Common/CallAgentButton";
 
 const Hero = () => {
@@ -7,7 +7,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative overflow-hidden bg-primary-WHITE_DARK pb-16 pt-[110px] md:pb-32 md:pt-[150px] lg:pt-[200px]"
+        className="relative overflow-hidden bg-primary-WHITE_DARK pb-8 pt-[110px] md:pb-32 md:pt-[150px] lg:pt-[160px]"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center">
@@ -29,10 +29,10 @@ const Hero = () => {
                 {/* <h2 className="sm:text-md mx-auto -mt-2 mb-16 w-[45%] whitespace-nowrap border-t-2 border-secondary-LIGHT_GRAY pt-2 text-sm font-normal leading-snug tracking-wide text-secondary-LIGHT_GRAY sm:w-[30%] md:w-[30%] md:text-lg lg:text-xl lg:leading-[1.2]">
                   For medical clinics
                 </h2> */}
-                <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
-                  {/* <li>
+                {/* <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
+                  <li>
                     <CallAgentButton>Test Agent</CallAgentButton>
-                  </li> */}
+                  </li>
                   <li>
                     <Link
                       href={`${process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "tel:+371 28816633"}`}
@@ -42,7 +42,7 @@ const Hero = () => {
                       Schedule a Call
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
 

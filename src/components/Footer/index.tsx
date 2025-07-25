@@ -5,7 +5,7 @@ import EmailBtn from "../Common/EmailBtn";
 const Footer = () => {
   return (
     <footer
-      className="wow fadeInUp relative z-10 bg-accent-BLUE pb-10 pt-16 "
+      className="wow fadeInUp relative z-10 bg-accent-BLUE pb-8 pt-14 "
       data-wow-delay=".15s"
     >
       <div className="container">
@@ -28,6 +28,9 @@ const Footer = () => {
               </p>
             </div>
           </div>
+          <h1 className="mb-4 mt-16 text-2xl absolute top-50 left-1/2 -translate-x-1/2 font-bold uppercase leading-tight text-primary-WHITE sm:mb-6 sm:mt-20 sm:text-xl md:text-2xl lg:mb-6 lg:mt-20 lg:leading-snug xl:text-3xl xl:leading-snug 2xl:text-4xl 2xl:leading-[1.2]">
+            Full website coming soon...
+          </h1>
           <div className="flex flex-col items-start justify-center gap-1 pl-2">
             <div className="mb-5 flex flex-row flex-nowrap items-center justify-center">
               <EmailBtn />
