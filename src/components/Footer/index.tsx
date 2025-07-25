@@ -28,7 +28,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <h1 className="top-50 absolute left-1/2 mb-4 mt-16 hidden -translate-x-1/2 text-2xl font-normal uppercase leading-tight text-primary-WHITE sm:mb-6 sm:mt-20 sm:text-xl md:text-2xl lg:mb-6 lg:mt-20 lg:flex lg:leading-snug xl:text-3xl xl:leading-snug 2xl:text-4xl 2xl:leading-[1.2]">
+          <h1 className="top-[20%] absolute left-1/2 mb-4 mt-16 hidden -translate-x-1/2 text-2xl font-bold uppercase leading-tight text-primary-WHITE sm:mb-6 sm:mt-20 sm:text-xl md:text-2xl lg:mb-6 lg:mt-20 lg:flex lg:leading-snug xl:text-2xl xl:leading-snug 2xl:text-3xl 2xl:leading-[1.2]">
             Full website coming soon...
           </h1>
           <div className="flex flex-col items-start justify-center gap-1 pl-2">

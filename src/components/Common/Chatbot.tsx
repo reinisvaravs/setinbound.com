@@ -6,51 +6,12 @@ import { IoSend } from "react-icons/io5";
 // Types
 interface Message {
   role: "user" | "assistant";
-  content: string;
+  chatInput: string;
   isError?: boolean;
   timestamp?: Date;
 }
 
-interface ModelOption {
-  value: string;
-  label: string;
-}
-
 // Constants
-const model = `${process.env.NEXT_PUBLIC_DEFAULT_GPT}` || "gpt-4o";
-
-// Available models
-const AVAILABLE_MODELS: ModelOption[] = [
-  { value: "gpt-4o", label: "GPT-4o" }, // recommended
-  { value: "gpt-4o-mini", label: "GPT-4o Mini" }, // faster
-  { value: "gpt-3.5-turbo", label: "GPT-3.5-turbo" }, // cheaper
-];
-
-const TEXTS = {
-  en: {
-    greeting: "Hello! I am your AI assistant. How can I help you today?",
-    placeholder: "Type your message...",
-    waitingPlaceholder: "Waiting for response...",
-    clearButton: "Clear",
-    closeButton: "✕",
-    sendButton: "Send message",
-    openButton: "Web Chatbot",
-    errorMessage: "Sorry, I encountered an error. Please try again.",
-    characters: "characters",
-  },
-  lv: {
-    greeting:
-      "Sveiki! Es esmu jūsu AI asistents. Kā es varu jums palīdzēt šodien?",
-    placeholder: "Ierakstiet savu ziņojumu...",
-    waitingPlaceholder: "Gaidām atbildi...",
-    clearButton: "Notīrīt",
-    closeButton: "✕",
-    sendButton: "Sūtīt ziņojumu",
-    openButton: "Web Chatbot",
-    errorMessage: "Atvainojiet, es saskāros ar kļūdu. Lūdzu, mēģiniet vēlreiz.",
-    characters: "rakstzīmes",
-  },
-};
 
 // Utility functions
 const getOrCreateUserId = (): string => {
@@ -103,18 +64,11 @@ const convertUrlsToLinks = (text: string | unknown): React.ReactNode[] => {
   return result;
 };
 
-const detectLanguage = (): "en" | "lv" => {
-  if (typeof window === "undefined") return "en";
-
-  const pathname = window.location.pathname;
-  return pathname.includes("/lv") ? "lv" : "en";
-};
-
 const shouldShowChatbot = (): boolean => {
   if (typeof window === "undefined") return false;
 
   const pathname = window.location.pathname;
-  return pathname === "/en" || pathname === "/lv";
+  return pathname === "/bot";
 };
 
 const validateInput = (content: string): string | null => {
@@ -133,7 +87,6 @@ const formatTimestamp = (date: Date): string => {
 
 export default function Chatbot() {
   // State
-  const [language, setLanguage] = useState<"en" | "lv">("en");
   const [shouldShow, setShouldShow] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -166,7 +119,7 @@ export default function Chatbot() {
 
     const userMsg: Message = {
       role: "user",
-      content: input.trim(),
+      chatInput: input.trim(),
       timestamp: new Date(),
     };
 
@@ -181,14 +134,12 @@ export default function Chatbot() {
 
     try {
       const requestBody = {
-        userId,
-        content: currentInput,
-        model,
-        language,
+        sessionId: userId,
+        chatInput: currentInput,
         timestamp: new Date(),
       };
 
-      const res = await fetch("/api/chatbot-proxy", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL_PROD}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -206,11 +157,12 @@ export default function Chatbot() {
       }
 
       const data = await res.json();
+      const output = data[0].output;
 
-      if (data.response) {
+      if (output) {
         const assistantMsg: Message = {
           role: "assistant",
-          content: data.response,
+          chatInput: output,
           timestamp: new Date(),
         };
         setMessages((msgs) => [...msgs, assistantMsg]);
@@ -243,7 +195,7 @@ export default function Chatbot() {
       // Add error message to chat
       const errorMsg: Message = {
         role: "assistant",
-        content: TEXTS[language].errorMessage,
+        chatInput: "Sorry, I encountered an error. Please try again.",
         isError: true,
         timestamp: new Date(),
       };
@@ -251,7 +203,7 @@ export default function Chatbot() {
     } finally {
       setLoading(false);
     }
-  }, [input, loading, userId, language]);
+  }, [input, loading, userId]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -294,69 +246,36 @@ export default function Chatbot() {
     setMessages([
       {
         role: "assistant",
-        content: TEXTS[language].greeting,
+        chatInput: "Hello! I am your AI assistant. How can I help you today?",
         timestamp: new Date(),
       },
     ]);
     setError(null);
-  }, [language]);
+  }, []);
 
   // Effects
   useEffect(() => {
     setUserId(getOrCreateUserId());
-    const detectedLanguage = detectLanguage();
     const showChatbot = shouldShowChatbot();
 
-    setLanguage(detectedLanguage);
     setShouldShow(showChatbot);
 
-    // Initialize messages with the correct language
+    // Init messages
     setMessages([
       {
         role: "assistant",
-        content: TEXTS[detectedLanguage].greeting,
+        chatInput: "Hello! I am your AI assistant. How can I help you today?",
         timestamp: new Date(),
       },
     ]);
   }, []);
 
-  // Listen for URL changes to update language
-  useEffect(() => {
-    const handleUrlChange = () => {
-      const detectedLanguage = detectLanguage();
-      const showChatbot = shouldShowChatbot();
-
-      setShouldShow(showChatbot);
-
-      if (detectedLanguage !== language && showChatbot) {
-        setLanguage(detectedLanguage);
-        // Update the greeting message when language changes
-        setMessages([
-          {
-            role: "assistant",
-            content: TEXTS[detectedLanguage].greeting,
-            timestamp: new Date(),
-          },
-        ]);
-      }
-    };
-
-    // Listen for popstate events (back/forward navigation)
-    window.addEventListener("popstate", handleUrlChange);
-
-    // Also check on focus in case user navigates in another tab
-    window.addEventListener("focus", handleUrlChange);
-
-    return () => {
-      window.removeEventListener("popstate", handleUrlChange);
-      window.removeEventListener("focus", handleUrlChange);
-    };
-  }, [language]);
-
+  // scroll to bottom
   useEffect(() => {
     scrollToBottom();
   }, [messages, loading, scrollToBottom]);
 
+  // focus on input
   useEffect(() => {
     if (chatbotOpen && inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 100);
@@ -398,7 +317,9 @@ export default function Chatbot() {
               : "border border-gray-100 bg-primary-WHITE text-secondary-GRAY shadow-md"
         }`}
       >
-        <div className="break-words">{convertUrlsToLinks(message.content)}</div>
+        <div className="break-words">
+          {convertUrlsToLinks(message.chatInput)}
+        </div>
         {message.timestamp && (
           <div
             className={`mt-2 text-xs ${
@@ -455,10 +376,6 @@ export default function Chatbot() {
             <div className="flex items-center gap-3">
               <div>
                 <h1 className="text-lg font-bold">Web Chatbot</h1>
-                <p className="text-sm text-blue-100">
-                  {AVAILABLE_MODELS.find((m) => m.value === model)?.label ||
-                    model}
-                </p>
               </div>
             </div>
 
@@ -468,14 +385,14 @@ export default function Chatbot() {
                 className="rounded-lg px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/20"
                 title="Clear chat"
               >
-                {TEXTS[language].clearButton}
+                Clear
               </button>
               <button
                 onClick={handleCloseChatbot}
                 className="rounded-lg p-2 text-white/80 transition-colors hover:bg-white/20"
                 aria-label="Close chatbot"
               >
-                {TEXTS[language].closeButton}
+                x
               </button>
             </div>
           </div>
@@ -516,9 +433,7 @@ export default function Chatbot() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder={
-                  loading
-                    ? TEXTS[language].waitingPlaceholder
-                    : TEXTS[language].placeholder
+                  loading ? "Waiting for response..." : "Type your message..."
                 }
                 maxLength={500}
                 rows={1}
@@ -535,7 +450,7 @@ export default function Chatbot() {
                   ? "hover:scale-105 active:scale-95"
                   : ""
               }`}
-              aria-label={TEXTS[language].sendButton}
+              aria-label="Send message"
             >
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
@@ -546,8 +461,7 @@ export default function Chatbot() {
           </form>
 
           <div className="mt-2 h-4 text-center text-xs text-gray-500">
-            {input.length > 0 &&
-              `${input.length}/500 ${TEXTS[language].characters}`}
+            {input.length > 300 && `${input.length}/500 characters`}
           </div>
         </div>
       </div>
@@ -562,7 +476,7 @@ export default function Chatbot() {
         onClick={handleToggleChatbot}
         aria-label="Open chatbot"
       >
-        <span>{TEXTS[language].openButton}</span>
+        <span>Web Chatbot</span>
       </button>
     </>
   );
