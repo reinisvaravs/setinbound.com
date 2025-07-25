@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description:
       "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
     siteName: "SetInbound",
-    locale: "en_US",
+    locale: "en_LV",
   },
   twitter: {
     card: "summary",
@@ -102,7 +102,7 @@ export const metadata: Metadata = {
   },
   other: {
     google: "notranslate",
-    "Content-Language": "en-US",
+    "Content-Language": "en-LV",
     translate: "no",
     "theme-color": "#7F3DF4",
     "json-ld": JSON.stringify({
@@ -116,11 +116,14 @@ export const metadata: Metadata = {
         "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
       serviceArea: {
         "@type": "Place",
-        name: "California, USA",
+        name: "Latvia",
+        addressCountry: "LV",
       },
       address: {
         "@type": "PostalAddress",
-        addressCountry: "US",
+        addressCountry: "LV",
+        addressLocality: "Riga",
+        addressRegion: "Riga",
       },
       offers: {
         "@type": "Offer",
