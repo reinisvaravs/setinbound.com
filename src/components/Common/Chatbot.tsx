@@ -136,6 +136,7 @@ export default function Chatbot() {
       const requestBody = {
         sessionId: userId,
         chatInput: currentInput,
+        source: "setinbound.com",
         timestamp: new Date(),
       };
 
