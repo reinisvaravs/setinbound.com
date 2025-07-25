@@ -7,7 +7,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative overflow-hidden bg-primary-WHITE_DARK pb-8 pt-[110px] md:pb-32 md:pt-[150px] lg:pt-[160px]"
+        className="relative overflow-hidden bg-primary-WHITE_DARK pb-16 pt-[110px] md:pt-[150px] lg:pt-[160px] lg:pb-32"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center">
@@ -19,7 +19,7 @@ const Hero = () => {
                 <h1 className="mb-12 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-4xl md:whitespace-nowrap md:text-5xl lg:text-6xl lg:leading-[1.2]">
                   Never Miss a Lead Again
                 </h1>
-                <p className="mx-auto mb-6 max-w-[450px] px-1 font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base text-sm sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px]  lg:leading-[1.44]">
+                <p className="mx-auto mb-6 max-w-[450px] px-1 text-sm font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px]  lg:leading-[1.44]">
                   We turn every inbound lead - from ads, your website, or
                   messages - into a qualified conversation. From the first hello
                   to the booked appointment (and every follow-up in between), we
@@ -54,6 +54,9 @@ const Hero = () => {
             </div>
           </div>
         </div>
+        <h1 className="mt-10 text-center text-xl font-normal uppercase text-secondary-GRAY md:text-2xl lg:hidden">
+          Full website coming soon...
+        </h1>
       </section>
     </>
   );
