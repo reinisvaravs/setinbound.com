@@ -161,7 +161,7 @@ export default function Chatbot() {
       }
 
       const data = await res.json();
-      const output = data[0].output;
+      const output = data.output;
 
       if (output) {
         const assistantMsg: Message = {
