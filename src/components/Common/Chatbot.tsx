@@ -64,13 +64,6 @@ const convertUrlsToLinks = (text: string | unknown): React.ReactNode[] => {
   return result;
 };
 
-const shouldShowChatbot = (): boolean => {
-  if (typeof window === "undefined") return false;
-
-  const pathname = window.location.pathname;
-  return pathname === "/bot";
-};
-
 const validateInput = (content: string): string | null => {
   if (!content || content.trim().length === 0) {
     return "Message cannot be empty";
@@ -87,7 +80,6 @@ const formatTimestamp = (date: Date): string => {
 
 export default function Chatbot() {
   // State
-  const [shouldShow, setShouldShow] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -260,9 +252,6 @@ export default function Chatbot() {
   // Effects
   useEffect(() => {
     setUserId(getOrCreateUserId());
-    const showChatbot = shouldShowChatbot();
-
-    setShouldShow(showChatbot);
 
     // Init messages
     setMessages([
@@ -358,11 +347,6 @@ export default function Chatbot() {
       </div>
     </div>
   );
-
-  // Don't render anything if chatbot shouldn't be shown
-  if (!shouldShow) {
-    return null;
-  }
 
   return (
     <>
