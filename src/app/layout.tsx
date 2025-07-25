@@ -33,50 +33,33 @@ export const viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://setinbound.com"),
   title: {
-    default: "SetInbound.com | AI Receptionists for Dental Clinics",
-    template: "%s | AI Receptionists for Dental Clinics | SetInbound.com",
+    default: "SetInbound.com | Never Miss a Lead Again",
+    template: "%s | Never Miss a Lead Again | SetInbound.com",
   },
   description:
-    "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
-  keywords: [
-    "AI receptionist",
-    "virtual receptionist",
-    "dental clinic receptionist",
-    "appointment scheduling",
-    "24/7 answering service",
-    "inbound lead conversion",
-    "business automation",
-    "sales qualification",
-    "missed call recovery",
-    "California AI receptionist",
-    "US virtual receptionist",
-    "Vāravi",
-    "SIA Vāravi",
-    "reinisvaravs.com",
-    "dental practice automation",
-    "dental office receptionist",
-  ],
+    "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
+
   authors: [
     { name: "SetInbound", url: "https://setinbound.com" },
-    { name: "Reinis Varavs", url: "https://reinisvaravs.com" },
-    { name: "Henry Varavs", url: "https://instagram.com/varavshenrijs" },
+    { name: "Reinis Varavs", url: "https://github.com/reinisvaravs" },
+    { name: "Henry Varavs", url: "https://setinbound.com" },
   ],
 
   publisher: "SetInbound",
   openGraph: {
     type: "website",
     url: "https://setinbound.com",
-    title: "SetInbound.com | AI Receptionists for Dental Clinics",
+    title: "SetInbound.com | Never Miss a Lead Again",
     description:
-      "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
+      "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
     siteName: "SetInbound",
     locale: "en_US",
   },
   twitter: {
     card: "summary",
-    title: "SetInbound.com | AI Receptionists for Dental Clinics",
+    title: "SetInbound.com | Never Miss a Lead Again",
     description:
-      "GET A FREE TRIAL OF AN AI RECEPTIONIST - For your dental clinic, in 3 steps and just 2 days, you'll have your own AI Receptionist that you can use for Free until we reach or exceed our promise.",
+      "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
     creator: "@setinbound.com",
     site: "@setinbound.com",
   },
@@ -130,7 +113,7 @@ export const metadata: Metadata = {
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description:
-        "SetInbound provides AI receptionists for dental clinics. Get a free trial in 3 steps and just 2 days. Your AI Receptionist is free until we reach or exceed our promise.",
+        "We turn every inbound lead - from ads, your website, or messages - into a qualified conversation. From the first hello to the booked appointment (and every follow-up in between), we handle it all. You stay focused on your work - we make sure no lead falls through the cracks.",
       serviceArea: {
         "@type": "Place",
         name: "California, USA",
@@ -146,7 +129,16 @@ export const metadata: Metadata = {
       potentialAction: [
         {
           "@type": "CommunicateAction",
-          name: "Test Call AI Receptionist",
+          name: "Test Call AI Voice Agent",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://setinbound.com",
+            actionPlatform: "https://schema.org/DesktopWebPlatform",
+          },
+        },
+        {
+          "@type": "CommunicateAction",
+          name: "Test Chatbot",
           target: {
             "@type": "EntryPoint",
             urlTemplate: "https://setinbound.com",
@@ -181,12 +173,12 @@ export const metadata: Metadata = {
         {
           "@type": "Person",
           name: "Reinis Varavs",
-          url: "https://reinisvaravs.com",
+          url: "https://github.com/reinisvaravs",
         },
         {
           "@type": "Person",
           name: "Henry Varavs",
-          url: "https://instagram.com/varavshenrijs",
+          url: "https://setinbound.com",
         },
       ],
     }),
