@@ -51,10 +51,12 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(data, { status: apiRes.status });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Proxy error:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Proxy error", details: error.message },
+      { error: "Proxy error", details: errorMessage },
       { status: 500 },
     );
   }
