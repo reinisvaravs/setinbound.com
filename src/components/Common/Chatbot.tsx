@@ -135,7 +135,7 @@ export default function Chatbot() {
         timestamp: new Date(),
       };
 
-      const res = await fetch("/api/chatbot-proxy", {
+      const res = await fetch("/proxy/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
