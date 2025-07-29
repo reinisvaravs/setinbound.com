@@ -1,6 +1,6 @@
-// import CallToAction from "@/components/CallToAction";
-// import Faq from "@/components/Faq";
-// import Features from "@/components/Features";
+import CallToAction from "@/components/CallToAction";
+import Faq from "@/components/Faq";
+import Features from "@/components/Features";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Hero from "@/components/Hero";
 import { Metadata } from "next";
@@ -14,9 +14,9 @@ export default function Home() {
     <main>
       <ScrollUp />
       <Hero />
-      {/* <Features /> */}
-      {/* <CallToAction /> */}
-      {/* <Faq /> */}
+      <Features />
+      <CallToAction />
+      <Faq />
     </main>
   );
 }

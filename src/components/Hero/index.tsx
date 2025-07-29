@@ -1,5 +1,4 @@
-// import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
 // import CallAgentButton from "../Common/CallAgentButton";
 
 const Hero = () => {
@@ -7,7 +6,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative overflow-hidden bg-primary-WHITE_DARK pb-16 pt-[110px] md:pt-[150px] lg:pt-[160px] lg:pb-32"
+        className="relative overflow-hidden bg-secondary-LIGHT_GRAY pb-16 pt-[110px] md:pt-[150px] lg:pb-32 lg:pt-[160px]"
       >
         <div className="container">
           <div className="-mx-4 flex flex-wrap items-center">
@@ -16,10 +15,10 @@ const Hero = () => {
                 className="hero-content wow fadeInUp mx-auto max-w-[780px] text-center"
                 data-wow-delay=".2s"
               >
-                <h1 className="mb-12 mt-20 text-3xl font-extrabold uppercase leading-snug text-secondary-GRAY sm:text-4xl md:whitespace-nowrap md:text-5xl lg:text-6xl lg:leading-[1.2]">
+                <h1 className="mb-12 mt-20 text-3xl font-extrabold uppercase leading-snug text-primary-WHITE sm:text-4xl md:whitespace-nowrap md:text-5xl lg:text-6xl lg:leading-[1.2]">
                   Never Miss a Lead Again
                 </h1>
-                <p className="mx-auto mb-6 max-w-[450px] px-1 text-sm font-light leading-relaxed text-secondary-LIGHT_GRAY sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px]  lg:leading-[1.44]">
+                <p className="mx-auto mb-6 max-w-[450px] px-1 text-sm font-light leading-relaxed text-primary-WHITE sm:-mt-3 sm:mb-9 sm:max-w-[500px] sm:text-base sm:leading-[1.44] md:max-w-[600px] md:text-base md:leading-[1.44] lg:-mt-3 lg:mb-9 lg:max-w-[600px]  lg:leading-[1.44]">
                   We turn every inbound lead - from ads, your website, or
                   messages - into a qualified conversation. From the first hello
                   to the booked appointment (and every follow-up in between), we
@@ -29,20 +28,20 @@ const Hero = () => {
                 {/* <h2 className="sm:text-md mx-auto -mt-2 mb-16 w-[45%] whitespace-nowrap border-t-2 border-secondary-LIGHT_GRAY pt-2 text-sm font-normal leading-snug tracking-wide text-secondary-LIGHT_GRAY sm:w-[30%] md:w-[30%] md:text-lg lg:text-xl lg:leading-[1.2]">
                   For medical clinics
                 </h2> */}
-                {/* <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
-                  <li>
+                <ul className="mb-8 flex flex-wrap items-center justify-center gap-5">
+                  {/* <li>
                     <CallAgentButton>Test Agent</CallAgentButton>
-                  </li>
+                  </li> */}
                   <li>
                     <Link
                       href={`${process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "tel:+371 28816633"}`}
                       target="_blank"
-                      className="flex items-center gap-2 rounded-md bg-secondary-LIGHT_GRAY px-3 py-5 text-sm font-medium text-primary-WHITE transition duration-300 ease-in-out hover:bg-success-500 sm:gap-4 sm:px-6 sm:py-[14px] sm:text-base sm:mt-0 mt-5 sm:scale-100 scale-90"
+                      className="mt-5 flex scale-90 items-center gap-2 rounded-full bg-accent-BLUE px-16 py-4 text-sm font-bold text-primary-WHITE transition duration-300 ease-in-out hover:bg-success-500 sm:mt-0 sm:scale-100 sm:gap-4 "
                     >
                       Schedule a Call
                     </Link>
                   </li>
-                </ul> */}
+                </ul>
               </div>
             </div>
 
@@ -54,9 +53,6 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <h1 className="mt-10 text-center text-xl font-normal uppercase text-secondary-GRAY md:text-2xl lg:hidden">
-          Full website coming soon...
-        </h1>
       </section>
     </>
   );
