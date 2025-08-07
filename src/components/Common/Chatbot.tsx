@@ -22,43 +22,207 @@ const getOrCreateUserId = (): string => {
   return id;
 };
 
-// Function to convert URLs to clickable links
+// Function to convert URLs to clickable links, handle line breaks, and markdown formatting
 const convertUrlsToLinks = (text: string | unknown): React.ReactNode[] => {
   if (typeof text !== "string") {
     console.warn("⚠️ Expected string in convertUrlsToLinks, got:", typeof text);
     return [String(text || "")]; // safe fallback
   }
 
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const result: React.ReactNode[] = [];
-  let lastIndex = 0;
+  // Process markdown formatting and URLs within each line
+  const processLine = (
+    lineText: string,
+    keyPrefix: string,
+  ): React.ReactNode[] => {
+    const parts: React.ReactNode[] = [];
+    let currentText = lineText;
+    let partIndex = 0;
 
-  for (const match of text.matchAll(urlRegex)) {
-    const url = match[0];
-    const index = match.index ?? 0;
-
-    if (lastIndex < index) {
-      result.push(text.slice(lastIndex, index));
+    // Process bold text (**text**)
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    let boldMatch;
+    while ((boldMatch = boldRegex.exec(currentText)) !== null) {
+      const beforeBold = currentText.slice(0, boldMatch.index);
+      if (beforeBold) {
+        parts.push(beforeBold);
+      }
+      parts.push(
+        <strong key={`${keyPrefix}-bold-${partIndex++}`}>
+          {processLine(boldMatch[1], `${keyPrefix}-bold-${partIndex}`)}
+        </strong>,
+      );
+      currentText = currentText.slice(boldMatch.index + boldMatch[0].length);
     }
 
+    // Process italic text (*text*)
+    const italicRegex = /\*(.*?)\*/g;
+    let italicMatch;
+    while ((italicMatch = italicRegex.exec(currentText)) !== null) {
+      const beforeItalic = currentText.slice(0, italicMatch.index);
+      if (beforeItalic) {
+        parts.push(beforeItalic);
+      }
+      parts.push(
+        <em key={`${keyPrefix}-italic-${partIndex++}`}>
+          {processLine(italicMatch[1], `${keyPrefix}-italic-${partIndex}`)}
+        </em>,
+      );
+      currentText = currentText.slice(
+        italicMatch.index + italicMatch[0].length,
+      );
+    }
+
+    // Process URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    let urlMatch;
+    while ((urlMatch = urlRegex.exec(currentText)) !== null) {
+      const beforeUrl = currentText.slice(0, urlMatch.index);
+      if (beforeUrl) {
+        parts.push(beforeUrl);
+      }
+      parts.push(
+        <a
+          key={`${keyPrefix}-url-${partIndex++}`}
+          href={urlMatch[0]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline hover:text-blue-800"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {urlMatch[0]}
+        </a>,
+      );
+      currentText = currentText.slice(urlMatch.index + urlMatch[0].length);
+    }
+
+    // Add remaining text
+    if (currentText) {
+      parts.push(currentText);
+    }
+
+    return parts;
+  };
+
+  // First, split by line breaks to handle them
+  const lines = text.split("\n");
+  const result: React.ReactNode[] = [];
+  let currentBulletGroup: React.ReactNode[] = [];
+  let inBulletGroup = false;
+
+  lines.forEach((line, lineIndex) => {
+    // Check if this line looks like a bullet point (starts with a label followed by colon)
+    const labelMatch = line.match(/^(\s*)([A-Za-z\s]+):\s*(.+)$/);
+    const isBulletPoint = labelMatch && labelMatch[3].trim().length > 0;
+
+    // Check if this line contains actual bullet markers (- or *)
+    const hasBulletMarkers = /[-*]\s+/.test(line);
+
+    if (isBulletPoint || hasBulletMarkers) {
+      // Start or continue bullet group
+      if (!inBulletGroup) {
+        inBulletGroup = true;
+        if (lineIndex > 0) {
+          result.push(<br key={`br-${lineIndex}`} />);
+        }
+      }
+
+      if (isBulletPoint) {
+        // Convert label: value format to bullet point
+        const [, spaces, label, value] = labelMatch;
+        const indentLevel = Math.floor(spaces.length / 2);
+
+        currentBulletGroup.push(
+          <div key={`bullet-${lineIndex}`} className="flex items-start gap-2">
+            <span
+              className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent-BLUE"
+              style={{ marginLeft: `${indentLevel * 1.5}rem` }}
+            />
+            <span className="flex-1">
+              <strong>{label}:</strong>{" "}
+              {processLine(value, `line-${lineIndex}`)}
+            </span>
+          </div>,
+        );
+      } else {
+        // Handle traditional bullet points with - or *
+        const bulletRegex = /(\s*)[-*]\s+(.+?)(?=\s*[-*]\s+|$)/g;
+        let bulletMatch;
+        let lastIndex = 0;
+
+        while ((bulletMatch = bulletRegex.exec(line)) !== null) {
+          const [, spaces, content] = bulletMatch;
+          const indentLevel = Math.floor(spaces.length / 2);
+          const matchStart = bulletMatch.index;
+
+          // Add any text before the bullet point
+          if (matchStart > lastIndex) {
+            const beforeText = line.slice(lastIndex, matchStart);
+            if (beforeText.trim()) {
+              currentBulletGroup.push(
+                ...processLine(beforeText, `line-${lineIndex}-before`),
+              );
+            }
+          }
+
+          // Add the bullet point
+          currentBulletGroup.push(
+            <div
+              key={`bullet-${lineIndex}-${matchStart}`}
+              className="flex items-start gap-2"
+            >
+              <span
+                className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent-BLUE"
+                style={{ marginLeft: `${indentLevel * 1.5}rem` }}
+              />
+              <span className="flex-1">
+                {processLine(content, `line-${lineIndex}-${matchStart}`)}
+              </span>
+            </div>,
+          );
+
+          lastIndex = matchStart + bulletMatch[0].length;
+        }
+
+        // Add any remaining text after the last bullet point
+        if (lastIndex < line.length) {
+          const afterText = line.slice(lastIndex);
+          if (afterText.trim()) {
+            currentBulletGroup.push(
+              ...processLine(afterText, `line-${lineIndex}-after`),
+            );
+          }
+        }
+      }
+    } else {
+      // End bullet group if we were in one
+      if (inBulletGroup && currentBulletGroup.length > 0) {
+        result.push(
+          <div key={`bullet-group-${lineIndex}`} className="space-y-1">
+            {currentBulletGroup}
+          </div>,
+        );
+        currentBulletGroup = [];
+        inBulletGroup = false;
+      }
+
+      // Add line break if not first line
+      if (lineIndex > 0) {
+        result.push(<br key={`br-${lineIndex}`} />);
+      }
+
+      // Process regular line
+      const lineParts = processLine(line, `line-${lineIndex}`);
+      result.push(...lineParts);
+    }
+  });
+
+  // Don't forget to add any remaining bullet group
+  if (inBulletGroup && currentBulletGroup.length > 0) {
     result.push(
-      <a
-        key={index}
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-600 underline hover:text-blue-800"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {url}
-      </a>,
+      <div key={`bullet-group-final`} className="space-y-1">
+        {currentBulletGroup}
+      </div>,
     );
-
-    lastIndex = index + url.length;
-  }
-
-  if (lastIndex < text.length) {
-    result.push(text.slice(lastIndex));
   }
 
   return result;
@@ -97,7 +261,8 @@ export default function Chatbot() {
   }, []);
 
   const handleSendMessage = useCallback(async () => {
-    if (!input.trim() || loading) return;
+    // if (!input.trim()) return;
+    if (!input.trim() || loading) return; // Original code - uncomment when done testing
 
     // Clear previous errors
     setError(null);
@@ -434,11 +599,14 @@ export default function Chatbot() {
               type="submit"
               disabled={loading || !input.trim()}
               className={`mb-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
-                !loading && input.trim()
-                  ? "hover:scale-105 active:scale-95"
-                  : ""
+                !loading && input.trim() ? "hover:scale-105 active:scale-95" : ""
               }`}
               aria-label="Send message"
+              // // Without loading state
+              // disabled={!input.trim()}
+              // className={`mb-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
+              //   input.trim() ? "hover:scale-105 active:scale-95" : ""
+              // }`}
             >
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
