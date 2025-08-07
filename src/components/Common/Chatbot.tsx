@@ -295,9 +295,8 @@ export default function Chatbot() {
         chatInput: currentInput,
         source: {
           platform: "setinbound.com",
-          contact: "user",
+          name: "user",
         },
-        timestamp: new Date(),
       };
 
       const res = await fetch("/proxy/chat", {
@@ -599,7 +598,9 @@ export default function Chatbot() {
               type="submit"
               disabled={loading || !input.trim()}
               className={`mb-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-accent-BLUE text-white shadow-lg transition-all duration-200 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 ${
-                !loading && input.trim() ? "hover:scale-105 active:scale-95" : ""
+                !loading && input.trim()
+                  ? "hover:scale-105 active:scale-95"
+                  : ""
               }`}
               aria-label="Send message"
               // // Without loading state
