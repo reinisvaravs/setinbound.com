@@ -294,8 +294,8 @@ export default function Chatbot() {
         sessionId: userId,
         chatInput: currentInput,
         source: {
-          platform: "setinbound.com",
-          name: "user",
+          platform: "Website",
+          name: "User",
         },
       };
 
